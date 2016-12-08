@@ -79,15 +79,24 @@
 				<!-- <a href="#services" class="page-scroll btn btn-xl">Tell Me More</a> --></div>
 		</div>
 	</header>
-	<div class="index-hero-prompt js-index-hero-prompt">
-		<div class="index-hero-bg">
-			<div class="index-hero-show-md">
+	<!--
 				<div class="form-group">
 					<label for="addressInput">Address you'd like information about:</label>
 					<input type="text" class="form-control" id="addressInput" placeholder="Begin typing an address here"> </div>
-				<form> <span class="index-hero-row-sm">
+
+
+	-->
+	<div class="index-hero-prompt js-index-hero-prompt">
+		<div class="index-hero-bg">
+			<div class="index-hero-show-md">
+				<form>
+					
+					<input type="text" class="form-control" id="addressInput" placeholder="Enter your current address here"> 
+					
+					
+					<span class="index-hero-row-sm">
             I'm looking for 
-            <select class="onboarding-form-control js-custom-select">
+            <select class="onboarding-form-control js-custom-select search-select">
                 <option selected="selected">Anything</option>
                 <option>Arts & Entertainment</option>
                 <option>Food</option>
@@ -95,7 +104,7 @@
             </select>
           </span> <span class="index-hero-row-sm base-margin-bottom-x4">
             in 
-            <select class="onboarding-form-control js-custom-select">
+            <select class="onboarding-form-control js-custom-select search-select">
                 <option selected="selected">Anywhere</option>
                 <option>Manhattan</option>
                 <option>Brooklyn</option>
@@ -103,7 +112,10 @@
                 <option>Queens</option>
             </select>
           </span> </form>
-			</div> <a href="" class="page-scroll btn btn-xl">See results</a> </div>
+			</div> <a href="" class="page-scroll btn btn-xl search-btn">See results</a> 
+		<br>
+			<br>
+		</div>
 	</div>
 	<!-- Portfolio Grid Section -->
 	<section id="portfolio" class="bg-light-gray">
