@@ -7,6 +7,7 @@ body {
   overflow-x: hidden;
   font-family: "Roboto Slab", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+
 .text-muted {
   color: #777777;
 }
@@ -744,6 +745,14 @@ img::-moz-selection {
 body {
   webkit-tap-highlight-color: #fed136;
 }
+
+
+#result-map{
+    width: 100%;
+    height: 400px;
+}
+
+
 
 
 .index-hero-prompt{width:100%;color:#fdd898;text-align:center;padding:4px 0}.index-hero-prompt .see-results-text a{color:#ffffff}@media (min-width: 850px){.index-hero-prompt{line-height:110px}}.index-hero-prompt .custom-select:after{background:url("/images/modules/chevron-down-white-9a3b410b.svg") no-repeat 0 0}.index-hero-prompt .custom-select-text{color:#ffffff;border-bottom:2px solid #ffffff}.index-hero-bg{background-color:#fab131;padding:20px}@media (min-width: 850px){.index-hero-bg{padding:0}}.index-hero-row-sm{font-size:20px;font-family:'FuturaBT-Book', sans-serif;font-weight:300;display:inline;letter-spacing:-1px;max-width:auto}@media (min-width: 850px){.index-hero-row-sm{font-size:24px}}.index-hero-show-md{display:none}@media (min-width: 850px){.index-hero-show-md{display:inline-block}}.index-teaser-item{text-align:left;color:#ffffff;position:relative;margin-bottom:25px}.index-teaser-item img{display:block}@media (min-width: 850px){.index-teaser-item{margin-bottom:40px}}.index-teaser-item-header{font-family:'CaslonGraD', serif;font-size:30px;font-weight:100;text-align:center;text-align:left;padding:20px}@media (min-width: 850px){.index-teaser-item-header{font-size:36px}}@media (min-width: 850px){.index-teaser-item-header{padding:40px}}.index-teaser-item-header-source{font-size:16px;font-family:'FuturaBT-Book', sans-serif;font-weight:300;line-height:1.5;display:block;margin-top:10px}.index-teaser-item-buttons{padding:20px}.index-teaser-item-buttons:before,.index-teaser-item-buttons:after{content:" ";display:table}.index-teaser-item-buttons:after{clear:both}@media (min-width: 850px){.index-teaser-item-buttons{padding:30px}}.index-teaser-item-green,.index-teaser-item-red{background:#7cb7b6}.index-teaser-item-green .index-teaser-item-header,.index-teaser-item-red .index-teaser-item-header{padding-bottom:0}.index-teaser-item-red{background:#ed5a3f}.index-teaser-item-yellow{background:#fab131}.index-teaser-item-full .index-teaser-item-header{position:absolute;top:0;left:0}.index-teaser-item-full .index-teaser-item-buttons{width:100%;position:absolute;bottom:0;left:0}.modern-investing-teaser{background:#7cb7b6;color:#ffffff}@media (min-width: 850px){.modern-investing-teaser{position:relative}}@media (min-width: 1000px){.modern-investing-teaser{padding:0}}.modern-investing-teaser-col{margin-bottom:40px}@media (min-width: 850px){.modern-investing-teaser-col{margin-bottom:0}}.modern-investing-teaser-col:first-child .modern-investing-teaser-image-container{max-width:180px}.modern-investing-teaser-ski-lift{display:none}@media (min-width: 850px){.modern-investing-teaser-ski-lift{display:inherit;position:absolute;left:0;top:28%}}@media (min-width: 850px){.modern-investing-teaser-ski-lift-small{display:none}}
