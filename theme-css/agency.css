@@ -6,7 +6,7 @@
 
 body {
 	overflow-x: hidden;
-	font-family: "Roboto Slab", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	//font-family: "Roboto Slab", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .text-muted {
@@ -866,7 +866,7 @@ body {
 	width: 100%;
 	color: white;
 	text-align: center;
-	padding: 4px 0
+	padding: 8px 0
 }
 
 .index-hero-prompt .see-results-text a {
@@ -889,7 +889,7 @@ body {
 }
 
 .index-hero-bg {
-	background-color: #fab161;
+	background-color: rgb(30,96,153);
 	padding: 20px
 }
 
@@ -963,7 +963,7 @@ body {
 
 .index-teaser-item-header-source {
 	font-size: 16px;
-	font-family: 'FuturaBT-Book', sans-serif;
+	//font-family: 'FuturaBT-Book', sans-serif;
 	font-weight: 300;
 	line-height: 1.5;
 	display: block;
@@ -1069,4 +1069,18 @@ body {
 	.modern-investing-teaser-ski-lift-small {
 		display: none
 	}
+}
+
+#addressInput {
+  margin: 25px 0px 15px 0px;
+}
+
+.search-btn {
+  padding: 6px 40px;
+  margin-top: -10px;
+  margin-left: 15px;
+}
+
+.search-select {
+  color: rgb(30,96,153);
 }
