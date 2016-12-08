@@ -1,0 +1,289 @@
+[
+ {
+   "Category": "Category",
+   "Name": "Place name",
+   "Free": "Discount",
+   "Borough": "Borough",
+   "Address": "Address"
+ },
+ {
+   "Category": "Arts & Entertainment",
+   "Name": "The Noguchi Museum",
+   "Free": "Free",
+   "Borough": "Queens",
+   "Address": "9-01 33rd Rd, Queens, NY 11106"
+ },
+ {
+   "Category": "Arts & Entertainment",
+   "Name": "American Numismatic Society",
+   "Free": "Free",
+   "Borough": "Manhattan",
+   "Address": "75 Varick St, New York, NY 10013"
+ },
+ {
+   "Category": "Arts & Entertainment",
+   "Name": "The Bronx Museum of the Arts",
+   "Free": "Free",
+   "Borough": "Bronx",
+   "Address": "1040 Grand Concourse Bronx, New York 10456"
+ },
+ {
+   "Category": "Arts & Entertainment",
+   "Name": "Dahesh Museum of Art",
+   "Free": "Free",
+   "Borough": "Manhattan",
+   "Address": "145 6th Ave, New York, NY 10013"
+ },
+ {
+   "Category": "Arts & Entertainment",
+   "Name": "Intrepid Sea, Air & Space Museum",
+   "Free": "Free",
+   "Borough": "Manhattan",
+   "Address": "Pier 86, W 46th St & 12th Ave, New York, NY 10036"
+ },
+ {
+   "Category": "Arts & Entertainment",
+   "Name": "The Jewish Museum",
+   "Free": "Free",
+   "Borough": "Manhattan",
+   "Address": "1109 5th Ave & 92nd St, New York, NY 10128"
+ },
+ {
+   "Category": "Arts & Entertainment",
+   "Name": "The Metropolitan Museum of Art",
+   "Free": "Free",
+   "Borough": "Manhattan",
+   "Address": "1000 5th Ave, New York, NY 10028"
+ },
+ {
+   "Category": "Arts & Entertainment",
+   "Name": "The Morgan Library & Museum",
+   "Free": "Free",
+   "Borough": "Manhattan",
+   "Address": "225 Madison Ave, New York, NY 10016"
+ },
+ {
+   "Category": "Arts & Entertainment",
+   "Name": "The Museum of Modern Art",
+   "Free": "Free",
+   "Borough": "Manhattan",
+   "Address": "11 W 53rd St, New York, NY 10019"
+ },
+ {
+   "Category": "Arts & Entertainment",
+   "Name": "National Academy Museum",
+   "Free": "Free",
+   "Borough": "Manhattan",
+   "Address": "1083 5th Ave, New York, NY 10128"
+ },
+ {
+   "Category": "Arts & Entertainment",
+   "Name": "New York Transit Museum",
+   "Free": "Free",
+   "Borough": "Brooklyn",
+   "Address": "99 Schermerhorn St, Brooklyn, NY 11201"
+ },
+ {
+   "Category": "Arts & Entertainment",
+   "Name": "Queens Museum",
+   "Free": "Free",
+   "Borough": "Queens",
+   "Address": "Flushing Meadows Corona Park, New York City Building, Queens, NY 11368"
+ },
+ {
+   "Category": "Arts & Entertainment",
+   "Name": "Socrates Sculpture Park",
+   "Free": "Free",
+   "Borough": "Queens",
+   "Address": "32-01 Vernon Blvd, Long Island City, NY 11106"
+ },
+ {
+   "Category": "Arts & Entertainment",
+   "Name": "American Folk Art Museum",
+   "Free": "Free",
+   "Borough": "Manhattan",
+   "Address": "2 Lincoln Square, New York, NY 10023"
+ },
+ {
+   "Category": "Arts & Entertainment",
+   "Name": "Asia Society and Museum",
+   "Free": "Free",
+   "Borough": "Manhattan",
+   "Address": "725 Park Ave, New York, NY 10021"
+ },
+ {
+   "Category": "Arts & Entertainment",
+   "Name": "Brooklyn Historical Society",
+   "Free": "Free",
+   "Borough": "Brooklyn",
+   "Address": "128 Pierrepont St, Brooklyn, NY 11201"
+ },
+ {
+   "Category": "Arts & Entertainment",
+   "Name": "The Cloisters",
+   "Free": "Free",
+   "Borough": "Manhattan",
+   "Address": "99 Margaret Corbin Dr, New York, NY 10040"
+ },
+ {
+   "Category": "Arts & Entertainment",
+   "Name": "El Museo Del Barrio",
+   "Free": "Free",
+   "Borough": "Manhattan",
+   "Address": "1230 5th Ave, New York, NY 10029"
+ },
+ {
+   "Category": "Arts & Entertainment",
+   "Name": "International Center of Photography Museum",
+   "Free": "Free",
+   "Borough": "Manhattan",
+   "Address": "250 Bowery, New York, NY 10012"
+ },
+ {
+   "Category": "Arts & Entertainment",
+   "Name": "Japan Society",
+   "Free": "Free",
+   "Borough": "Manhattan",
+   "Address": "333 E 47th St, New York, NY 10017"
+ },
+ {
+   "Category": "Arts & Entertainment",
+   "Name": "The Met Breuer",
+   "Free": "Free",
+   "Borough": "Manhattan",
+   "Address": "945 Madison Ave, New York, NY 10021"
+ },
+ {
+   "Category": "Arts & Entertainment",
+   "Name": "MoMA PS1",
+   "Free": "Free",
+   "Borough": "Queens",
+   "Address": "22-25 Jackson Ave, Long Island City, NY 11101"
+ },
+ {
+   "Category": "Arts & Entertainment",
+   "Name": "Museum of Jewish Heritage",
+   "Free": "Free",
+   "Borough": "Manhattan",
+   "Address": "36 Battery Pl, New York, NY 10280"
+ },
+ {
+   "Category": "Shopping",
+   "Name": "J.Crew",
+   "Free": "15%",
+   "Borough": "Manhattan",
+   "Address": "1035 Madison Ave, New York, NY 10075"
+ },
+ {
+   "Category": "Shopping",
+   "Name": "J.Crew",
+   "Free": "15%",
+   "Borough": "Manhattan",
+   "Address": "347 Madison Ave, New York, NY 10017"
+ },
+ {
+   "Category": "Shopping",
+   "Name": "Club Monaco",
+   "Free": "20%",
+   "Borough": "Manhattan",
+   "Address": "160 5th Ave, New York, NY 10010, USA"
+ },
+ {
+   "Category": "Shopping",
+   "Name": "Club Monaco",
+   "Free": "20%",
+   "Borough": "Manhattan",
+   "Address": "6 W 57th St, New York, NY 10019"
+ },
+ {
+   "Category": "Shopping",
+   "Name": "Topshop",
+   "Free": "10%",
+   "Borough": "Manhattan",
+   "Address": "478 Broadway, New York, NY 10013"
+ },
+ {
+   "Category": "Shopping",
+   "Name": "Topshop",
+   "Free": "10%",
+   "Borough": "Manhattan",
+   "Address": "608 5th Ave, New York, NY 10020"
+ },
+ {
+   "Category": "Shopping",
+   "Name": "Madewell",
+   "Free": "15%",
+   "Borough": "Manhattan",
+   "Address": "1144 Madison Avenue, New York, NY 10028"
+ },
+ {
+   "Category": "Shopping",
+   "Name": "Madewell",
+   "Free": "15%",
+   "Borough": "Manhattan",
+   "Address": "115 5th Ave, New York, NY 10003"
+ },
+ {
+   "Category": "Shopping",
+   "Name": "Eddie Bauer",
+   "Free": "15%",
+   "Borough": "Manhattan",
+   "Address": "100 5th Ave, New York, NY 10011"
+ },
+ {
+   "Category": "Shopping",
+   "Name": "Charlotte Russe",
+   "Free": "10%",
+   "Borough": "Queens",
+   "Address": "Queens Center, 9015 Queens Blvd, Elmhurst, NY 11373"
+ },
+ {
+   "Category": "Shopping",
+   "Name": "Goodwill",
+   "Free": "10%",
+   "Borough": "Manhattan",
+   "Address": "217 W 79th St, New York, NY 10024"
+ },
+ {
+   "Category": "Shopping",
+   "Name": "Goodwill",
+   "Free": "10%",
+   "Borough": "Brooklyn",
+   "Address": "258 Livingston St, Brooklyn, NY 11201"
+ },
+ {
+   "Category": "Arts & Entertainment",
+   "Name": "Museum of the City of New York",
+   "Free": "Free",
+   "Borough": "Manhattan",
+   "Address": "1220 5th Ave & 103rd St, New York, NY 10029"
+ },
+ {
+   "Category": "Arts & Entertainment",
+   "Name": "Nicholas Roerich Museum",
+   "Free": "Free",
+   "Borough": "Manhattan",
+   "Address": "319 W 107th St, New York, NY 10025"
+ },
+ {
+   "Category": "Arts & Entertainment",
+   "Name": "The Paley Center for Media",
+   "Free": "Free",
+   "Borough": "Manhattan",
+   "Address": "25 W 52nd St, New York, NY 10019"
+ },
+ {
+   "Category": "Arts & Entertainment",
+   "Name": "Schomburg Center for Research in Black Culture",
+   "Free": "Free",
+   "Borough": "Manhattan",
+   "Address": "515 Malcolm X Blvd, New York, NY 10037"
+ },
+ {
+   "Category": "Arts & Entertainment",
+   "Name": "The Studio Museum in Harlem",
+   "Free": "Free",
+   "Borough": "Manhattan",
+   "Address": "144 W 125th St, New York, NY 10027"
+ }
+]
