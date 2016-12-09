@@ -34,6 +34,7 @@ function makeNewElement(className) {
  * Get results from form. Ping Ashley for clarification! 
  */
 var numResults = 0; // keep track of how many results on page
+var numSaved = 0; // keep track of how many saved things we've displayed 
 var savedPlaces = JSON.parse(myStorage.getItem('saved-places')); // saved places array
 //var savedPlaces = [];
 function initSavedPlaces() {
@@ -239,8 +240,8 @@ function getSavedDetails(placeId) {
 
 function appendPlaceToSaved(place, status) {
 	if (status == google.maps.places.PlacesServiceStatus.OK) {
-		numResults++;
-		var results = document.getElementById("saved-places");
+		numSaved++;
+		var saved = document.getElementById("saved-places");
 		var newDiv = document.createElement('div');
 		newDiv.setAttribute('class', 'col-md-4 col-sm-6 portfolio-item')
 		var photoUrl = "http://cdn1-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-2.jpg"; // @TODO: change to a more appropriate no image available placeholder
@@ -250,23 +251,38 @@ function appendPlaceToSaved(place, status) {
 				, 'maxHeight': 500
 			});
 		}
-		newDiv.innerHTML = "<a href='#portfolioModal1' class='portfolio-link' data-toggle='modal'> <div class='portfolio-hover'> <div class='portfolio-hover-content'> <i class='fa fa-plus fa-3x'></i> </div></div> <img src='" + photoUrl + "' class='img-responsive' alt=''> </a><div class='portfolio-caption'><h4>" + place.name + "</h4><p class='text-muted'>Rating: " + place.rating + "</p></div>";
-		/*var resultModals = document.getElementById("resultModals");
+		newDiv.innerHTML = "<a href='#savedModal" + numSaved +"' class='portfolio-link' data-toggle='modal'> <div class='portfolio-hover'> <div class='portfolio-hover-content'> <i class='fa fa-plus fa-3x'></i> </div></div> <img src='" + photoUrl + "' class='img-responsive' alt=''> </a><div class='portfolio-caption'><h4>" + place.name + "</h4><p class='text-muted'>Rating: " + place.rating + "</p></div>";
+		
+		var savedModals = document.getElementById("saved-modals");
 		var newModal = document.createElement('div');
 		var placeId = JSON.stringify(place.place_id);
-		alert(place.address_components[0].long_name);
 		newModal.setAttribute('class', 'portfolio-modal modal fade');
-		newModal.setAttribute('id', 'resultModal' + numResults);
+		newModal.setAttribute('id', 'savedModal' + numSaved);
 		newModal.setAttribute('tabindex', '-1');
 		newModal.setAttribute('role', 'portfolio-modal modal fade');
-		newModal.setAttribute('aria-hidden', 'true');*/
+		newModal.setAttribute('aria-hidden', 'true');
+		
+		
+		
+		var buttonText;
+		var buttonFunc;
+		
+		if(isSaved(place.place_id)) {
+			buttonText = "Remove from Saved";
+			buttonFunc = "removeFromSaved";
+		}
+		else {
+			buttonText = "Add to Saved";
+			buttonFunc = "addToSaved";
+		}
+		
 		/****
 		@TODO: get discount val from hashmap, keyed by placeid
 		
 		*****/
-		/*newModal.innerHTML = "<div class='modal-dialog'> <div class='modal-content'> <div class='close-modal' data-dismiss='modal'> <div class='lr'> <div class='rl'> </div> </div> </div> <div class='container'> <div class='row'> <div class='col-lg-8 col-lg-offset-2'> <div class='modal-body'> <!-- Project Details Go Here --> <h2>" + place.name + "</h2> <p class='item-intro text-muted'>Lorem ipsum dolor sit amet consectetur.</p> <img class='img-responsive img-centered' src='' alt=''> <button type='button' id='saved-button' class='btn btn-primary' onclick='addToSaved(" + placeId + ")'>Add to Saved</button> <br><br> <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p> <p> <strong>Want these icons in this portfolio item sample?</strong>You can download 60 of them for free, courtesy of <a href='https://getdpd.com/cart/hoplink/18076?referrer=bvbo4kax5k8ogc'>RoundIcons.com</a>, or you can purchase the 1500 icon set <a href='https://getdpd.com/cart/hoplink/18076?referrer=bvbo4kax5k8ogc'>here</a>.</p> <ul class='list-inline'> <li>Date: July 2014</li> <li>Client: Round Icons</li> <li>Category: Graphic Design</li> </ul> <iframe width='450' height='250' frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/directions?key=AIzaSyDwjNhrGi0G3W-aKvTJ6eAegH7mf4Y3SuE&origin=" + myStorage.getItem('address') + "&destination=" + place.formatted_address + "&avoid=tolls|highways' allowfullscreen> </iframe> <br> <button type='button' class='btn btn-primary' data-dismiss='modal'><i class='fa fa-times'></i> Close Project</button> </div> </div> </div> </div> </div> </div>";*/
-		results.appendChild(newDiv);
-		//resultModals.appendChild(newModal);
+		newModal.innerHTML = "<div class='modal-dialog'> <div class='modal-content'> <div class='close-modal' data-dismiss='modal'> <div class='lr'> <div class='rl'> </div> </div> </div> <div class='container'> <div class='row'> <div class='col-lg-8 col-lg-offset-2'> <div class='modal-body'> <!-- Project Details Go Here --> <h2>" + place.name + "</h2> <p class='item-intro text-muted'>Lorem ipsum dolor sit amet consectetur.</p> <img class='img-responsive img-centered' src='' alt=''> <button type='button' id='saved-button' class='btn btn-primary' onclick='" + buttonFunc + "(" + placeId + ")'>" + buttonText + "</button> <br><br> <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p> <p> <strong>Want these icons in this portfolio item sample?</strong>You can download 60 of them for free, courtesy of <a href='https://getdpd.com/cart/hoplink/18076?referrer=bvbo4kax5k8ogc'>RoundIcons.com</a>, or you can purchase the 1500 icon set <a href='https://getdpd.com/cart/hoplink/18076?referrer=bvbo4kax5k8ogc'>here</a>.</p> <ul class='list-inline'> <li>Date: July 2014</li> <li>Client: Round Icons</li> <li>Category: Graphic Design</li> </ul> <iframe width='450' height='250' frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/directions?key=AIzaSyDwjNhrGi0G3W-aKvTJ6eAegH7mf4Y3SuE&origin=" + myStorage.getItem('address') + "&destination=" + place.formatted_address + "&avoid=tolls|highways' allowfullscreen> </iframe> <br> <button type='button' class='btn btn-primary' data-dismiss='modal'><i class='fa fa-times'></i> Close Project</button> </div> </div> </div> </div> </div> </div>";
+		saved.appendChild(newDiv);
+		savedModals.appendChild(newModal);
 	}
 }
 
