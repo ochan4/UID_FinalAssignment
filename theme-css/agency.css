@@ -333,12 +333,12 @@ section h3.section-subheading {
 	text-transform: none;
 	font-style: italic;
 	font-weight: 400;
-	margin-bottom: 75px;
+	margin-bottom: 33px;
 }
 
 @media (min-width: 768px) {
 	section {
-		padding: 150px 0;
+		padding: 60px 0;
 	}
 }
 
@@ -421,193 +421,6 @@ section h3.section-subheading {
 @media (min-width: 767px) {
 	#portfolio .portfolio-item {
 		margin: 0 0 30px;
-	}
-}
-
-.timeline {
-	list-style: none;
-	padding: 0;
-	position: relative;
-}
-
-.timeline:before {
-	top: 0;
-	bottom: 0;
-	position: absolute;
-	content: "";
-	width: 2px;
-	background-color: #f1f1f1;
-	left: 40px;
-	margin-left: -1.5px;
-}
-
-.timeline > li {
-	margin-bottom: 50px;
-	position: relative;
-	min-height: 50px;
-}
-
-.timeline > li:before,
-.timeline > li:after {
-	content: " ";
-	display: table;
-}
-
-.timeline > li:after {
-	clear: both;
-}
-
-.timeline > li .timeline-panel {
-	width: 100%;
-	float: right;
-	padding: 0 20px 0 100px;
-	position: relative;
-	text-align: left;
-}
-
-.timeline > li .timeline-panel:before {
-	border-left-width: 0;
-	border-right-width: 15px;
-	left: -15px;
-	right: auto;
-}
-
-.timeline > li .timeline-panel:after {
-	border-left-width: 0;
-	border-right-width: 14px;
-	left: -14px;
-	right: auto;
-}
-
-.timeline > li .timeline-image {
-	left: 0;
-	margin-left: 0;
-	width: 80px;
-	height: 80px;
-	position: absolute;
-	z-index: 100;
-	background-color: #fed136;
-	color: white;
-	border-radius: 100%;
-	border: 7px solid #f1f1f1;
-	text-align: center;
-}
-
-.timeline > li .timeline-image h4 {
-	font-size: 10px;
-	margin-top: 12px;
-	line-height: 14px;
-}
-
-.timeline > li.timeline-inverted > .timeline-panel {
-	float: right;
-	text-align: left;
-	padding: 0 20px 0 100px;
-}
-
-.timeline > li.timeline-inverted > .timeline-panel:before {
-	border-left-width: 0;
-	border-right-width: 15px;
-	left: -15px;
-	right: auto;
-}
-
-.timeline > li.timeline-inverted > .timeline-panel:after {
-	border-left-width: 0;
-	border-right-width: 14px;
-	left: -14px;
-	right: auto;
-}
-
-.timeline > li:last-child {
-	margin-bottom: 0;
-}
-
-.timeline .timeline-heading h4 {
-	margin-top: 0;
-	color: inherit;
-}
-
-.timeline .timeline-heading h4.subheading {
-	text-transform: none;
-}
-
-.timeline .timeline-body > p,
-.timeline .timeline-body > ul {
-	margin-bottom: 0;
-}
-
-@media (min-width: 768px) {
-	.timeline:before {
-		left: 50%;
-	}
-	.timeline > li {
-		margin-bottom: 100px;
-		min-height: 100px;
-	}
-	.timeline > li .timeline-panel {
-		width: 41%;
-		float: left;
-		padding: 0 20px 20px 30px;
-		text-align: right;
-	}
-	.timeline > li .timeline-image {
-		width: 100px;
-		height: 100px;
-		left: 50%;
-		margin-left: -50px;
-	}
-	.timeline > li .timeline-image h4 {
-		font-size: 13px;
-		margin-top: 16px;
-		line-height: 18px;
-	}
-	.timeline > li.timeline-inverted > .timeline-panel {
-		float: right;
-		text-align: left;
-		padding: 0 30px 20px 20px;
-	}
-}
-
-@media (min-width: 992px) {
-	.timeline > li {
-		min-height: 150px;
-	}
-	.timeline > li .timeline-panel {
-		padding: 0 20px 20px;
-	}
-	.timeline > li .timeline-image {
-		width: 150px;
-		height: 150px;
-		margin-left: -75px;
-	}
-	.timeline > li .timeline-image h4 {
-		font-size: 18px;
-		margin-top: 30px;
-		line-height: 26px;
-	}
-	.timeline > li.timeline-inverted > .timeline-panel {
-		padding: 0 20px 20px;
-	}
-}
-
-@media (min-width: 1200px) {
-	.timeline > li {
-		min-height: 170px;
-	}
-	.timeline > li .timeline-panel {
-		padding: 0 20px 20px 100px;
-	}
-	.timeline > li .timeline-image {
-		width: 170px;
-		height: 170px;
-		margin-left: -85px;
-	}
-	.timeline > li .timeline-image h4 {
-		margin-top: 40px;
-	}
-	.timeline > li.timeline-inverted > .timeline-panel {
-		padding: 0 100px 20px 20px;
 	}
 }
 
@@ -889,7 +702,8 @@ body {
 }
 
 .index-hero-bg {
-	background-color: rgb(30,96,153);
+	/*background-color: rgb(30,96,153);*/
+	background-color: #08435c;
 	padding: 20px
 }
 
@@ -901,7 +715,7 @@ body {
 
 .index-hero-row-sm {
 	font-size: 20px;
-	font-weight: 500;
+	font-weight: 450;
 	display: inline;
 	letter-spacing: -1px;
 	max-width: auto
@@ -923,138 +737,6 @@ body {
 	}
 }
 
-.index-teaser-item {
-	text-align: left;
-	color: #ffffff;
-	position: relative;
-	margin-bottom: 25px
-}
-
-.index-teaser-item img {
-	display: block
-}
-
-@media (min-width: 850px) {
-	.index-teaser-item {
-		margin-bottom: 40px
-	}
-}
-
-.index-teaser-item-header {
-	font-family: 'CaslonGraD', serif;
-	font-size: 30px;
-	font-weight: 100;
-	text-align: center;
-	text-align: left;
-	padding: 20px
-}
-
-@media (min-width: 850px) {
-	.index-teaser-item-header {
-		font-size: 36px
-	}
-}
-
-@media (min-width: 850px) {
-	.index-teaser-item-header {
-		padding: 40px
-	}
-}
-
-.index-teaser-item-header-source {
-	font-size: 16px;
-	//font-family: 'FuturaBT-Book', sans-serif;
-	font-weight: 300;
-	line-height: 1.5;
-	display: block;
-	margin-top: 10px
-}
-
-.index-teaser-item-buttons {
-	padding: 20px
-}
-
-.index-teaser-item-buttons:before,
-.index-teaser-item-buttons:after {
-	content: " ";
-	display: table
-}
-
-.index-teaser-item-buttons:after {
-	clear: both
-}
-
-@media (min-width: 850px) {
-	.index-teaser-item-buttons {
-		padding: 30px
-	}
-}
-
-.index-teaser-item-green,
-.index-teaser-item-red {
-	background: #7cb7b6
-}
-
-.index-teaser-item-green .index-teaser-item-header,
-.index-teaser-item-red .index-teaser-item-header {
-	padding-bottom: 0
-}
-
-.index-teaser-item-red {
-	background: #ed5a3f
-}
-
-.index-teaser-item-yellow {
-	background: #fab131
-}
-
-.index-teaser-item-full .index-teaser-item-header {
-	position: absolute;
-	top: 0;
-	left: 0
-}
-
-.index-teaser-item-full .index-teaser-item-buttons {
-	width: 100%;
-	position: absolute;
-	bottom: 0;
-	left: 0
-}
-
-.modern-investing-teaser {
-	background: #7cb7b6;
-	color: #ffffff
-}
-
-@media (min-width: 850px) {
-	.modern-investing-teaser {
-		position: relative
-	}
-}
-
-@media (min-width: 1000px) {
-	.modern-investing-teaser {
-		padding: 0
-	}
-}
-
-.modern-investing-teaser-col {
-	margin-bottom: 40px
-}
-
-@media (min-width: 850px) {
-	.modern-investing-teaser-col {
-		margin-bottom: 0
-	}
-}
-
-.modern-investing-teaser-col:first-child .modern-investing-teaser-image-container {
-	max-width: 180px
-}
-
-.modern-investing-teaser-ski-lift {
-	display: none
-}
 
 @media (min-width: 850px) {
 	.modern-investing-teaser-ski-lift {
@@ -1073,6 +755,7 @@ body {
 
 #addressInput {
   margin: 25px 0px 15px 0px;
+	width: 100%;
 }
 
 .search-btn {
@@ -1082,17 +765,7 @@ body {
 }
 
 
-#result-map{
+#map{
     width: 100%;
     height: 400px;
 }
-
-
-
-
-.index-hero-prompt{width:100%;color:#fdd898;text-align:center;padding:4px 0}.index-hero-prompt .see-results-text a{color:#ffffff}@media (min-width: 850px){.index-hero-prompt{line-height:110px}}.index-hero-prompt .custom-select:after{background:url("/images/modules/chevron-down-white-9a3b410b.svg") no-repeat 0 0}.index-hero-prompt .custom-select-text{color:#ffffff;border-bottom:2px solid #ffffff}.index-hero-bg{background-color:#fab131;padding:20px}@media (min-width: 850px){.index-hero-bg{padding:0}}.index-hero-row-sm{font-size:20px;font-family:'FuturaBT-Book', sans-serif;font-weight:300;display:inline;letter-spacing:-1px;max-width:auto}@media (min-width: 850px){.index-hero-row-sm{font-size:24px}}.index-hero-show-md{display:none}@media (min-width: 850px){.index-hero-show-md{display:inline-block}}.index-teaser-item{text-align:left;color:#ffffff;position:relative;margin-bottom:25px}.index-teaser-item img{display:block}@media (min-width: 850px){.index-teaser-item{margin-bottom:40px}}.index-teaser-item-header{font-family:'CaslonGraD', serif;font-size:30px;font-weight:100;text-align:center;text-align:left;padding:20px}@media (min-width: 850px){.index-teaser-item-header{font-size:36px}}@media (min-width: 850px){.index-teaser-item-header{padding:40px}}.index-teaser-item-header-source{font-size:16px;font-family:'FuturaBT-Book', sans-serif;font-weight:300;line-height:1.5;display:block;margin-top:10px}.index-teaser-item-buttons{padding:20px}.index-teaser-item-buttons:before,.index-teaser-item-buttons:after{content:" ";display:table}.index-teaser-item-buttons:after{clear:both}@media (min-width: 850px){.index-teaser-item-buttons{padding:30px}}.index-teaser-item-green,.index-teaser-item-red{background:#7cb7b6}.index-teaser-item-green .index-teaser-item-header,.index-teaser-item-red .index-teaser-item-header{padding-bottom:0}.index-teaser-item-red{background:#ed5a3f}.index-teaser-item-yellow{background:#fab131}.index-teaser-item-full .index-teaser-item-header{position:absolute;top:0;left:0}.index-teaser-item-full .index-teaser-item-buttons{width:100%;position:absolute;bottom:0;left:0}.modern-investing-teaser{background:#7cb7b6;color:#ffffff}@media (min-width: 850px){.modern-investing-teaser{position:relative}}@media (min-width: 1000px){.modern-investing-teaser{padding:0}}.modern-investing-teaser-col{margin-bottom:40px}@media (min-width: 850px){.modern-investing-teaser-col{margin-bottom:0}}.modern-investing-teaser-col:first-child .modern-investing-teaser-image-container{max-width:180px}.modern-investing-teaser-ski-lift{display:none}@media (min-width: 850px){.modern-investing-teaser-ski-lift{display:inherit;position:absolute;left:0;top:28%}}@media (min-width: 850px){.modern-investing-teaser-ski-lift-small{display:none}}
-
-.search-select {
-  color: rgb(30,96,153);
-}
-
