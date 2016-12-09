@@ -25,6 +25,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 	<script type="text/javascript" src="script.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore.js" type="text/javascript"></script>
 	<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6H_4bCMAM28A-fyzQ9T8r43HdYzbPg7o&libraries=places"></script>
 	<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJ-F1rPoqgpPewazBEZPgJpFLrOv0c63c&callback=initMap" async defer></script>-->
@@ -47,7 +48,7 @@
 	</script>
 </head>
 
-<body id="page-top" class="index">
+<body id="page-top" class="index" onload="initSavedPlaces()">
 	<!-- Navigation -->
 	<nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
 		<div class="container">

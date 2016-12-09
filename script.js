@@ -34,7 +34,18 @@ function makeNewElement(className) {
  * Get results from form. Ping Ashley for clarification! 
  */
 var numResults = 0; // keep track of how many results on page
-var savedPlaces = []; // saved places array
+var savedPlaces = JSON.parse(myStorage.getItem("saved-places")); // saved places array
+
+function initSavedPlaces() {
+	if (JSON.parse(myStorage.getItem("saved-places")) == null) {
+		savedPlaces = [];
+		myStorage.setItem("saved-places", JSON.stringify(savedPlaces));
+	}
+	else {
+		savedPlaces = JSON.parse(myStorage.getItem("saved-places"));
+	}
+}
+
 function processForm() {
 	numResults = 0;
 	var form = document.getElementById("search-form");
@@ -156,34 +167,16 @@ function appendPlaceToResults(place, status) {
 }
 
 function addToSaved(placeId) {
-	/*savedPlaces.add
-	myStorage.setItem("testy");
-	if(myStorage.getItem("saved-places") == null) { 
-		
-	}
-	else {
-		
-	}*/
+	alert(JSON.parse(myStorage.getItem('saved-places')));
+	savedPlaces.push(placeId);
+	myStorage.setItem('saved-places',JSON.stringify(savedPlaces));
+	var parsed = JSON.parse(myStorage.getItem('saved-places'));
+	alert(parsed);
+	//alert(_.without(parsed, 1));  use underscore.js so that we can remove items from the saved list, not built into plain javascript
 	return false;
-	/*if(myStorage.getItem("saved-places") )
-	myStorage.setItem*/
-	//"id1, id2, id3, "
 }
 
-var arts = []; // create test hashmap
-/*arts['ChIJKxDbe_lYwokRVf__s8CPn-o'] = { // keyed by Google Places ID
-	free: "true"
-	, borough: "Manhattan"
-};
-arts['ChIJUZ0c7MpYwokRh8SiMzCXL98'] = {
-	free: "true"
-	, borough: "Queens"
-};
-arts['ChIJsXqcyjy5woARNz6sOh0ZmwA'] = {
-	free: "false"
-	, borough: "Queens"
-};*/
+var arts = []; // create test list
 arts.push({id: 'ChIJKxDbe_lYwokRVf__s8CPn-o', free: "true", borough: "Manhattan"});
 arts.push({id: 'ChIJUZ0c7MpYwokRh8SiMzCXL98', free: "true", borough: "Queens"});
 arts.push({id: 'ChIJsXqcyjy5woARNz6sOh0ZmwA', free: "false", borough: "Queens"});
-/*document.getElementById("results").appendChild("<div class='col-md-4 col-sm-6 portfolio-item'> <a href='#portfolioModal1' class='portfolio-link' data-toggle='modal'> <div class='portfolio-hover'> <div class='portfolio-hover-content'> <i class='fa fa-plus fa-3x'></i> </div></div> <img src='img/portfolio/roundicons.png' class='img-responsive' alt=''> </a><div class='portfolio-caption'><h4>Round Icons</h4><p class='text-muted'>Graphic Design</p></div></div>");*/
