@@ -34,6 +34,7 @@ function makeNewElement(className) {
  * Get results from form. Ping Ashley for clarification! 
  */
 var numResults = 0; // keep track of how many results on page
+var savedPlaces = []; // saved places array
 function processForm() {
 	numResults = 0;
 	var form = document.getElementById("search-form");
@@ -81,33 +82,34 @@ function displayResults() {
 	return false; // prevent reload
 }
 
-function showPlaces(map, onlyFree, borough) {
+function showPlaces(list, onlyFree, borough) {
 	if (onlyFree == "false" && borough == "Anywhere") { // showing discounted + free results in any borough
-		for (var key in map) {
-			getPlaceDetails(key);
+		for(var i = 0; i < list.length; i++) {
+			var cur = list[i];
+			getPlaceDetails(cur["id"]);
 		}
 	}
 	else if (onlyFree == "true" && borough == "Anywhere") { // showing only free results in any borough
-		for (var key in map) {
-			var val = map[key];
-			if (val["free"] == onlyFree) {
-				getPlaceDetails(key);
+		for(var i = 0; i < list.length; i++) {
+			var cur = list[i];
+			if(cur["free"] == onlyFree) {
+				getPlaceDetails(cur["id"]); 
 			}
 		}
 	}
 	else if (onlyFree == "false" && borough != "Anywhere") { // showing discounted + free results in a single borough
-		for (var key in map) {
-			var val = map[key];
-			if (val["borough"] == borough) {
-				getPlaceDetails(key);
+		for(var i = 0; i < list.length; i++) {
+			var cur = list[i];
+			if(cur["borough"] == borough) {
+				getPlaceDetails(cur["id"]); 
 			}
 		}
 	}
 	else { // showing only free results in a single borough
-		for (var key in map) {
-			var val = map[key];
-			if (val["borough"] == borough && val["free"] == onlyFree) {
-				getPlaceDetails(key);
+		for(var i = 0; i < list.length; i++) {
+			var cur = list[i];
+			if (cur["borough"] == borough && cur["free"] == onlyFree) {
+				getPlaceDetails(cur["id"]); 
 			}
 		}
 	}
@@ -138,25 +140,38 @@ function appendPlaceToResults(place, status) {
 				, 'maxHeight': 500
 			});
 		}
-		
-		newDiv.innerHTML = "<a href='#resultModal1' class='portfolio-link' data-toggle='modal'> <div class='portfolio-hover'> <div class='portfolio-hover-content'> <i class='fa fa-plus fa-3x'></i> </div></div> <img src='" + photoUrl + "' class='img-responsive' alt=''> </a><div class='portfolio-caption'><h4>" + place.name + "</h4><p class='text-muted'>Rating: " + place.rating + "</p></div>";
-		
+		newDiv.innerHTML = "<a href='#resultModal" +  numResults + "' class='portfolio-link' data-toggle='modal'> <div class='portfolio-hover'> <div class='portfolio-hover-content'> <i class='fa fa-plus fa-3x'></i> </div></div> <img src='" + photoUrl + "' class='img-responsive' alt=''> </a><div class='portfolio-caption'><h4>" + place.name + "</h4><p class='text-muted'>Rating: " + place.rating + "</p></div>";
 		var resultModals = document.getElementById("resultModals");
 		var newModal = document.createElement('div');
+		var placeId = JSON.stringify(place.place_id);
 		newModal.setAttribute('class', 'portfolio-modal modal fade');
 		newModal.setAttribute('id', 'resultModal' + numResults);
 		newModal.setAttribute('tabindex', '-1');
 		newModal.setAttribute('role', 'portfolio-modal modal fade');
 		newModal.setAttribute('aria-hidden', 'true');
-		alert(place.formatted_address);
-		newModal.innerHTML = "<div class='modal-dialog'> <div class='modal-content'> <div class='close-modal' data-dismiss='modal'> <div class='lr'> <div class='rl'> </div> </div> </div> <div class='container'> <div class='row'> <div class='col-lg-8 col-lg-offset-2'> <div class='modal-body'> <!-- Project Details Go Here --> <h2>" + place.name + "</h2> <p class='item-intro text-muted'>Lorem ipsum dolor sit amet consectetur.</p> <img class='img-responsive img-centered' src='' alt=''> <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p> <p> <strong>Want these icons in this portfolio item sample?</strong>You can download 60 of them for free, courtesy of <a href='https://getdpd.com/cart/hoplink/18076?referrer=bvbo4kax5k8ogc'>RoundIcons.com</a>, or you can purchase the 1500 icon set <a href='https://getdpd.com/cart/hoplink/18076?referrer=bvbo4kax5k8ogc'>here</a>.</p> <ul class='list-inline'> <li>Date: July 2014</li> <li>Client: Round Icons</li> <li>Category: Graphic Design</li> </ul> <iframe width='450' height='250' frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/directions?key=AIzaSyDwjNhrGi0G3W-aKvTJ6eAegH7mf4Y3SuE&origin=" + myStorage.getItem('address') + "&destination=" + place.formatted_address + "&avoid=tolls|highways' allowfullscreen> </iframe> <br> <button type='button' class='btn btn-primary' data-dismiss='modal'><i class='fa fa-times'></i> Close Project</button> </div> </div> </div> </div> </div> </div>";
-
+		newModal.innerHTML = "<div class='modal-dialog'> <div class='modal-content'> <div class='close-modal' data-dismiss='modal'> <div class='lr'> <div class='rl'> </div> </div> </div> <div class='container'> <div class='row'> <div class='col-lg-8 col-lg-offset-2'> <div class='modal-body'> <!-- Project Details Go Here --> <h2>" + place.name + "</h2> <p class='item-intro text-muted'>Lorem ipsum dolor sit amet consectetur.</p> <img class='img-responsive img-centered' src='' alt=''> <button type='button' id='saved-button' class='btn btn-primary' onclick='addToSaved(" + placeId + ")'>Add to Saved</button> <br><br> <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p> <p> <strong>Want these icons in this portfolio item sample?</strong>You can download 60 of them for free, courtesy of <a href='https://getdpd.com/cart/hoplink/18076?referrer=bvbo4kax5k8ogc'>RoundIcons.com</a>, or you can purchase the 1500 icon set <a href='https://getdpd.com/cart/hoplink/18076?referrer=bvbo4kax5k8ogc'>here</a>.</p> <ul class='list-inline'> <li>Date: July 2014</li> <li>Client: Round Icons</li> <li>Category: Graphic Design</li> </ul> <iframe width='450' height='250' frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/directions?key=AIzaSyDwjNhrGi0G3W-aKvTJ6eAegH7mf4Y3SuE&origin=" + myStorage.getItem('address') + "&destination=" + place.formatted_address + "&avoid=tolls|highways' allowfullscreen> </iframe> <br> <button type='button' class='btn btn-primary' data-dismiss='modal'><i class='fa fa-times'></i> Close Project</button> </div> </div> </div> </div> </div> </div>";
 		results.appendChild(newDiv);
 		resultModals.appendChild(newModal);
 	}
 }
-var arts = {}; // create test hashmap
-arts['ChIJKxDbe_lYwokRVf__s8CPn-o'] = { // keyed by Google Places ID
+
+function addToSaved(placeId) {
+	/*savedPlaces.add
+	myStorage.setItem("testy");
+	if(myStorage.getItem("saved-places") == null) { 
+		
+	}
+	else {
+		
+	}*/
+	return false;
+	/*if(myStorage.getItem("saved-places") )
+	myStorage.setItem*/
+	//"id1, id2, id3, "
+}
+
+var arts = []; // create test hashmap
+/*arts['ChIJKxDbe_lYwokRVf__s8CPn-o'] = { // keyed by Google Places ID
 	free: "true"
 	, borough: "Manhattan"
 };
@@ -167,5 +182,8 @@ arts['ChIJUZ0c7MpYwokRh8SiMzCXL98'] = {
 arts['ChIJsXqcyjy5woARNz6sOh0ZmwA'] = {
 	free: "false"
 	, borough: "Queens"
-};
+};*/
+arts.push({id: 'ChIJKxDbe_lYwokRVf__s8CPn-o', free: "true", borough: "Manhattan"});
+arts.push({id: 'ChIJUZ0c7MpYwokRh8SiMzCXL98', free: "true", borough: "Queens"});
+arts.push({id: 'ChIJsXqcyjy5woARNz6sOh0ZmwA', free: "false", borough: "Queens"});
 /*document.getElementById("results").appendChild("<div class='col-md-4 col-sm-6 portfolio-item'> <a href='#portfolioModal1' class='portfolio-link' data-toggle='modal'> <div class='portfolio-hover'> <div class='portfolio-hover-content'> <i class='fa fa-plus fa-3x'></i> </div></div> <img src='img/portfolio/roundicons.png' class='img-responsive' alt=''> </a><div class='portfolio-caption'><h4>Round Icons</h4><p class='text-muted'>Graphic Design</p></div></div>");*/
