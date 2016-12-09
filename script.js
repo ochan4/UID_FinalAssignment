@@ -15,23 +15,19 @@
 
 // }
 
-//put the excel rows into javascript objects
-function makeObjects() {
-    var objects = [];
-    reader.onload = function(e) {
-
-        var data = e.target.result();
-        var workbook = XLSX.read(data, { type: 'binary' });
-
-        workbook.SheetNames.forEach(function(sheetName) {
-            // Here is your object
-            var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
-            var json_object = JSON.stringify(XL_row_object);
-            console.log(json_object);
-
-        })
-
-    };
+function getObjects(objects, borough, activity) {
+    var places = [];
+    //iterate through objects array
+    for (var i in objects) {
+        if (!objects.hasOwnProperty(i)) continue;
+        if (typeof objects[i] == 'object') {
+            places = places.concat(getObjects(objects[i], borough, activity));
+        } else if (i == key) {
+            objects.push(obj);
+        }
+    }
+    return objects;
+}
 
 var gMapAPIKey = 'AIzaSyDJ-F1rPoqgpPewazBEZPgJpFLrOv0c63c'
 
