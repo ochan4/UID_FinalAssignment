@@ -787,8 +787,11 @@ body {
 	font-size:20px;
 	//margin: 0px 0px 50px 30px;
 	font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	padding: 15px 50px;
+	padding: 10px 50px;
+}
 
+#discount {
+	margin-top:5px;
 }
 
 #saved-button{
@@ -799,6 +802,7 @@ body {
 #placeInfo {
 	font-size: 16px;
 	margin-top:10px;
+	clear:both;
 }
 
 .infoText {
@@ -808,4 +812,11 @@ body {
 
 #hoursDiv {
 	font-size: 12px;
+}
+
+#photo {
+	clear:both;
+}
+#photo img{
+	max-width:700px;
 }
