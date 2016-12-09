@@ -34,17 +34,26 @@ function makeNewElement(className) {
  * Get results from form. Ping Ashley for clarification! 
  */
 var numResults = 0; // keep track of how many results on page
-var savedPlaces = JSON.parse(myStorage.getItem("saved-places")); // saved places array
+var savedPlaces = JSON.parse(myStorage.getItem('saved-places')); // saved places array
+//var savedPlaces = [];
 function initSavedPlaces() {
-	if (JSON.parse(myStorage.getItem("saved-places")) == null) {
+	if (JSON.parse(myStorage.getItem('saved-places')) == "") {
 		savedPlaces = [];
-		myStorage.setItem("saved-places", JSON.stringify(savedPlaces));
+		myStorage.setItem('saved-places', JSON.stringify(savedPlaces));
 		noSavedPlaces(); // @TODO: show some message saying to get started 
 	}
 	else {
-		savedPlaces = JSON.parse(myStorage.getItem("saved-places"));
+		//savedPlaces = [];
+		savedPlaces = JSON.parse(myStorage.getItem('saved-places'));
 		displaySavedPlaces(); // @TODO: display list of places 
 	}
+	
+		//	savedPlaces = [];
+			//myStorage.setItem("saved-places", JSON.stringify(savedPlaces));
+			//alert(JSON.parse(myStorage.getItem("saved-places")));
+			//displaySavedPlaces(); // @TODO: display list of places 
+
+
 }
 
 function processForm() {
@@ -170,11 +179,11 @@ function appendPlaceToResults(place, status) {
 		
 		if(isSaved(place.place_id)) {
 			buttonText = "Remove from Saved";
-			buttonFunc = "addToSaved";
+			buttonFunc = "removeFromSaved";
 		}
 		else {
 			buttonText = "Add to Saved";
-			buttonFunc = "removeFromSaved";
+			buttonFunc = "addToSaved";
 		}
 		/****
 		@TODO: get discount val from hashmap, keyed by placeid
@@ -197,16 +206,20 @@ function isSaved(placeId) {
 }
 
 function addToSaved(placeId) {
-	alert(JSON.parse(myStorage.getItem('saved-places')));
 	savedPlaces.push(placeId);
 	myStorage.setItem('saved-places', JSON.stringify(savedPlaces));
 	var parsed = JSON.parse(myStorage.getItem('saved-places'));
-	alert(parsed);
+	alert("Succesfully added this location to your saved list!");	
 	//alert(_.without(parsed, 1));  use underscore.js so that we can remove items from the saved list, not built into plain javascript
 	return false;
 }
 
-function removeFromSaved() {
+function removeFromSaved(placeId) {
+	var origSaved = JSON.parse(myStorage.getItem('saved-places'));
+	var updatedSaved = _.without(origSaved, placeId);
+	savedPlaces = updatedSaved;
+	myStorage.setItem('saved-places', JSON.stringify(updatedSaved));
+	alert("Succesfully removed this location to your saved list!");
 	return false; // @TODO: implement me!
 }
 
@@ -215,7 +228,7 @@ function noSavedPlaces() {
 }
 
 function displaySavedPlaces() {
-	var toDisplay = JSON.parse(myStorage.getItem("saved-places"));
+	var toDisplay = JSON.parse(myStorage.getItem('saved-places'));
 	for (var i = 0; i < toDisplay.length; i++) {
 		getSavedDetails(toDisplay[i]);
 	}
