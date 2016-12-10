@@ -255,7 +255,7 @@ function appendPlaceToResults(place, status) {
 		var photoDiv = "<div class='col-lg-6' id='photo'><img src='" + photoUrl + "'>   </div>";
 		var placeInfoDiv = "<div class='col-lg-6' id='placeInfo'> <span class='glyphicon glyphicon-map-marker'></span><span class='infoText'>" + place.vicinity + "</span><br><span class='glyphicon glyphicon-link'></span><span class='infoText'><a href=" + place.url + ">Google Page</a></span><br><span class='glyphicon glyphicon-earphone'></span><span class='infoText'>" + place.formatted_phone_number + "</span></div>";
 		var hoursDiv;
-		if (place.opneing_hours !== undefined && place.opening_hours.weekday_text !== undefined) {
+		if (place.opening_hours !== undefined && place.opening_hours.weekday_text !== undefined) {
 			hoursDiv = "<div class='col-lg-6' id='hoursDiv'> <h6 id='hoursTitle'>Hours</h6>" + place.opening_hours.weekday_text[0] + "<br>" + place.opening_hours.weekday_text[1] + "<br>" + place.opening_hours.weekday_text[2] + "<br>" + place.opening_hours.weekday_text[3] + "<br>" + place.opening_hours.weekday_text[4] + "<br>" + place.opening_hours.weekday_text[5] + "<br>" + place.opening_hours.weekday_text[6] + "</div>";
 		}
 		else {
@@ -271,8 +271,10 @@ function appendPlaceToResults(place, status) {
 			buttonText = "Add to Saved";
 			buttonFunc = "addToSaved";
 		}
-		var iframe = "";
-		//var iframe = "<iframe width='700' height='400' frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/directions?key=AIzaSyDwjNhrGi0G3W-aKvTJ6eAegH7mf4Y3SuE&origin=" + myStorage.getItem('address') + "&destination=" + place.formatted_address + "&avoid=tolls|highways' allowfullscreen> </iframe>";
+		var fromAddress = encodeURIComponent(myStorage.getItem('address'));
+		var toAddress = encodeURIComponent(place.formatted_address);
+		
+		var iframe = "<iframe width='700' height='400' frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/directions?key=AIzaSyDwjNhrGi0G3W-aKvTJ6eAegH7mf4Y3SuE&origin=" + fromAddress + "&destination=" + toAddress + "&avoid=tolls|highways' allowfullscreen> </iframe>";
 		/****
 			@TODO: get discount val from hashmap, keyed by placeid
 		
@@ -292,40 +294,6 @@ function isSaved(placeId) {
 	return false;
 }
 
-function UrlExists(from, to, cb) {
-	var url = "https://www.google.com/maps/embed/v1/directions?key=AIzaSyDwjNhrGi0G3W-aKvTJ6eAegH7mf4Y3SuE&origin=" + from + "&destination=" + to + "&avoid=tolls|highways";
-	jQuery.ajax({
-		url: url
-		, dataType: 'text'
-		, type: 'GET'
-		, complete: function (xhr) {
-			if (typeof cb === 'function') cb.apply(this, [xhr.status]);
-		}
-	});
-}
-
-function getMapDir(status) {
-	if (status === 200) {
-		alert("i'm here");
-	}
-	else if (status === 404) {
-		alert("nuuuu");
-	}
-}
-/*function UrlExists(from, to) {
-    var http = new XMLHttpRequest();
-	var url = "https://www.google.com/maps/embed/v1/directions?key=AIzaSyDwjNhrGi0G3W-aKvTJ6eAegH7mf4Y3SuE&origin=" + from + "&destination=" + to + "&avoid=tolls|highways";
-    http.open('HEAD', url, false);
-    http.send();
-    if (http.status != 404) {
-		alert("hereee");
-        return "";
-	}
-    else {
-		alert("<iframe width='700' height='400' frameborder='0' style='border:0' src='" + url + "'allowfullscreen> </iframe>");
-        return "<iframe width='700' height='400' frameborder='0' style='border:0' src='" + url + "'allowfullscreen> </iframe>";
-	}
-}*/
 function addToSaved(placeId) {
 	savedPlaces.push(placeId);
 	myStorage.setItem('saved-places', JSON.stringify(savedPlaces));
@@ -959,6 +927,9 @@ var arts = [{
 }];
 
 var shopping = [{id:'ChIJ9cyRU6JZwokR6BE7qIX8VQc', free: 'false', borough: 'Manhattan'},{id:'ChIJL6ZX4gFZwokRlhNUcAXdOeM', free: 'false', borough: 'Manhattan'},{id:'ChIJHRful6NZwokRxosgqshaDMk', free: 'false', borough: 'Manhattan'},{id:'ChIJv5p_b_pYwokRPKwidmPgV3k', free: 'false', borough: 'Manhattan'},{id:'ChIJj8DVbolZwokRi5US6vDx14U', free: 'false', borough: 'Manhattan'},{id:'ChIJo8-Dlv5YwokRFJb77gbBNhk', free: 'false', borough: 'Manhattan'},{id:'ChIJ92YC35dYwokR6Lh4p1NhDBw', free: 'false', borough: 'Manhattan'},{id:'ChIJA-0YU6JZwokR4qv4OBgNnRE', free: 'false', borough: 'Manhattan'},{id:'ChIJ951VnqJZwokRs5Xya4oAnWA', free: 'false', borough: 'Manhattan'},{id:'ChIJW4ed-0tewokRrSKUvDUQ7ZQ', free: 'false', borough: 'Queens'},{id:'ChIJ-VHbm4hYwokRtL5UgbY6-7g', free: 'false', borough: 'Manhattan'},{id:'ChIJKRnp3kxawokR1qNG46dKHPY', free: 'false', borough: 'Brooklyn'}];
+
+var food = [{id:'ChIJtRnkH2j2wokRjnh6QuLd2CM', free: 'false', borough: 'Manhattan'},{id:'ChIJ7QUAcmv2wokRjDlrpRJm_Js', free: 'false', borough: 'Manhattan'},{id:'ChIJmRtEriX2wokRfPFTtXE33cE', free: 'false', borough: 'Manhattan'},{id:'ChIJ_Ud8NTz2wokRb-AeY92wfNI', free: 'false', borough: 'Manhattan'},{id:'ChIJA2zUTyP2wokRPcf2exHThYs', free: 'false', borough: 'Manhattan'},{id:'ChIJj0VoQhX2wokRWzkC5ufS9-U', free: 'false', borough: 'Manhattan'},{id:'ChIJQTcbgyT2wokR4azjcOwPkRA', free: 'false', borough: 'Manhattan'},{id:'ChIJQTcbgyT2wokR4azjcOwPkRA', free: 'false', borough: 'Manhattan'}];
+
 
 var discounts = {'ChIJUZ0c7MpYwokRh8SiMzCXL98': { discount: 'Free'},'ChIJmzolTYtZwokRHq_kx0LfXvo': { discount: 'Free'},'ChIJDbNgaTH0wokRRQPTw1E93GY': { discount: 'Free'},'ChIJ7WI5fvtYwokRPDUT1aUOA_Q': { discount: 'Free'},'ChIJnxlg1U5YwokR8T90UrZiIwI': { discount: 'Free'},'ChIJxY5cO6JYwokRPeVk85UNj2g': { discount: 'Free'},'ChIJb8Jg9pZYwokR-qHGtvSkLzs': { discount: 'Free'},'ChIJ3453OAdZwokRja92OOKCugM': { discount: 'Free'},'ChIJKxDbe_lYwokRVf__s8CPn-o': { discount: 'Free'},'ChIJISGWiaJYwokRuOumpQv1i88': { discount: 'Free'},'ChIJdThqNVVawokRFk58UQOvtuM': { discount: 'Free'},'ChIJmWMJBtBfwokR5qK7waLcgAM': { discount: 'Free'},'ChIJvcjmWLVYwokRFz2FMdi00cA': { discount: 'Free'},'ChIJEeD6FPVYwokRgs0ZbWMrrzk': { discount: 'Free'},'ChIJeXQWdutYwokRuHX2h1so5K4': { discount: 'Free'},'ChIJLYgHV0hawokR2-ZdvxaMGxE': { discount: 'Free'},'ChIJK6bycAH0wokRrSnflfrnkZE': { discount: 'Free'},'ChIJWT0gUBz2wokRNcAxVUphAAs': { discount: 'Free'},'ChIJ5YRc6oVZwokRcRC4WKbR6_s': { discount: 'Free'},'ChIJT9QreB1ZwokRHZEDNBAX--0': { discount: 'Free'},'ChIJl-WU6pRYwokRA91OgdYWfa4': { discount: 'Free'},'ChIJwfbFiiNZwokRN8hnF940DbY': { discount: 'Free'},'ChIJYTeZ_BFawokRe_SRVX_pKIs': { discount: 'Free'},'ChIJ9cyRU6JZwokR6BE7qIX8VQc': { discount: '15%'},'ChIJL6ZX4gFZwokRlhNUcAXdOeM': { discount: '15%'},'ChIJHRful6NZwokRxosgqshaDMk': { discount: '20%'},'ChIJv5p_b_pYwokRPKwidmPgV3k': { discount: '20%'},'ChIJj8DVbolZwokRi5US6vDx14U': { discount: '10%'},'ChIJo8-Dlv5YwokRFJb77gbBNhk': { discount: '10%'},'ChIJ92YC35dYwokR6Lh4p1NhDBw': { discount: '15%'},'ChIJA-0YU6JZwokR4qv4OBgNnRE': { discount: '15%'},'ChIJ951VnqJZwokRs5Xya4oAnWA': { discount: '15%'},'ChIJW4ed-0tewokRrSKUvDUQ7ZQ': { discount: '10%'},'ChIJ-VHbm4hYwokRtL5UgbY6-7g': { discount: '10%'},'ChIJKRnp3kxawokR1qNG46dKHPY': { discount: '10%'},'ChIJi4hYtB32wokR1Npx_Tv7phk': { discount: 'Free'},'ChIJCYAz0Dr2wokRe49DUpkvIL4': { discount: 'Free'},'ChIJF5e1QvlYwokRcVF6x1CEcQk': { discount: 'Free'},'ChIJ7etix3b2wokRKN_Pd9RLRHQ': { discount: 'Free'},'ChIJ_ShwXw32wokRQJpaKAIcCOo': { discount: 'Free'},'ChIJtRnkH2j2wokRjnh6QuLd2CM': { discount: '5%'},'ChIJ7QUAcmv2wokRjDlrpRJm_Js': { discount: '5%'},'ChIJmRtEriX2wokRfPFTtXE33cE': { discount: '10%'},'ChIJ_Ud8NTz2wokRb-AeY92wfNI': { discount: '15%'},'ChIJA2zUTyP2wokRPcf2exHThYs': { discount: '10%'},'ChIJj0VoQhX2wokRWzkC5ufS9-U': { discount: '10%'},'ChIJQTcbgyT2wokR4azjcOwPkRA': { discount: '15%'},'ChIJQTcbgyT2wokR4azjcOwPkRA': { discount: '15%'}}
 
