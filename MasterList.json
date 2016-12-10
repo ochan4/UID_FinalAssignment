@@ -1,0 +1,434 @@
+[
+ {
+   "category": "Arts & Entertainment",
+   "name": "The Noguchi Museum",
+   "discount": "Free",
+   "borough": "Queens",
+   "address": "9-01 33rd Rd, Queens, NY 11106",
+   "Rating": 4.5,
+   "googleID": "ChIJUZ0c7MpYwokRh8SiMzCXL98"
+ },
+ {
+   "category": "Arts & Entertainment",
+   "name": "American Numismatic Society",
+   "discount": "Free",
+   "borough": "Manhattan",
+   "address": "75 Varick St, New York, NY 10013",
+   "Rating": null,
+   "googleID": "ChIJmzolTYtZwokRHq_kx0LfXvo"
+ },
+ {
+   "category": "Arts & Entertainment",
+   "name": "The Bronx Museum of the Arts",
+   "discount": "Free",
+   "borough": "Bronx",
+   "address": "1040 Grand Concourse Bronx, New York 10456",
+   "Rating": null,
+   "googleID": "ChIJDbNgaTH0wokRRQPTw1E93GY"
+ },
+ {
+   "category": "Arts & Entertainment",
+   "name": "Dahesh Museum of Art",
+   "discount": "Free",
+   "borough": "Manhattan",
+   "address": "145 6th Ave, New York, NY 10013",
+   "Rating": null,
+   "googleID": "ChIJ7WI5fvtYwokRPDUT1aUOA_Q"
+ },
+ {
+   "category": "Arts & Entertainment",
+   "name": "Intrepid Sea, Air & Space Museum",
+   "discount": "Free",
+   "borough": "Manhattan",
+   "address": "Pier 86, W 46th St & 12th Ave, New York, NY 10036",
+   "Rating": null,
+   "googleID": "ChIJnxlg1U5YwokR8T90UrZiIwI"
+ },
+ {
+   "category": "Arts & Entertainment",
+   "name": "The Jewish Museum",
+   "discount": "Free",
+   "borough": "Manhattan",
+   "address": "1109 5th Ave & 92nd St, New York, NY 10128",
+   "Rating": null,
+   "googleID": "ChIJxY5cO6JYwokRPeVk85UNj2g"
+ },
+ {
+   "category": "Arts & Entertainment",
+   "name": "The Metropolitan Museum of Art",
+   "discount": "Free",
+   "borough": "Manhattan",
+   "address": "1000 5th Ave, New York, NY 10028",
+   "Rating": 4.7,
+   "googleID": "ChIJb8Jg9pZYwokR-qHGtvSkLzs"
+ },
+ {
+   "category": "Arts & Entertainment",
+   "name": "The Morgan Library & Museum",
+   "discount": "Free",
+   "borough": "Manhattan",
+   "address": "225 Madison Ave, New York, NY 10016",
+   "Rating": null,
+   "googleID": "ChIJ3453OAdZwokRja92OOKCugM"
+ },
+ {
+   "category": "Arts & Entertainment",
+   "name": "The Museum of Modern Art",
+   "discount": "Free",
+   "borough": "Manhattan",
+   "address": "11 W 53rd St, New York, NY 10019",
+   "Rating": null,
+   "googleID": "ChIJKxDbe_lYwokRVf__s8CPn-o"
+ },
+ {
+   "category": "Arts & Entertainment",
+   "name": "National Academy Museum",
+   "discount": "Free",
+   "borough": "Manhattan",
+   "address": "1083 5th Ave, New York, NY 10128",
+   "Rating": null,
+   "googleID": "ChIJISGWiaJYwokRuOumpQv1i88"
+ },
+ {
+   "category": "Arts & Entertainment",
+   "name": "New York Transit Museum",
+   "discount": "Free",
+   "borough": "Brooklyn",
+   "address": "99 Schermerhorn St, Brooklyn, NY 11201",
+   "Rating": null,
+   "googleID": "ChIJdThqNVVawokRFk58UQOvtuM"
+ },
+ {
+   "category": "Arts & Entertainment",
+   "name": "Queens Museum",
+   "discount": "Free",
+   "borough": "Queens",
+   "address": "Flushing Meadows Corona Park, New York City Building, Queens, NY 11368",
+   "Rating": null,
+   "googleID": "ChIJmWMJBtBfwokR5qK7waLcgAM"
+ },
+ {
+   "category": "Arts & Entertainment",
+   "name": "Socrates Sculpture Park",
+   "discount": "Free",
+   "borough": "Queens",
+   "address": "32-01 Vernon Blvd, Long Island City, NY 11106",
+   "Rating": null,
+   "googleID": "ChIJvcjmWLVYwokRFz2FMdi00cA"
+ },
+ {
+   "category": "Arts & Entertainment",
+   "name": "American Folk Art Museum",
+   "discount": "Free",
+   "borough": "Manhattan",
+   "address": "2 Lincoln Square, New York, NY 10023",
+   "Rating": null,
+   "googleID": "ChIJEeD6FPVYwokRgs0ZbWMrrzk"
+ },
+ {
+   "category": "Arts & Entertainment",
+   "name": "Asia Society and Museum",
+   "discount": "Free",
+   "borough": "Manhattan",
+   "address": "725 Park Ave, New York, NY 10021",
+   "Rating": null,
+   "googleID": "ChIJeXQWdutYwokRuHX2h1so5K4"
+ },
+ {
+   "category": "Arts & Entertainment",
+   "name": "Brooklyn Historical Society",
+   "discount": "Free",
+   "borough": "Brooklyn",
+   "address": "128 Pierrepont St, Brooklyn, NY 11201",
+   "Rating": null,
+   "googleID": "ChIJLYgHV0hawokR2-ZdvxaMGxE"
+ },
+ {
+   "category": "Arts & Entertainment",
+   "name": "The Cloisters",
+   "discount": "Free",
+   "borough": "Manhattan",
+   "address": "99 Margaret Corbin Dr, New York, NY 10040",
+   "Rating": null,
+   "googleID": "ChIJK6bycAH0wokRrSnflfrnkZE"
+ },
+ {
+   "category": "Arts & Entertainment",
+   "name": "El Museo Del Barrio",
+   "discount": "Free",
+   "borough": "Manhattan",
+   "address": "1230 5th Ave, New York, NY 10029",
+   "Rating": null,
+   "googleID": "ChIJWT0gUBz2wokRNcAxVUphAAs"
+ },
+ {
+   "category": "Arts & Entertainment",
+   "name": "International Center of Photography Museum",
+   "discount": "Free",
+   "borough": "Manhattan",
+   "address": "250 Bowery, New York, NY 10012",
+   "Rating": null,
+   "googleID": "ChIJ5YRc6oVZwokRcRC4WKbR6_s"
+ },
+ {
+   "category": "Arts & Entertainment",
+   "name": "Japan Society",
+   "discount": "Free",
+   "borough": "Manhattan",
+   "address": "333 E 47th St, New York, NY 10017",
+   "Rating": null,
+   "googleID": "ChIJT9QreB1ZwokRHZEDNBAX--0"
+ },
+ {
+   "category": "Arts & Entertainment",
+   "name": "The Met Breuer",
+   "discount": "Free",
+   "borough": "Manhattan",
+   "address": "945 Madison Ave, New York, NY 10021",
+   "Rating": null,
+   "googleID": "ChIJl-WU6pRYwokRA91OgdYWfa4"
+ },
+ {
+   "category": "Arts & Entertainment",
+   "name": "MoMA PS1",
+   "discount": "Free",
+   "borough": "Queens",
+   "address": "22-25 Jackson Ave, Long Island City, NY 11101",
+   "Rating": null,
+   "googleID": "ChIJwfbFiiNZwokRN8hnF940DbY"
+ },
+ {
+   "category": "Arts & Entertainment",
+   "name": "Museum of Jewish Heritage",
+   "discount": "Free",
+   "borough": "Manhattan",
+   "address": "36 Battery Pl, New York, NY 10280",
+   "Rating": null,
+   "googleID": "ChIJYTeZ_BFawokRe_SRVX_pKIs"
+ },
+ {
+   "category": "Shopping",
+   "name": "J.Crew",
+   "discount": "15%",
+   "borough": "Manhattan",
+   "address": "1035 Madison Ave, New York, NY 10075",
+   "Rating": null,
+   "googleID": "ChIJ08EZ0ZVYwokRZG73nsCM0oE"
+ },
+ {
+   "category": "Shopping",
+   "name": "J.Crew",
+   "discount": "15%",
+   "borough": "Manhattan",
+   "address": "347 Madison Ave, New York, NY 10017",
+   "Rating": null,
+   "googleID": "ChIJL6ZX4gFZwokRlhNUcAXdOeM"
+ },
+ {
+   "category": "Shopping",
+   "name": "Club Monaco",
+   "discount": "20%",
+   "borough": "Manhattan",
+   "address": "160 5th Ave, New York, NY 10010, USA",
+   "Rating": null,
+   "googleID": "ChIJHRful6NZwokRxosgqshaDMk"
+ },
+ {
+   "category": "Shopping",
+   "name": "Club Monaco",
+   "discount": "20%",
+   "borough": "Manhattan",
+   "address": "6 W 57th St, New York, NY 10019",
+   "Rating": null,
+   "googleID": "ChIJv5p_b_pYwokRPKwidmPgV3k"
+ },
+ {
+   "category": "Shopping",
+   "name": "Topshop",
+   "discount": "10%",
+   "borough": "Manhattan",
+   "address": "478 Broadway, New York, NY 10013",
+   "Rating": null,
+   "googleID": "ChIJj8DVbolZwokRi5US6vDx14U"
+ },
+ {
+   "category": "Shopping",
+   "name": "Topshop",
+   "discount": "10%",
+   "borough": "Manhattan",
+   "address": "608 5th Ave, New York, NY 10020",
+   "Rating": null,
+   "googleID": "ChIJo8-Dlv5YwokRFJb77gbBNhk"
+ },
+ {
+   "category": "Shopping",
+   "name": "Madewell",
+   "discount": "15%",
+   "borough": "Manhattan",
+   "address": "1144 Madison Avenue, New York, NY 10028",
+   "Rating": null,
+   "googleID": "ChIJ92YC35dYwokR6Lh4p1NhDBw"
+ },
+ {
+   "category": "Shopping",
+   "name": "Madewell",
+   "discount": "15%",
+   "borough": "Manhattan",
+   "address": "115 5th Ave, New York, NY 10003",
+   "Rating": null,
+   "googleID": "ChIJA-0YU6JZwokR4qv4OBgNnRE"
+ },
+ {
+   "category": "Shopping",
+   "name": "Eddie Bauer",
+   "discount": "15%",
+   "borough": "Manhattan",
+   "address": "100 5th Ave, New York, NY 10011",
+   "Rating": null,
+   "googleID": "ChIJ951VnqJZwokRs5Xya4oAnWA"
+ },
+ {
+   "category": "Shopping",
+   "name": "Charlotte Russe",
+   "discount": "10%",
+   "borough": "Queens",
+   "address": "Queens Center, 9015 Queens Blvd, Elmhurst, NY 11373",
+   "Rating": null,
+   "googleID": "ChIJW4ed-0tewokRrSKUvDUQ7ZQ"
+ },
+ {
+   "category": "Shopping",
+   "name": "Goodwill",
+   "discount": "10%",
+   "borough": "Manhattan",
+   "address": "217 W 79th St, New York, NY 10024",
+   "Rating": null,
+   "googleID": "ChIJ-VHbm4hYwokRtL5UgbY6-7g"
+ },
+ {
+   "category": "Shopping",
+   "name": "Goodwill",
+   "discount": "10%",
+   "borough": "Brooklyn",
+   "address": "258 Livingston St, Brooklyn, NY 11201",
+   "Rating": null,
+   "googleID": "ChIJKRnp3kxawokR1qNG46dKHPY"
+ },
+ {
+   "category": "Arts & Entertainment",
+   "name": "Museum of the City of New York",
+   "discount": "Free",
+   "borough": "Manhattan",
+   "address": "1220 5th Ave & 103rd St, New York, NY 10029",
+   "Rating": null,
+   "googleID": "ChIJi4hYtB32wokR1Npx_Tv7phk"
+ },
+ {
+   "category": "Arts & Entertainment",
+   "name": "Nicholas Roerich Museum",
+   "discount": "Free",
+   "borough": "Manhattan",
+   "address": "319 W 107th St, New York, NY 10025",
+   "Rating": null,
+   "googleID": "ChIJCYAz0Dr2wokRe49DUpkvIL4"
+ },
+ {
+   "category": "Arts & Entertainment",
+   "name": "The Paley Center for Media",
+   "discount": "Free",
+   "borough": "Manhattan",
+   "address": "25 W 52nd St, New York, NY 10019",
+   "Rating": null,
+   "googleID": "ChIJF5e1QvlYwokRcVF6x1CEcQk"
+ },
+ {
+   "category": "Arts & Entertainment",
+   "name": "Schomburg Center for Research in Black Culture",
+   "discount": "Free",
+   "borough": "Manhattan",
+   "address": "515 Malcolm X Blvd, New York, NY 10037",
+   "Rating": null,
+   "googleID": "ChIJ7etix3b2wokRKN_Pd9RLRHQ"
+ },
+ {
+   "category": "Arts & Entertainment",
+   "name": "The Studio Museum in Harlem",
+   "discount": "Free",
+   "borough": "Manhattan",
+   "address": "144 W 125th St, New York, NY 10027",
+   "Rating": null,
+   "googleID": "ChIJ_ShwXw32wokRQJpaKAIcCOo"
+ },
+ {
+   "category": "Food",
+   "name": "Fairway Market ",
+   "discount": "5%",
+   "borough": "Manhattan",
+   "address": "2328 12th Ave, New York, NY 10027",
+   "Rating": null,
+   "googleID": "ChIJtRnkH2j2wokRjnh6QuLd2CM"
+ },
+ {
+   "category": "Food",
+   "name": "Key Food",
+   "discount": "5%",
+   "borough": "Manhattan",
+   "address": "421 W. 125th, New York, NY",
+   "Rating": null,
+   "googleID": "ChIJ7QUAcmv2wokRjDlrpRJm_Js"
+ },
+ {
+   "category": "Food",
+   "name": "Aangan",
+   "discount": "10%",
+   "borough": "Manhattan",
+   "address": "2701 Broadway, New York, NY 10025",
+   "Rating": null,
+   "googleID": "ChIJmRtEriX2wokRfPFTtXE33cE"
+ },
+ {
+   "category": "Food",
+   "name": "Strokos",
+   "discount": "15%",
+   "borough": "Manhattan",
+   "address": "1090 Amsterdam Ave, New York, NY 10025",
+   "Rating": null,
+   "googleID": "ChIJ_Ud8NTz2wokRb-AeY92wfNI"
+ },
+ {
+   "category": "Food",
+   "name": "Subway",
+   "discount": "10%",
+   "borough": "Manhattan",
+   "address": "971 Amsterdam Ave #1, New York, NY 10025",
+   "Rating": null,
+   "googleID": "ChIJA2zUTyP2wokRPcf2exHThYs"
+ },
+ {
+   "category": "Food",
+   "name": "Ajanta Indian Restaurant ",
+   "discount": "10%",
+   "borough": "Manhattan",
+   "address": "1237 Amsterdam Avenue New York, NY 10027",
+   "Rating": null,
+   "googleID": "ChIJj0VoQhX2wokRWzkC5ufS9-U"
+ },
+ {
+   "category": "Food",
+   "name": "Curry And Kabab",
+   "discount": "15%",
+   "borough": "Manhattan",
+   "address": "931 Amsterdam Ave New York, NY 10025",
+   "Rating": null,
+   "googleID": "ChIJQTcbgyT2wokR4azjcOwPkRA"
+ },
+ {
+   "category": "Food",
+   "name": "V&T Pizzeria",
+   "discount": "15%",
+   "borough": "Manhattan",
+   "address": "1024 Amsterdam Avenue New York, NY 10025",
+   "Rating": null,
+   "googleID": "ChIJQTcbgyT2wokR4azjcOwPkRA"
+ }
+]
