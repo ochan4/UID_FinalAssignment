@@ -1,0 +1,1 @@
+var allplaces = 989;
