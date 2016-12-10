@@ -145,15 +145,21 @@ function displayResults() {
 		showPlaces(arts, onlyFree, borough);
 	}
 	else if (atype == 'Food') {
+
 		showPlaces(food, onlyFree, borough);
 	}
 	else if (atype == 'Shopping') {
+
 		showPlaces(shopping, onlyFree, borough);
 	}
 	else { // else we want it all
+		console.log("at the begin");
 		showPlaces(arts, onlyFree, borough);
+		console.log("after arts");
 		showPlaces(food, onlyFree, borough);
+		console.log("after food");
 		showPlaces(shopping, onlyFree, borough);
+		console.log("after shopping");
 	}
 	return false; // prevent reload
 }
@@ -161,8 +167,9 @@ function displayResults() {
 function showPlaces(list, onlyFree, borough) {
 
 	if (onlyFree == "false" && borough == "Anywhere") { // showing discounted + free results in any borough
-		console.log("all sorts of goodies");
-
+		//console.log("all sorts of goodies");
+		
+		console.log("list length:" + list.length);
 		for (var i = 0; i < list.length; i++) {
 			var cur = list[i];
 			getPlaceDetails(cur["id"]);
@@ -189,12 +196,11 @@ function showPlaces(list, onlyFree, borough) {
 		}
 	}
 	else { // showing only free results in a single borough
-		console.log("all kind of goodies in somewhere");
 		for (var i = 0; i < list.length; i++) {
 			var cur = list[i];
 			getPlaceDetails(cur["id"]);
 			if (cur["borough"] == borough && cur["free"] == onlyFree) {
-				
+				 getPlaceDetails(cur["id"]);
 			}
 		}
 	}
@@ -212,6 +218,7 @@ function getPlaceDetails(placeId) {
 function appendPlaceToResults(place, status) {
 	if (status == google.maps.places.PlacesServiceStatus.OK) {
 		numResults++;
+		console.log(numResults);
 		var results = document.getElementById("results");
 		var newDiv = document.createElement('div');
 		newDiv.setAttribute('class', 'col-md-4 col-sm-6 portfolio-item')
