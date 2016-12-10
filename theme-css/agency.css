@@ -833,3 +833,8 @@ body {
 #photo img{
 	max-width:700px;
 }
+
+.portfolio-link img {
+	max-height:240px;
+	margin: 0 auto;
+}
