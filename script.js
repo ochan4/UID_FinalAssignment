@@ -69,18 +69,26 @@ function discountDictionaryFunction(discountArray){
 var numResults = 0; // keep track of how many results on page
 var numSaved = 0; // keep track of how many saved things we've displayed 
 var savedPlaces = JSON.parse(myStorage.getItem('saved-places')); // saved places array
-//var savedPlaces = [];
+
 function initSavedPlaces() {
 	if (JSON.parse(myStorage.getItem('saved-places')) == "") {
 		savedPlaces = [];
 		myStorage.setItem('saved-places', JSON.stringify(savedPlaces));
 		noSavedPlaces(); // @TODO: show some message saying to get started 
+		document.getElementById('has-saved-places').style.display = "none";
+		document.getElementById('no-saved-places').style.display = "block";
 	}
 	else {
 		savedPlaces = JSON.parse(myStorage.getItem('saved-places'));
 		splitCategory();
-		displaySavedPlaces(); // @TODO: display list of places 
+		document.getElementById('no-saved-places').style.display = "none";
+		document.getElementById('has-saved-places').style.display = "block";
+		displaySavedPlaces(); 
 	}
+}
+
+function initResults() {
+	//@TODO
 }
 
 function processForm() {
@@ -118,7 +126,7 @@ function displayResults() {
 	else {
 		criteriaCost = "Discounted & Free Activities"
 	}
-	document.getElementById("form-criteria").innerHTML = "Get directions from: " + address + "<br>" + atype + ", " + borough + ", " + criteriaCost;
+	document.getElementById("form-criteria").innerHTML = "Getting directions from: " + address + "<br>" + atype + ", " + borough + ", " + criteriaCost;
 	
 	splitCategory();
 
@@ -259,12 +267,8 @@ function appendPlaceToResults(place, status) {
 		var toAddress = encodeURIComponent(place.formatted_address);
 		
 		var iframe = "<iframe width='700' height='400' frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/directions?key=AIzaSyDwjNhrGi0G3W-aKvTJ6eAegH7mf4Y3SuE&origin=" + fromAddress + "&destination=" + toAddress + "&avoid=tolls|highways&mode=transit' allowfullscreen> </iframe>";
-		/****
-			@TODO: get discount val from hashmap, keyed by placeid
-		
-			*****/
+
 		newModal.innerHTML = "<div class='modal-dialog'> <div class='modal-content'> <div class='close-modal' data-dismiss='modal'> <div class='lr'> <div class='rl'> </div> </div> </div> <div class='container'> <div class='row'> <div class='col-lg-8 col-lg-offset-2'> <div class='modal-body'> <!-- Project Details Go Here --> <h2>" + place.name + "</h2>" + ratingDiv + discountDiv + "<br> <button type='button' id='saved-button' class='btn btn-primary' onclick='" + buttonFunc + "(" + placeId + ")'>" + buttonText + "</button><br>" + photoDiv + placeInfoDiv + hoursDiv + "<br>" + iframe + "<br><br> <button type='button' class='btn btn-primary center-block' data-dismiss='modal'><i class='fa fa-times'></i> Close Window</button> </div> </div> </div> </div> </div> </div>";
-		//UrlExists(myStorage.getItem, place.formatted_address, getMapDir);
 		results.appendChild(newDiv);
 		resultModals.appendChild(newModal);
 	}

@@ -60,7 +60,7 @@
 		<div class="index-hero-bg">
 			<div class="index-hero-show-md">
 				<form id="search-form" class="form-inline">
-					<input type="text" name="address" class="form-control" id="addressInput" placeholder="Enter your current address here, if blank will default to Columbia University">
+					<input type="text" name="address" class="form-control" id="addressInput" placeholder="Enter your current address here, Columbia University assumed if no address is entered.">
 					<br>
 					<h5 style="display: inline;">I'm looking for </h5>
 					<select id="cost" class="form-control">
@@ -91,7 +91,13 @@
 			<div class="row">
 				<div class="col-lg-12 text-center">
 					<h2 class="section-heading">Saved</h2>
-					<h3 class="section-subheading text-muted">Saved location text here!</h3> </div>
+					<div id="no-saved-places" style="display:none">
+						<h3 class="section-subheading text-muted">No saved locations as of yet! Get searching to fill this section up.</h3> 
+					</div>
+					<div id="has-saved-places" style="display:none">
+						<h3 class="section-subheading text-muted">Here are all of the locations you've saved thus far.</h3> 
+					</div>
+				</div>
 			</div>
 			<div id="saved-places" class="row"> </div>
 		</div>
