@@ -171,6 +171,7 @@ function showPlaces(list, onlyFree, borough) {
 		
 		console.log("list length:" + list.length);
 		for (var i = 0; i < list.length; i++) {
+			console.log("Iteration Number: " + i);
 			var cur = list[i];
 			getPlaceDetails(cur["id"]);
 		}
@@ -208,20 +209,24 @@ function showPlaces(list, onlyFree, borough) {
 }
 
 function getPlaceDetails(placeId) {
+	console.log("inside place details");
 	var request = {
 		placeId: placeId
 	};
 	service = new google.maps.places.PlacesService(document.createElement('div'));
 	service.getDetails(request, appendPlaceToResults);
+	//appendPlaceToResults();
 }
 
 function appendPlaceToResults(place, status) {
 	if (status == google.maps.places.PlacesServiceStatus.OK) {
+		console.log("after status check");
 		numResults++;
 		console.log(numResults);
 		var results = document.getElementById("results");
 		var newDiv = document.createElement('div');
-		newDiv.setAttribute('class', 'col-md-4 col-sm-6 portfolio-item')
+		newDiv.setAttribute('class', 'col-md-4 col-sm-6 portfolio-item');
+		newDiv.setAttribute('id', 'result' + numResults);
 		var photoUrl = "http://cdn1-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-2.jpg"; // @TODO: change to a more appropriate no image available placeholder
 		if (place.photos !== undefined) {
 			if (place.photos[0] !== undefined) { // make sure a photo is available
