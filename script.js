@@ -199,7 +199,7 @@ function appendPlaceToResults(place, status) {
 		var newDiv = document.createElement('div');
 		newDiv.setAttribute('class', 'col-md-4 col-sm-6 portfolio-item');
 		newDiv.setAttribute('id', 'result' + numResults);
-		var photoUrl = "http://rajkotinvestments.com/photos/1472796927.no-image-available.jpg"; // @TODO: change to a more appropriate no image available placeholder
+		var photoUrl = "https://www.masterworksfineart.com/wp-content/uploads/2015/09/not_available.png"; // @TODO: change to a more appropriate no image available placeholder
 		if (place.photos !== undefined) {
 			if (place.photos[0] !== undefined) { // make sure a photo is available
 				photoUrl = place.photos[0].getUrl({
@@ -322,7 +322,7 @@ function appendPlaceToSaved(place, status) {
 		var saved = document.getElementById("saved-places");
 		var newDiv = document.createElement('div');
 		newDiv.setAttribute('class', 'col-md-4 col-sm-6 portfolio-item')
-		var photoUrl = "http://cdn1-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-2.jpg"; // @TODO: change to a more appropriate no image available placeholder
+		var photoUrl = "https://www.masterworksfineart.com/wp-content/uploads/2015/09/not_available.png"; // @TODO: change to a more appropriate no image available placeholder
 		if (place.photos !== undefined) {
 			if (place.photos[0] !== undefined) { // make sure a photo is available
 				photoUrl = place.photos[0].getUrl({
@@ -371,7 +371,6 @@ function appendPlaceToSaved(place, status) {
 		else {
 			ratingDiv = "<div class='col-lg-6' id ='rating'>No rating available for this location.</div>";
 		}
-		console.log(place.place_id);
 		var discountDiv = "<div class='col-lg-6' id='discount'><span class='alert alert-success'>Discount: " + discountDictionary[place.place_id] + "</span></div>";
 		var photoDiv = "<div class='col-lg-6' id='photo'><img src='" + photoUrl + "'>   </div>";
 		var placeInfoDiv = "<div class='col-lg-6' id='placeInfo'> <span class='glyphicon glyphicon-map-marker'></span><span class='infoText'>" + place.vicinity + "</span><br><span class='glyphicon glyphicon-link'></span><span class='infoText'><a href=" + place.url + " target='_blank'>Google Page</a></span><br><span class='glyphicon glyphicon-earphone'></span><span class='infoText'>" + place.formatted_phone_number + "</span></div>";
