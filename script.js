@@ -96,7 +96,7 @@ function processForm() {
 	numResults = 0;
 	var form = document.getElementById("search-form");
 	var address = form.address.value;
-	if (address == "") {
+	if (address == "" || address == undefined) {
 		address = "Columbia University";
 	}
 	var cost = document.getElementById("cost");
