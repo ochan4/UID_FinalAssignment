@@ -188,7 +188,7 @@ function appendPlaceToResults(place, status) {
 			var newDiv = document.createElement('div');
 			newDiv.setAttribute('class', 'col-md-4 col-sm-6 portfolio-item');
 			newDiv.setAttribute('id', 'result' + numResults);
-			var photoUrl = "https://www.masterworksfineart.com/wp-content/uploads/2015/09/not_available.png"; // @TODO: change to a more appropriate no image available placeholder
+			var photoUrl = "http://ahandup.net/wp-content/uploads/2015/08/no-propertyfound1-830x460.png"; // @TODO: change to a more appropriate no image available placeholder
 			if (place.photos !== undefined) {
 				if (place.photos[0] !== undefined) { // make sure a photo is available
 					photoUrl = place.photos[0].getUrl({
@@ -317,7 +317,7 @@ function appendPlaceToSaved(place, status) {
 		var saved = document.getElementById("saved-places");
 		var newDiv = document.createElement('div');
 		newDiv.setAttribute('class', 'col-md-4 col-sm-6 portfolio-item')
-		var photoUrl = "https://www.masterworksfineart.com/wp-content/uploads/2015/09/not_available.png"; // @TODO: change to a more appropriate no image available placeholder
+		var photoUrl = "http://ahandup.net/wp-content/uploads/2015/08/no-propertyfound1-830x460.png"; // @TODO: change to a more appropriate no image available placeholder
 		if (place.photos !== undefined) {
 			if (place.photos[0] !== undefined) { // make sure a photo is available
 				photoUrl = place.photos[0].getUrl({
