@@ -1,12 +1,5 @@
 [
  {
-   "Category": "Category",
-   "Name": "Place name",
-   "Free": "Discount",
-   "Borough": "Borough",
-   "Address": "Address"
- },
- {
    "Category": "Arts & Entertainment",
    "Name": "The Noguchi Museum",
    "Free": "Free",

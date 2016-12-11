@@ -71,6 +71,22 @@ function discountDictionaryFunction(discountArray){
 // function findPlaces(price, borough, activity) {
 //     var places = [];
 // }
+
+function getObjects(objects, borough, activity) {
+    var places = [];
+    //iterate through objects array
+    for (var i in objects) {
+        if (!objects.hasOwnProperty(i)) continue;
+        if (typeof objects[i] == 'object') {
+            places = places.concat(getObjects(objects[i], borough, activity));
+        } else if (i == key) {
+            objects.push(obj);
+        }
+    }
+    return objects;
+}
+
+
 //put the excel rows into javascript objects
 function makeObjects() {
 	var objects = [];
@@ -119,6 +135,7 @@ function initSavedPlaces() {
 }
 
 function processForm() {
+
 	numResults = 0;
 	var form = document.getElementById("search-form");
 	var address = form.address.value;
@@ -140,6 +157,7 @@ function processForm() {
 };
 
 function displayResults() {
+
 	var address = myStorage.getItem('address');
 	var onlyFree = myStorage.getItem('only-free');
 	var atype = myStorage.getItem('activity-type');
@@ -224,7 +242,6 @@ function getPlaceDetails(placeId) {
 	};
 	service = new google.maps.places.PlacesService(document.createElement('div'));
 	service.getDetails(request, appendPlaceToResults);
-	//appendPlaceToResults();
 }
 
 function appendPlaceToResults(place, status) {
