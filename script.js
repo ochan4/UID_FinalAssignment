@@ -3,11 +3,13 @@ var arts = [] ;
 var foods = [];
 var shoppings = [];
 var allplaces = [];
+var discountDictionary = {};
 
 function splitCategory (){
 	//console.log(allplaces['masterlist'].length);
 	var masterlist = allplacesJSON['masterlist'];
-	
+	var discountArray = [];
+
 	for(var i = 0; i < allplacesJSON['masterlist'].length; i++){
 		
 		var id = masterlist[i];
@@ -15,7 +17,7 @@ function splitCategory (){
 		if (id['category'] == "Arts & Entertainment") {
           arts.push({
             id: id['googleID']
-            , free: id['discount']
+            , free: id['boolFree']
             , borough: id['borough']
           });
         }
@@ -23,7 +25,7 @@ function splitCategory (){
         if (id['category'] == "Shopping") {
           shoppings.push({
              id: id['googleID']
-            , free: id['discount']
+            , free: id['boolFree']
             , borough: id['borough']
           });
         }
@@ -31,22 +33,34 @@ function splitCategory (){
         if (id['category'] == "Food") {
           foods.push({
              id: id['googleID']
-            , free: id['discount']
+            , free: id['boolFree']
             , borough: id['borough']
           });
         }
 
         allplaces.push({
             id: id['googleID']
-            , free: id['discount']
+            , free: id['boolFree']
             , borough: id['borough']
           });
-	}
 
-	console.log(arts);
-    console.log(shoppings);
-    console.log(foods);
-    console.log(allplaces);
+        discountArray.push({
+        	id: id['googleID'],
+        	discount: id['discount']
+        });
+
+	}
+    
+    discountDictionaryFunction(discountArray);	//parse the array to dictionary
+}
+
+function discountDictionaryFunction(discountArray){
+	for (var i = 0; i < discountArray.length; i++) {
+		var id = discountArray[i].id;
+		var discountAmount = discountArray[i].discount;
+
+		discountDictionary[id]= discountAmount;
+	}
 }
 
 // function makeMap() {
@@ -163,21 +177,16 @@ function displayResults() {
 		showPlaces(arts, onlyFree, borough);
 	}
 	else if (atype == 'Food') {
-
-		showPlaces(food, onlyFree, borough);
+		showPlaces(foods, onlyFree, borough);
 	}
 	else if (atype == 'Shopping') {
+		showPlaces(shoppings, onlyFree, borough);
 
-		showPlaces(shopping, onlyFree, borough);
 	}
 	else { // else we want it all
-		console.log("at the begin");
 		showPlaces(arts, onlyFree, borough);
-		console.log("after arts");
-		showPlaces(food, onlyFree, borough);
-		console.log("after food");
-		showPlaces(shopping, onlyFree, borough);
-		console.log("after shopping");
+		showPlaces(foods, onlyFree, borough);
+		showPlaces(shoppings, onlyFree, borough);
 	}
 	return false; // prevent reload
 }
@@ -189,6 +198,7 @@ function showPlaces(list, onlyFree, borough) {
 		
 		console.log("list length:" + list.length);
 		for (var i = 0; i < list.length; i++) {
+			console.log("Iteration Number: " + i);
 			var cur = list[i];
 			getPlaceDetails(cur["id"]);
 		}
@@ -226,21 +236,24 @@ function showPlaces(list, onlyFree, borough) {
 }
 
 function getPlaceDetails(placeId) {
+	console.log("inside place details");
 	var request = {
 		placeId: placeId
 	};
 	service = new google.maps.places.PlacesService(document.createElement('div'));
 	service.getDetails(request, appendPlaceToResults);
- // 6738a29d5f92e749e67a48442d0d57c8b681660f
 }
 
 function appendPlaceToResults(place, status) {
 	if (status == google.maps.places.PlacesServiceStatus.OK) {
+		// console.log(next_page_token); 		
+		console.log("after status check");
 		numResults++;
 		console.log(numResults);
 		var results = document.getElementById("results");
 		var newDiv = document.createElement('div');
-		newDiv.setAttribute('class', 'col-md-4 col-sm-6 portfolio-item')
+		newDiv.setAttribute('class', 'col-md-4 col-sm-6 portfolio-item');
+		newDiv.setAttribute('id', 'result' + numResults);
 		var photoUrl = "http://cdn1-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-2.jpg"; // @TODO: change to a more appropriate no image available placeholder
 		if (place.photos !== undefined) {
 			if (place.photos[0] !== undefined) { // make sure a photo is available
@@ -277,7 +290,7 @@ function appendPlaceToResults(place, status) {
 			ratingDiv = "<div class='col-lg-6' id ='rating'>No rating available for this location.</div>";
 		}
 		
-		var discountDiv = "<div class='col-lg-6' id='discount'><span class='alert alert-success'>Discount: " + discounts[place.place_id]["discount"] + "</span></div>";
+		var discountDiv = "<div class='col-lg-6' id='discount'><span class='alert alert-success'>Discount: " + discountDictionary[place.place_id] + "</span></div>";
 		var photoDiv = "<div class='col-lg-6' id='photo'><img src='" + photoUrl + "'>   </div>";
 		var placeInfoDiv = "<div class='col-lg-6' id='placeInfo'> <span class='glyphicon glyphicon-map-marker'></span><span class='infoText'>" + place.vicinity + "</span><br><span class='glyphicon glyphicon-link'></span><span class='infoText'><a href=" + place.url + ">Google Page</a></span><br><span class='glyphicon glyphicon-earphone'></span><span class='infoText'>" + place.formatted_phone_number + "</span></div>";
 		var hoursDiv;
@@ -407,6 +420,7 @@ var allplacesJSON = {
    "category": "Arts & Entertainment",
    "name": "The Noguchi Museum",
    "discount": "Free",
+   "boolFree": true,
    "borough": "Queens",
    "address": "9-01 33rd Rd, Queens, NY 11106",
    "Rating": 4.5,
@@ -416,6 +430,7 @@ var allplacesJSON = {
    "category": "Arts & Entertainment",
    "name": "American Numismatic Society",
    "discount": "Free",
+   "boolFree": true,
    "borough": "Manhattan",
    "address": "75 Varick St, New York, NY 10013",
    "Rating": null,
@@ -425,6 +440,7 @@ var allplacesJSON = {
    "category": "Arts & Entertainment",
    "name": "The Bronx Museum of the Arts",
    "discount": "Free",
+   "boolFree": true,
    "borough": "Bronx",
    "address": "1040 Grand Concourse Bronx, New York 10456",
    "Rating": null,
@@ -434,6 +450,7 @@ var allplacesJSON = {
    "category": "Arts & Entertainment",
    "name": "Dahesh Museum of Art",
    "discount": "Free",
+   "boolFree": true,
    "borough": "Manhattan",
    "address": "145 6th Ave, New York, NY 10013",
    "Rating": null,
@@ -443,6 +460,7 @@ var allplacesJSON = {
    "category": "Arts & Entertainment",
    "name": "Intrepid Sea, Air & Space Museum",
    "discount": "Free",
+   "boolFree": true,
    "borough": "Manhattan",
    "address": "Pier 86, W 46th St & 12th Ave, New York, NY 10036",
    "Rating": null,
@@ -452,6 +470,7 @@ var allplacesJSON = {
    "category": "Arts & Entertainment",
    "name": "The Jewish Museum",
    "discount": "Free",
+   "boolFree": true,
    "borough": "Manhattan",
    "address": "1109 5th Ave & 92nd St, New York, NY 10128",
    "Rating": null,
@@ -461,6 +480,7 @@ var allplacesJSON = {
    "category": "Arts & Entertainment",
    "name": "The Metropolitan Museum of Art",
    "discount": "Free",
+   "boolFree": true,
    "borough": "Manhattan",
    "address": "1000 5th Ave, New York, NY 10028",
    "Rating": 4.7,
@@ -470,6 +490,7 @@ var allplacesJSON = {
    "category": "Arts & Entertainment",
    "name": "The Morgan Library & Museum",
    "discount": "Free",
+   "boolFree": true,
    "borough": "Manhattan",
    "address": "225 Madison Ave, New York, NY 10016",
    "Rating": null,
@@ -479,6 +500,7 @@ var allplacesJSON = {
    "category": "Arts & Entertainment",
    "name": "The Museum of Modern Art",
    "discount": "Free",
+   "boolFree": true,
    "borough": "Manhattan",
    "address": "11 W 53rd St, New York, NY 10019",
    "Rating": null,
@@ -488,6 +510,7 @@ var allplacesJSON = {
    "category": "Arts & Entertainment",
    "name": "National Academy Museum",
    "discount": "Free",
+   "boolFree": true,
    "borough": "Manhattan",
    "address": "1083 5th Ave, New York, NY 10128",
    "Rating": null,
@@ -497,6 +520,7 @@ var allplacesJSON = {
    "category": "Arts & Entertainment",
    "name": "New York Transit Museum",
    "discount": "Free",
+   "boolFree": true,
    "borough": "Brooklyn",
    "address": "99 Schermerhorn St, Brooklyn, NY 11201",
    "Rating": null,
@@ -506,6 +530,7 @@ var allplacesJSON = {
    "category": "Arts & Entertainment",
    "name": "Queens Museum",
    "discount": "Free",
+   "boolFree": true,
    "borough": "Queens",
    "address": "Flushing Meadows Corona Park, New York City Building, Queens, NY 11368",
    "Rating": null,
@@ -515,6 +540,7 @@ var allplacesJSON = {
    "category": "Arts & Entertainment",
    "name": "Socrates Sculpture Park",
    "discount": "Free",
+   "boolFree": true,
    "borough": "Queens",
    "address": "32-01 Vernon Blvd, Long Island City, NY 11106",
    "Rating": null,
@@ -524,6 +550,7 @@ var allplacesJSON = {
    "category": "Arts & Entertainment",
    "name": "American Folk Art Museum",
    "discount": "Free",
+   "boolFree": true,
    "borough": "Manhattan",
    "address": "2 Lincoln Square, New York, NY 10023",
    "Rating": null,
@@ -533,6 +560,7 @@ var allplacesJSON = {
    "category": "Arts & Entertainment",
    "name": "Asia Society and Museum",
    "discount": "Free",
+   "boolFree": true,
    "borough": "Manhattan",
    "address": "725 Park Ave, New York, NY 10021",
    "Rating": null,
@@ -542,6 +570,7 @@ var allplacesJSON = {
    "category": "Arts & Entertainment",
    "name": "Brooklyn Historical Society",
    "discount": "Free",
+   "boolFree": true,
    "borough": "Brooklyn",
    "address": "128 Pierrepont St, Brooklyn, NY 11201",
    "Rating": null,
@@ -551,6 +580,7 @@ var allplacesJSON = {
    "category": "Arts & Entertainment",
    "name": "The Cloisters",
    "discount": "Free",
+   "boolFree": true,
    "borough": "Manhattan",
    "address": "99 Margaret Corbin Dr, New York, NY 10040",
    "Rating": null,
@@ -560,6 +590,7 @@ var allplacesJSON = {
    "category": "Arts & Entertainment",
    "name": "El Museo Del Barrio",
    "discount": "Free",
+   "boolFree": true,
    "borough": "Manhattan",
    "address": "1230 5th Ave, New York, NY 10029",
    "Rating": null,
@@ -569,6 +600,7 @@ var allplacesJSON = {
    "category": "Arts & Entertainment",
    "name": "International Center of Photography Museum",
    "discount": "Free",
+   "boolFree": true,
    "borough": "Manhattan",
    "address": "250 Bowery, New York, NY 10012",
    "Rating": null,
@@ -578,6 +610,7 @@ var allplacesJSON = {
    "category": "Arts & Entertainment",
    "name": "Japan Society",
    "discount": "Free",
+   "boolFree": true,
    "borough": "Manhattan",
    "address": "333 E 47th St, New York, NY 10017",
    "Rating": null,
@@ -587,6 +620,7 @@ var allplacesJSON = {
    "category": "Arts & Entertainment",
    "name": "The Met Breuer",
    "discount": "Free",
+   "boolFree": true,
    "borough": "Manhattan",
    "address": "945 Madison Ave, New York, NY 10021",
    "Rating": null,
@@ -596,6 +630,7 @@ var allplacesJSON = {
    "category": "Arts & Entertainment",
    "name": "MoMA PS1",
    "discount": "Free",
+   "boolFree": true,
    "borough": "Queens",
    "address": "22-25 Jackson Ave, Long Island City, NY 11101",
    "Rating": null,
@@ -605,6 +640,7 @@ var allplacesJSON = {
    "category": "Arts & Entertainment",
    "name": "Museum of Jewish Heritage",
    "discount": "Free",
+   "boolFree": true,
    "borough": "Manhattan",
    "address": "36 Battery Pl, New York, NY 10280",
    "Rating": null,
@@ -614,15 +650,17 @@ var allplacesJSON = {
    "category": "Shopping",
    "name": "J.Crew",
    "discount": "15%",
+   "boolFree": false,
    "borough": "Manhattan",
-   "address": "1035 Madison Ave, New York, NY 10075",
+   "address": "91 5th Ave, New York, NY 10003, USA",
    "Rating": null,
-   "googleID": "ChIJ08EZ0ZVYwokRZG73nsCM0oE"
+   "googleID": "ChIJ9cyRU6JZwokR6BE7qIX8VQc"
  },
  {
    "category": "Shopping",
    "name": "J.Crew",
    "discount": "15%",
+   "boolFree": false,
    "borough": "Manhattan",
    "address": "347 Madison Ave, New York, NY 10017",
    "Rating": null,
@@ -632,6 +670,7 @@ var allplacesJSON = {
    "category": "Shopping",
    "name": "Club Monaco",
    "discount": "20%",
+   "boolFree": false,
    "borough": "Manhattan",
    "address": "160 5th Ave, New York, NY 10010, USA",
    "Rating": null,
@@ -641,6 +680,7 @@ var allplacesJSON = {
    "category": "Shopping",
    "name": "Club Monaco",
    "discount": "20%",
+   "boolFree": false,
    "borough": "Manhattan",
    "address": "6 W 57th St, New York, NY 10019",
    "Rating": null,
@@ -650,6 +690,7 @@ var allplacesJSON = {
    "category": "Shopping",
    "name": "Topshop",
    "discount": "10%",
+   "boolFree": false,
    "borough": "Manhattan",
    "address": "478 Broadway, New York, NY 10013",
    "Rating": null,
@@ -659,6 +700,7 @@ var allplacesJSON = {
    "category": "Shopping",
    "name": "Topshop",
    "discount": "10%",
+   "boolFree": false,
    "borough": "Manhattan",
    "address": "608 5th Ave, New York, NY 10020",
    "Rating": null,
@@ -668,6 +710,7 @@ var allplacesJSON = {
    "category": "Shopping",
    "name": "Madewell",
    "discount": "15%",
+   "boolFree": false,
    "borough": "Manhattan",
    "address": "1144 Madison Avenue, New York, NY 10028",
    "Rating": null,
@@ -677,6 +720,7 @@ var allplacesJSON = {
    "category": "Shopping",
    "name": "Madewell",
    "discount": "15%",
+   "boolFree": false,
    "borough": "Manhattan",
    "address": "115 5th Ave, New York, NY 10003",
    "Rating": null,
@@ -686,6 +730,7 @@ var allplacesJSON = {
    "category": "Shopping",
    "name": "Eddie Bauer",
    "discount": "15%",
+   "boolFree": false,
    "borough": "Manhattan",
    "address": "100 5th Ave, New York, NY 10011",
    "Rating": null,
@@ -695,6 +740,7 @@ var allplacesJSON = {
    "category": "Shopping",
    "name": "Charlotte Russe",
    "discount": "10%",
+   "boolFree": false,
    "borough": "Queens",
    "address": "Queens Center, 9015 Queens Blvd, Elmhurst, NY 11373",
    "Rating": null,
@@ -704,6 +750,7 @@ var allplacesJSON = {
    "category": "Shopping",
    "name": "Goodwill",
    "discount": "10%",
+   "boolFree": false,
    "borough": "Manhattan",
    "address": "217 W 79th St, New York, NY 10024",
    "Rating": null,
@@ -713,6 +760,7 @@ var allplacesJSON = {
    "category": "Shopping",
    "name": "Goodwill",
    "discount": "10%",
+   "boolFree": false,
    "borough": "Brooklyn",
    "address": "258 Livingston St, Brooklyn, NY 11201",
    "Rating": null,
@@ -722,6 +770,7 @@ var allplacesJSON = {
    "category": "Arts & Entertainment",
    "name": "Museum of the City of New York",
    "discount": "Free",
+   "boolFree": true,
    "borough": "Manhattan",
    "address": "1220 5th Ave & 103rd St, New York, NY 10029",
    "Rating": null,
@@ -731,6 +780,7 @@ var allplacesJSON = {
    "category": "Arts & Entertainment",
    "name": "Nicholas Roerich Museum",
    "discount": "Free",
+   "boolFree": true,
    "borough": "Manhattan",
    "address": "319 W 107th St, New York, NY 10025",
    "Rating": null,
@@ -740,6 +790,7 @@ var allplacesJSON = {
    "category": "Arts & Entertainment",
    "name": "The Paley Center for Media",
    "discount": "Free",
+   "boolFree": true,
    "borough": "Manhattan",
    "address": "25 W 52nd St, New York, NY 10019",
    "Rating": null,
@@ -749,6 +800,7 @@ var allplacesJSON = {
    "category": "Arts & Entertainment",
    "name": "Schomburg Center for Research in Black Culture",
    "discount": "Free",
+   "boolFree": true,
    "borough": "Manhattan",
    "address": "515 Malcolm X Blvd, New York, NY 10037",
    "Rating": null,
@@ -758,6 +810,7 @@ var allplacesJSON = {
    "category": "Arts & Entertainment",
    "name": "The Studio Museum in Harlem",
    "discount": "Free",
+   "boolFree": true,
    "borough": "Manhattan",
    "address": "144 W 125th St, New York, NY 10027",
    "Rating": null,
@@ -765,8 +818,9 @@ var allplacesJSON = {
  },
  {
    "category": "Food",
-   "name": "Fairway Market ",
+   "name": "Fairway Market",
    "discount": "5%",
+   "boolFree": false,
    "borough": "Manhattan",
    "address": "2328 12th Ave, New York, NY 10027",
    "Rating": null,
@@ -776,6 +830,7 @@ var allplacesJSON = {
    "category": "Food",
    "name": "Key Food",
    "discount": "5%",
+   "boolFree": false,
    "borough": "Manhattan",
    "address": "421 W. 125th, New York, NY",
    "Rating": null,
@@ -785,6 +840,7 @@ var allplacesJSON = {
    "category": "Food",
    "name": "Aangan",
    "discount": "10%",
+   "boolFree": false,
    "borough": "Manhattan",
    "address": "2701 Broadway, New York, NY 10025",
    "Rating": null,
@@ -794,6 +850,7 @@ var allplacesJSON = {
    "category": "Food",
    "name": "Strokos",
    "discount": "15%",
+   "boolFree": false,
    "borough": "Manhattan",
    "address": "1090 Amsterdam Ave, New York, NY 10025",
    "Rating": null,
@@ -803,6 +860,7 @@ var allplacesJSON = {
    "category": "Food",
    "name": "Subway",
    "discount": "10%",
+   "boolFree": false,
    "borough": "Manhattan",
    "address": "971 Amsterdam Ave #1, New York, NY 10025",
    "Rating": null,
@@ -812,6 +870,7 @@ var allplacesJSON = {
    "category": "Food",
    "name": "Ajanta Indian Restaurant ",
    "discount": "10%",
+   "boolFree": false,
    "borough": "Manhattan",
    "address": "1237 Amsterdam Avenue New York, NY 10027",
    "Rating": null,
@@ -821,6 +880,7 @@ var allplacesJSON = {
    "category": "Food",
    "name": "Curry And Kabab",
    "discount": "15%",
+   "boolFree": false,
    "borough": "Manhattan",
    "address": "931 Amsterdam Ave New York, NY 10025",
    "Rating": null,
@@ -830,6 +890,7 @@ var allplacesJSON = {
    "category": "Food",
    "name": "V&T Pizzeria",
    "discount": "15%",
+   "boolFree": false,
    "borough": "Manhattan",
    "address": "1024 Amsterdam Avenue New York, NY 10025",
    "Rating": null,
@@ -838,7 +899,7 @@ var allplacesJSON = {
 ]
 };
 
-var arts = [{
+/*var arts = [{
 	id: 'ChIJUZ0c7MpYwokRh8SiMzCXL98'
 	, free: 'true'
 	, borough: 'Queens'
@@ -950,14 +1011,14 @@ var arts = [{
 	id: 'ChIJ_ShwXw32wokRQJpaKAIcCOo'
 	, free: 'true'
 	, borough: 'Manhattan'
-}];
+}];*/
 
-var shopping = [{id:'ChIJ9cyRU6JZwokR6BE7qIX8VQc', free: 'false', borough: 'Manhattan'},{id:'ChIJL6ZX4gFZwokRlhNUcAXdOeM', free: 'false', borough: 'Manhattan'},{id:'ChIJHRful6NZwokRxosgqshaDMk', free: 'false', borough: 'Manhattan'},{id:'ChIJv5p_b_pYwokRPKwidmPgV3k', free: 'false', borough: 'Manhattan'},{id:'ChIJj8DVbolZwokRi5US6vDx14U', free: 'false', borough: 'Manhattan'},{id:'ChIJo8-Dlv5YwokRFJb77gbBNhk', free: 'false', borough: 'Manhattan'},{id:'ChIJ92YC35dYwokR6Lh4p1NhDBw', free: 'false', borough: 'Manhattan'},{id:'ChIJA-0YU6JZwokR4qv4OBgNnRE', free: 'false', borough: 'Manhattan'},{id:'ChIJ951VnqJZwokRs5Xya4oAnWA', free: 'false', borough: 'Manhattan'},{id:'ChIJW4ed-0tewokRrSKUvDUQ7ZQ', free: 'false', borough: 'Queens'},{id:'ChIJ-VHbm4hYwokRtL5UgbY6-7g', free: 'false', borough: 'Manhattan'},{id:'ChIJKRnp3kxawokR1qNG46dKHPY', free: 'false', borough: 'Brooklyn'}];
+// var shopping = [{id:'ChIJ9cyRU6JZwokR6BE7qIX8VQc', free: 'false', borough: 'Manhattan'},{id:'ChIJL6ZX4gFZwokRlhNUcAXdOeM', free: 'false', borough: 'Manhattan'},{id:'ChIJHRful6NZwokRxosgqshaDMk', free: 'false', borough: 'Manhattan'},{id:'ChIJv5p_b_pYwokRPKwidmPgV3k', free: 'false', borough: 'Manhattan'},{id:'ChIJj8DVbolZwokRi5US6vDx14U', free: 'false', borough: 'Manhattan'},{id:'ChIJo8-Dlv5YwokRFJb77gbBNhk', free: 'false', borough: 'Manhattan'},{id:'ChIJ92YC35dYwokR6Lh4p1NhDBw', free: 'false', borough: 'Manhattan'},{id:'ChIJA-0YU6JZwokR4qv4OBgNnRE', free: 'false', borough: 'Manhattan'},{id:'ChIJ951VnqJZwokRs5Xya4oAnWA', free: 'false', borough: 'Manhattan'},{id:'ChIJW4ed-0tewokRrSKUvDUQ7ZQ', free: 'false', borough: 'Queens'},{id:'ChIJ-VHbm4hYwokRtL5UgbY6-7g', free: 'false', borough: 'Manhattan'},{id:'ChIJKRnp3kxawokR1qNG46dKHPY', free: 'false', borough: 'Brooklyn'}];
 
-var food = [{id:'ChIJtRnkH2j2wokRjnh6QuLd2CM', free: 'false', borough: 'Manhattan'},{id:'ChIJ7QUAcmv2wokRjDlrpRJm_Js', free: 'false', borough: 'Manhattan'},{id:'ChIJmRtEriX2wokRfPFTtXE33cE', free: 'false', borough: 'Manhattan'},{id:'ChIJ_Ud8NTz2wokRb-AeY92wfNI', free: 'false', borough: 'Manhattan'},{id:'ChIJA2zUTyP2wokRPcf2exHThYs', free: 'false', borough: 'Manhattan'},{id:'ChIJj0VoQhX2wokRWzkC5ufS9-U', free: 'false', borough: 'Manhattan'},{id:'ChIJQTcbgyT2wokR4azjcOwPkRA', free: 'false', borough: 'Manhattan'},{id:'ChIJQTcbgyT2wokR4azjcOwPkRA', free: 'false', borough: 'Manhattan'}];
+// var food = [{id:'ChIJtRnkH2j2wokRjnh6QuLd2CM', free: 'false', borough: 'Manhattan'},{id:'ChIJ7QUAcmv2wokRjDlrpRJm_Js', free: 'false', borough: 'Manhattan'},{id:'ChIJmRtEriX2wokRfPFTtXE33cE', free: 'false', borough: 'Manhattan'},{id:'ChIJ_Ud8NTz2wokRb-AeY92wfNI', free: 'false', borough: 'Manhattan'},{id:'ChIJA2zUTyP2wokRPcf2exHThYs', free: 'false', borough: 'Manhattan'},{id:'ChIJj0VoQhX2wokRWzkC5ufS9-U', free: 'false', borough: 'Manhattan'},{id:'ChIJQTcbgyT2wokR4azjcOwPkRA', free: 'false', borough: 'Manhattan'},{id:'ChIJQTcbgyT2wokR4azjcOwPkRA', free: 'false', borough: 'Manhattan'}];
 
 
-var discounts = {'ChIJUZ0c7MpYwokRh8SiMzCXL98': { discount: 'Free'},'ChIJmzolTYtZwokRHq_kx0LfXvo': { discount: 'Free'},'ChIJDbNgaTH0wokRRQPTw1E93GY': { discount: 'Free'},'ChIJ7WI5fvtYwokRPDUT1aUOA_Q': { discount: 'Free'},'ChIJnxlg1U5YwokR8T90UrZiIwI': { discount: 'Free'},'ChIJxY5cO6JYwokRPeVk85UNj2g': { discount: 'Free'},'ChIJb8Jg9pZYwokR-qHGtvSkLzs': { discount: 'Free'},'ChIJ3453OAdZwokRja92OOKCugM': { discount: 'Free'},'ChIJKxDbe_lYwokRVf__s8CPn-o': { discount: 'Free'},'ChIJISGWiaJYwokRuOumpQv1i88': { discount: 'Free'},'ChIJdThqNVVawokRFk58UQOvtuM': { discount: 'Free'},'ChIJmWMJBtBfwokR5qK7waLcgAM': { discount: 'Free'},'ChIJvcjmWLVYwokRFz2FMdi00cA': { discount: 'Free'},'ChIJEeD6FPVYwokRgs0ZbWMrrzk': { discount: 'Free'},'ChIJeXQWdutYwokRuHX2h1so5K4': { discount: 'Free'},'ChIJLYgHV0hawokR2-ZdvxaMGxE': { discount: 'Free'},'ChIJK6bycAH0wokRrSnflfrnkZE': { discount: 'Free'},'ChIJWT0gUBz2wokRNcAxVUphAAs': { discount: 'Free'},'ChIJ5YRc6oVZwokRcRC4WKbR6_s': { discount: 'Free'},'ChIJT9QreB1ZwokRHZEDNBAX--0': { discount: 'Free'},'ChIJl-WU6pRYwokRA91OgdYWfa4': { discount: 'Free'},'ChIJwfbFiiNZwokRN8hnF940DbY': { discount: 'Free'},'ChIJYTeZ_BFawokRe_SRVX_pKIs': { discount: 'Free'},'ChIJ9cyRU6JZwokR6BE7qIX8VQc': { discount: '15%'},'ChIJL6ZX4gFZwokRlhNUcAXdOeM': { discount: '15%'},'ChIJHRful6NZwokRxosgqshaDMk': { discount: '20%'},'ChIJv5p_b_pYwokRPKwidmPgV3k': { discount: '20%'},'ChIJj8DVbolZwokRi5US6vDx14U': { discount: '10%'},'ChIJo8-Dlv5YwokRFJb77gbBNhk': { discount: '10%'},'ChIJ92YC35dYwokR6Lh4p1NhDBw': { discount: '15%'},'ChIJA-0YU6JZwokR4qv4OBgNnRE': { discount: '15%'},'ChIJ951VnqJZwokRs5Xya4oAnWA': { discount: '15%'},'ChIJW4ed-0tewokRrSKUvDUQ7ZQ': { discount: '10%'},'ChIJ-VHbm4hYwokRtL5UgbY6-7g': { discount: '10%'},'ChIJKRnp3kxawokR1qNG46dKHPY': { discount: '10%'},'ChIJi4hYtB32wokR1Npx_Tv7phk': { discount: 'Free'},'ChIJCYAz0Dr2wokRe49DUpkvIL4': { discount: 'Free'},'ChIJF5e1QvlYwokRcVF6x1CEcQk': { discount: 'Free'},'ChIJ7etix3b2wokRKN_Pd9RLRHQ': { discount: 'Free'},'ChIJ_ShwXw32wokRQJpaKAIcCOo': { discount: 'Free'},'ChIJtRnkH2j2wokRjnh6QuLd2CM': { discount: '5%'},'ChIJ7QUAcmv2wokRjDlrpRJm_Js': { discount: '5%'},'ChIJmRtEriX2wokRfPFTtXE33cE': { discount: '10%'},'ChIJ_Ud8NTz2wokRb-AeY92wfNI': { discount: '15%'},'ChIJA2zUTyP2wokRPcf2exHThYs': { discount: '10%'},'ChIJj0VoQhX2wokRWzkC5ufS9-U': { discount: '10%'},'ChIJQTcbgyT2wokR4azjcOwPkRA': { discount: '15%'},'ChIJQTcbgyT2wokR4azjcOwPkRA': { discount: '15%'}}
+// var discounts = {'ChIJUZ0c7MpYwokRh8SiMzCXL98': { discount: 'Free'},'ChIJmzolTYtZwokRHq_kx0LfXvo': { discount: 'Free'},'ChIJDbNgaTH0wokRRQPTw1E93GY': { discount: 'Free'},'ChIJ7WI5fvtYwokRPDUT1aUOA_Q': { discount: 'Free'},'ChIJnxlg1U5YwokR8T90UrZiIwI': { discount: 'Free'},'ChIJxY5cO6JYwokRPeVk85UNj2g': { discount: 'Free'},'ChIJb8Jg9pZYwokR-qHGtvSkLzs': { discount: 'Free'},'ChIJ3453OAdZwokRja92OOKCugM': { discount: 'Free'},'ChIJKxDbe_lYwokRVf__s8CPn-o': { discount: 'Free'},'ChIJISGWiaJYwokRuOumpQv1i88': { discount: 'Free'},'ChIJdThqNVVawokRFk58UQOvtuM': { discount: 'Free'},'ChIJmWMJBtBfwokR5qK7waLcgAM': { discount: 'Free'},'ChIJvcjmWLVYwokRFz2FMdi00cA': { discount: 'Free'},'ChIJEeD6FPVYwokRgs0ZbWMrrzk': { discount: 'Free'},'ChIJeXQWdutYwokRuHX2h1so5K4': { discount: 'Free'},'ChIJLYgHV0hawokR2-ZdvxaMGxE': { discount: 'Free'},'ChIJK6bycAH0wokRrSnflfrnkZE': { discount: 'Free'},'ChIJWT0gUBz2wokRNcAxVUphAAs': { discount: 'Free'},'ChIJ5YRc6oVZwokRcRC4WKbR6_s': { discount: 'Free'},'ChIJT9QreB1ZwokRHZEDNBAX--0': { discount: 'Free'},'ChIJl-WU6pRYwokRA91OgdYWfa4': { discount: 'Free'},'ChIJwfbFiiNZwokRN8hnF940DbY': { discount: 'Free'},'ChIJYTeZ_BFawokRe_SRVX_pKIs': { discount: 'Free'},'ChIJ9cyRU6JZwokR6BE7qIX8VQc': { discount: '15%'},'ChIJL6ZX4gFZwokRlhNUcAXdOeM': { discount: '15%'},'ChIJHRful6NZwokRxosgqshaDMk': { discount: '20%'},'ChIJv5p_b_pYwokRPKwidmPgV3k': { discount: '20%'},'ChIJj8DVbolZwokRi5US6vDx14U': { discount: '10%'},'ChIJo8-Dlv5YwokRFJb77gbBNhk': { discount: '10%'},'ChIJ92YC35dYwokR6Lh4p1NhDBw': { discount: '15%'},'ChIJA-0YU6JZwokR4qv4OBgNnRE': { discount: '15%'},'ChIJ951VnqJZwokRs5Xya4oAnWA': { discount: '15%'},'ChIJW4ed-0tewokRrSKUvDUQ7ZQ': { discount: '10%'},'ChIJ-VHbm4hYwokRtL5UgbY6-7g': { discount: '10%'},'ChIJKRnp3kxawokR1qNG46dKHPY': { discount: '10%'},'ChIJi4hYtB32wokR1Npx_Tv7phk': { discount: 'Free'},'ChIJCYAz0Dr2wokRe49DUpkvIL4': { discount: 'Free'},'ChIJF5e1QvlYwokRcVF6x1CEcQk': { discount: 'Free'},'ChIJ7etix3b2wokRKN_Pd9RLRHQ': { discount: 'Free'},'ChIJ_ShwXw32wokRQJpaKAIcCOo': { discount: 'Free'},'ChIJtRnkH2j2wokRjnh6QuLd2CM': { discount: '5%'},'ChIJ7QUAcmv2wokRjDlrpRJm_Js': { discount: '5%'},'ChIJmRtEriX2wokRfPFTtXE33cE': { discount: '10%'},'ChIJ_Ud8NTz2wokRb-AeY92wfNI': { discount: '15%'},'ChIJA2zUTyP2wokRPcf2exHThYs': { discount: '10%'},'ChIJj0VoQhX2wokRWzkC5ufS9-U': { discount: '10%'},'ChIJQTcbgyT2wokR4azjcOwPkRA': { discount: '15%'},'ChIJQTcbgyT2wokR4azjcOwPkRA': { discount: '15%'}}
 
 	/*
 	var arts = []; // create test list
