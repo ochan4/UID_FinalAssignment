@@ -6,7 +6,6 @@ var allplaces = [];
 var discountDictionary = {};
 
 function splitCategory (){
-	//console.log(allplaces['masterlist'].length);
 	var masterlist = allplacesJSON['masterlist'];
 	var discountArray = [];
 
@@ -144,8 +143,6 @@ function displayResults() {
 function showPlaces(list, onlyFree, borough) {
 
 	if (onlyFree == "false" && borough == "Anywhere") { // showing discounted + free results in any borough
-		//console.log("all sorts of goodies");
-		
 		console.log("list length:" + list.length);
 		for (var i = 0; i < list.length; i++) {
 			console.log("Iteration Number: " + i);
@@ -240,7 +237,7 @@ function appendPlaceToResults(place, status) {
 		
 		var discountDiv = "<div class='col-lg-6' id='discount'><span class='alert alert-success'>Discount: " + discountDictionary[place.place_id] + "</span></div>";
 		var photoDiv = "<div class='col-lg-6' id='photo'><img src='" + photoUrl + "'>   </div>";
-		var placeInfoDiv = "<div class='col-lg-6' id='placeInfo'> <span class='glyphicon glyphicon-map-marker'></span><span class='infoText'>" + place.vicinity + "</span><br><span class='glyphicon glyphicon-link'></span><span class='infoText'><a href=" + place.url + ">Google Page</a></span><br><span class='glyphicon glyphicon-earphone'></span><span class='infoText'>" + place.formatted_phone_number + "</span></div>";
+		var placeInfoDiv = "<div class='col-lg-6' id='placeInfo'> <span class='glyphicon glyphicon-map-marker'></span><span class='infoText'>" + place.vicinity + "</span><br><span class='glyphicon glyphicon-link'></span><span class='infoText'><a href=" + place.url + " target='_blank'>Google Page</a></span><br><span class='glyphicon glyphicon-earphone'></span><span class='infoText'>" + place.formatted_phone_number + "</span></div>";
 		var hoursDiv;
 		if (place.opening_hours !== undefined && place.opening_hours.weekday_text !== undefined) {
 			hoursDiv = "<div class='col-lg-6' id='hoursDiv'> <h6 id='hoursTitle'>Hours</h6>" + place.opening_hours.weekday_text[0] + "<br>" + place.opening_hours.weekday_text[1] + "<br>" + place.opening_hours.weekday_text[2] + "<br>" + place.opening_hours.weekday_text[3] + "<br>" + place.opening_hours.weekday_text[4] + "<br>" + place.opening_hours.weekday_text[5] + "<br>" + place.opening_hours.weekday_text[6] + "</div>";
@@ -365,10 +362,6 @@ function appendPlaceToSaved(place, status) {
 			buttonText = "Add to Saved";
 			buttonFunc = "addToSaved";
 		}
-		/****
-				@TODO: get discount val from hashmap, keyed by placeid
-		
-				*****/
 
 		var ratingDiv;
 		if (place.rating !== undefined) {
@@ -378,10 +371,9 @@ function appendPlaceToSaved(place, status) {
 			ratingDiv = "<div class='col-lg-6' id ='rating'>No rating available for this location.</div>";
 		}
 		console.log(place.place_id);
-		alert("discount: " + discountDictionary[place.place_id]);
 		var discountDiv = "<div class='col-lg-6' id='discount'><span class='alert alert-success'>Discount: " + discountDictionary[place.place_id] + "</span></div>";
 		var photoDiv = "<div class='col-lg-6' id='photo'><img src='" + photoUrl + "'>   </div>";
-		var placeInfoDiv = "<div class='col-lg-6' id='placeInfo'> <span class='glyphicon glyphicon-map-marker'></span><span class='infoText'>" + place.vicinity + "</span><br><span class='glyphicon glyphicon-link'></span><span class='infoText'><a href=" + place.url + ">Google Page</a></span><br><span class='glyphicon glyphicon-earphone'></span><span class='infoText'>" + place.formatted_phone_number + "</span></div>";
+		var placeInfoDiv = "<div class='col-lg-6' id='placeInfo'> <span class='glyphicon glyphicon-map-marker'></span><span class='infoText'>" + place.vicinity + "</span><br><span class='glyphicon glyphicon-link'></span><span class='infoText'><a href=" + place.url + " target='_blank'>Google Page</a></span><br><span class='glyphicon glyphicon-earphone'></span><span class='infoText'>" + place.formatted_phone_number + "</span></div>";
 		var hoursDiv;
 		if (place.opening_hours !== undefined && place.opening_hours.weekday_text !== undefined) {
 			hoursDiv = "<div class='col-lg-6' id='hoursDiv'> <h6 id='hoursTitle'>Hours</h6>" + place.opening_hours.weekday_text[0] + "<br>" + place.opening_hours.weekday_text[1] + "<br>" + place.opening_hours.weekday_text[2] + "<br>" + place.opening_hours.weekday_text[3] + "<br>" + place.opening_hours.weekday_text[4] + "<br>" + place.opening_hours.weekday_text[5] + "<br>" + place.opening_hours.weekday_text[6] + "</div>";
