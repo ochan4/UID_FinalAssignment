@@ -273,7 +273,7 @@ fieldset[disabled] .btn-xl.active {
 }
 
 header {
-	background-image: url('https://www.usacarsrental.com/wp-content/uploads/2015/05/new-york-empire-state.jpeg');
+	background-image: url('../new-york-empire-state.jpg');
 	background-repeat: no-repeat;
 	background-attachment: scroll;
 	background-position: center center;
