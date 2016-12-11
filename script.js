@@ -229,6 +229,7 @@ function getPlaceDetails(placeId) {
 
 function appendPlaceToResults(place, status) {
 	if (status == google.maps.places.PlacesServiceStatus.OK) {
+		// console.log(next_page_token); 		
 		console.log("after status check");
 		numResults++;
 		console.log(numResults);
