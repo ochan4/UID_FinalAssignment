@@ -133,9 +133,8 @@ function displayResults() {
 
 	}
 	else { // else we want it all
-		showPlaces(arts, onlyFree, borough);
-		showPlaces(foods, onlyFree, borough);
-		showPlaces(shoppings, onlyFree, borough);
+		showPlaces(allplaces, onlyFree, borough);
+	
 	}
 	return false; // prevent reload
 }
@@ -175,7 +174,7 @@ function showPlaces(list, onlyFree, borough) {
 		for (var i = 0; i < list.length; i++) {
 			console.log("showing all + in a single borough");
 			var cur = list[i];
-			if (cur["borough"] == borough && cur["free"] == onlyFree) {
+			if (cur["borough"] == borough) {
 				 getPlaceDetails(cur["id"]);
 			}
 		}
