@@ -839,3 +839,8 @@ body {
 	max-height:240px;
 	margin: 0 auto;
 }
+
+
+#help{
+	display: none;
+}

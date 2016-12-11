@@ -142,8 +142,9 @@ function displayResults() {
 
 function showPlaces(list, onlyFree, borough) {
 
-	if (onlyFree == "false" && borough == "Anywhere") { // showing discounted + free results in any borough
-		console.log("list length:" + list.length);
+	if (onlyFree != "free" && borough == "Anywhere") { // showing all + free results in any borough
+
+		console.log("showing all + free results in any borough");
 		for (var i = 0; i < list.length; i++) {
 			console.log("Iteration Number: " + i);
 			var cur = list[i];
@@ -160,7 +161,7 @@ function showPlaces(list, onlyFree, borough) {
 			}
 		}
 	}
-	else if (onlyFree == "free" && borough != "Anywhere") { // showing discounted + free results in a single borough
+	else if (onlyFree == "free" && borough != "Anywhere") { // showing only free + free results in a single borough
 		console.log("free stuff in somewhere");
 
 		for (var i = 0; i < list.length; i++) {
@@ -170,10 +171,10 @@ function showPlaces(list, onlyFree, borough) {
 			}
 		}
 	}
-	else { // showing only free results in a single borough
+	else if (onlyFree != "free" && borough != "Anywhere"){ // showing all + in a single borough
 		for (var i = 0; i < list.length; i++) {
+			console.log("showing all + in a single borough");
 			var cur = list[i];
-			getPlaceDetails(cur["id"]);
 			if (cur["borough"] == borough && cur["free"] == onlyFree) {
 				 getPlaceDetails(cur["id"]);
 			}
@@ -404,6 +405,15 @@ function appendPlaceToSaved(place, status) {
 		savedModals.appendChild(newModal);
 	}
 }
+
+
+ function helpModal() {
+ 	console.log("help appear");
+    var div = document.getElementById('help');
+    div.style.display = "block";
+  }
+
+
 
 var allplacesJSON = {
 	"masterlist" : [
@@ -815,7 +825,7 @@ var allplacesJSON = {
    "borough": "Manhattan",
    "address": "2328 12th Ave, New York, NY 10027",
    "Rating": null,
-   "googleID": "ChIJtRnkH2j2wokRjnh6QuLd2CM"
+   "googleID": "ChIJtRnkH2j2wokR3bnS8Xx_xTY"
  },
  {
    "category": "Food",
@@ -825,7 +835,7 @@ var allplacesJSON = {
    "borough": "Manhattan",
    "address": "421 W. 125th, New York, NY",
    "Rating": null,
-   "googleID": "ChIJ7QUAcmv2wokRjDlrpRJm_Js"
+   "googleID": "ChIJ7QUAcmv2wokRyL8ic6V6B6w"
  },
  {
    "category": "Food",
@@ -835,7 +845,7 @@ var allplacesJSON = {
    "borough": "Manhattan",
    "address": "2701 Broadway, New York, NY 10025",
    "Rating": null,
-   "googleID": "ChIJmRtEriX2wokRfPFTtXE33cE"
+   "googleID": "ChIJKy-DsSX2wokRBcHOLpDvWlY"
  },
  {
    "category": "Food",
@@ -845,7 +855,7 @@ var allplacesJSON = {
    "borough": "Manhattan",
    "address": "1090 Amsterdam Ave, New York, NY 10025",
    "Rating": null,
-   "googleID": "ChIJ_Ud8NTz2wokRb-AeY92wfNI"
+   "googleID": "ChIJw6ajyj32wokR0NKOvGb2tXk"
  },
  {
    "category": "Food",
@@ -855,7 +865,7 @@ var allplacesJSON = {
    "borough": "Manhattan",
    "address": "971 Amsterdam Ave #1, New York, NY 10025",
    "Rating": null,
-   "googleID": "ChIJA2zUTyP2wokRPcf2exHThYs"
+   "googleID": "ChIJVa8uC4NYwokR8Fuu0w7D0bc"
  },
  {
    "category": "Food",
@@ -865,17 +875,17 @@ var allplacesJSON = {
    "borough": "Manhattan",
    "address": "1237 Amsterdam Avenue New York, NY 10027",
    "Rating": null,
-   "googleID": "ChIJj0VoQhX2wokRWzkC5ufS9-U"
+   "googleID": "ChIJ6efYQhX2wokRW7w_zEbHv9k"
  },
  {
    "category": "Food",
-   "name": "Curry And Kabab",
+   "name": "Royal Curry and Kabab",
    "discount": "15%",
    "boolFree": false,
    "borough": "Manhattan",
    "address": "931 Amsterdam Ave New York, NY 10025",
    "Rating": null,
-   "googleID": "ChIJQTcbgyT2wokR4azjcOwPkRA"
+   "googleID": "ChIJyaNYDhr2wokROSnH0e0O-Ps"
  },
  {
    "category": "Food",
@@ -885,7 +895,7 @@ var allplacesJSON = {
    "borough": "Manhattan",
    "address": "1024 Amsterdam Avenue New York, NY 10025",
    "Rating": null,
-   "googleID": "ChIJQTcbgyT2wokR4azjcOwPkRA"
+   "googleID": "ChIJtUqk7Dz2wokRsi_5j6j1DHM"
  }
 ]
 };
