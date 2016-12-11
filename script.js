@@ -169,15 +169,16 @@ function getPlaceDetails(placeId) {
 	};
 	let map = new google.maps.Map(document.createElement('div'));
 	service = new google.maps.places.PlacesService(map)
-	setTimeout(function () {
-		service.getDetails(request, appendPlaceToResults);
-	}, 4000);
+	service.getDetails(request, appendPlaceToResults);
+	//setTimeout(function () {
+	//}, 4000);
 }
 
 function appendPlaceToResults(place, status) {
 	var attempts = 0;
 	var success = false;
 	while (success != true && attempts < 3) {
+		document.getElementById("loading").style.display = "block";
 		if (status == google.maps.places.PlacesServiceStatus.OK) {
 			success = true;
 			console.log("...i'm in");
@@ -256,6 +257,8 @@ function appendPlaceToResults(place, status) {
 			delay(2000);
 		}
 	}
+		document.getElementById("loading").style.display = "none";
+
 }
 
 function delay(ms) {
@@ -626,6 +629,56 @@ var allplacesJSON = {
 			, "Rating": null
 			, "googleID": "ChIJYTeZ_BFawokRe_SRVX_pKIs"
  }
+							, {
+			"category": "Arts & Entertainment"
+			, "name": "Museum of the City of New York"
+			, "discount": "Free"
+			, "boolFree": true
+			, "borough": "Manhattan"
+			, "address": "1220 5th Ave & 103rd St, New York, NY 10029"
+			, "Rating": null
+			, "googleID": "ChIJi4hYtB32wokR1Npx_Tv7phk"
+ }
+					, {
+			"category": "Arts & Entertainment"
+			, "name": "Nicholas Roerich Museum"
+			, "discount": "Free"
+			, "boolFree": true
+			, "borough": "Manhattan"
+			, "address": "319 W 107th St, New York, NY 10025"
+			, "Rating": null
+			, "googleID": "ChIJCYAz0Dr2wokRe49DUpkvIL4"
+ }
+					, {
+			"category": "Arts & Entertainment"
+			, "name": "The Paley Center for Media"
+			, "discount": "Free"
+			, "boolFree": true
+			, "borough": "Manhattan"
+			, "address": "25 W 52nd St, New York, NY 10019"
+			, "Rating": null
+			, "googleID": "ChIJF5e1QvlYwokRcVF6x1CEcQk"
+ }
+					, {
+			"category": "Arts & Entertainment"
+			, "name": "Schomburg Center for Research in Black Culture"
+			, "discount": "Free"
+			, "boolFree": true
+			, "borough": "Manhattan"
+			, "address": "515 Malcolm X Blvd, New York, NY 10037"
+			, "Rating": null
+			, "googleID": "ChIJ7etix3b2wokRKN_Pd9RLRHQ"
+ }
+					, {
+			"category": "Arts & Entertainment"
+			, "name": "The Studio Museum in Harlem"
+			, "discount": "Free"
+			, "boolFree": true
+			, "borough": "Manhattan"
+			, "address": "144 W 125th St, New York, NY 10027"
+			, "Rating": null
+			, "googleID": "ChIJ_ShwXw32wokRQJpaKAIcCOo"
+ }
 					, {
 			"category": "Shopping"
 			, "name": "J.Crew"
@@ -655,16 +708,6 @@ var allplacesJSON = {
 			, "address": "160 5th Ave, New York, NY 10010, USA"
 			, "Rating": null
 			, "googleID": "ChIJwZ8gmKNZwokR_BOa_gKb9Zs"
- }
-					, {
-			"category": "Shopping"
-			, "name": "Old Navy"
-			, "discount": "15%"
-			, "boolFree": false
-			, "borough": "Bronx"
-			, "address": "6 W 57th St, New York, NY 10019"
-			, "Rating": null
-			, "googleID": "ChIJ2369hdv0wokRnJevGmbNYNE"
  }
 					, {
 			"category": "Shopping"
@@ -745,56 +788,6 @@ var allplacesJSON = {
 			, "address": "630 Old Country Rd, Garden City, NY 11530"
 			, "Rating": null
 			, "googleID": "ChIJ-z2zxn19wokR6CO49eEwU4M"
- }
-					, {
-			"category": "Arts & Entertainment"
-			, "name": "Museum of the City of New York"
-			, "discount": "Free"
-			, "boolFree": true
-			, "borough": "Manhattan"
-			, "address": "1220 5th Ave & 103rd St, New York, NY 10029"
-			, "Rating": null
-			, "googleID": "ChIJi4hYtB32wokR1Npx_Tv7phk"
- }
-					, {
-			"category": "Arts & Entertainment"
-			, "name": "Nicholas Roerich Museum"
-			, "discount": "Free"
-			, "boolFree": true
-			, "borough": "Manhattan"
-			, "address": "319 W 107th St, New York, NY 10025"
-			, "Rating": null
-			, "googleID": "ChIJCYAz0Dr2wokRe49DUpkvIL4"
- }
-					, {
-			"category": "Arts & Entertainment"
-			, "name": "The Paley Center for Media"
-			, "discount": "Free"
-			, "boolFree": true
-			, "borough": "Manhattan"
-			, "address": "25 W 52nd St, New York, NY 10019"
-			, "Rating": null
-			, "googleID": "ChIJF5e1QvlYwokRcVF6x1CEcQk"
- }
-					, {
-			"category": "Arts & Entertainment"
-			, "name": "Schomburg Center for Research in Black Culture"
-			, "discount": "Free"
-			, "boolFree": true
-			, "borough": "Manhattan"
-			, "address": "515 Malcolm X Blvd, New York, NY 10037"
-			, "Rating": null
-			, "googleID": "ChIJ7etix3b2wokRKN_Pd9RLRHQ"
- }
-					, {
-			"category": "Arts & Entertainment"
-			, "name": "The Studio Museum in Harlem"
-			, "discount": "Free"
-			, "boolFree": true
-			, "borough": "Manhattan"
-			, "address": "144 W 125th St, New York, NY 10027"
-			, "Rating": null
-			, "googleID": "ChIJ_ShwXw32wokRQJpaKAIcCOo"
  }
 					, {
 			"category": "Food"
