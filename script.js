@@ -6,7 +6,6 @@ var allplaces = [];
 var discountDictionary = {};
 
 function splitCategory (){
-	//console.log(allplaces['masterlist'].length);
 	var masterlist = allplacesJSON['masterlist'];
 	var discountArray = [];
 
@@ -63,52 +62,6 @@ function discountDictionaryFunction(discountArray){
 	}
 }
 
-// function makeMap() {
-//     var newMap = new Map();
-//     var catagories = [];
-//     var places = [];
-// }
-// function findPlaces(price, borough, activity) {
-//     var places = [];
-// }
-
-function getObjects(objects, borough, activity) {
-    var places = [];
-    //iterate through objects array
-    for (var i in objects) {
-        if (!objects.hasOwnProperty(i)) continue;
-        if (typeof objects[i] == 'object') {
-            places = places.concat(getObjects(objects[i], borough, activity));
-        } else if (i == key) {
-            objects.push(obj);
-        }
-    }
-    return objects;
-}
-
-
-//put the excel rows into javascript objects
-function makeObjects() {
-	var objects = [];
-	reader.onload = function (e) {
-		var data = e.target.result();
-		var workbook = XLSX.read(data, {
-			type: 'binary'
-		});
-		workbook.SheetNames.forEach(function (sheetName) {
-			// Here is your object
-			var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
-			var json_object = JSON.stringify(XL_row_object);
-			console.log(json_object);
-		})
-	};
-};
-var gMapAPIKey = 'AIzaSyDJ-F1rPoqgpPewazBEZPgJpFLrOv0c63c';
-
-function makeNewElement(className) {
-	var newDiv = document.createElement('div');
-	newDiv.class = className;
-};
 /**************************************************************************/
 /**
  * Get results from form. Ping Ashley for clarification! 
@@ -124,14 +77,10 @@ function initSavedPlaces() {
 		noSavedPlaces(); // @TODO: show some message saying to get started 
 	}
 	else {
-		//savedPlaces = [];
 		savedPlaces = JSON.parse(myStorage.getItem('saved-places'));
+		splitCategory();
 		displaySavedPlaces(); // @TODO: display list of places 
 	}
-	//	savedPlaces = [];
-	//myStorage.setItem("saved-places", JSON.stringify(savedPlaces));
-	//alert(JSON.parse(myStorage.getItem("saved-places")));
-	//displaySavedPlaces(); // @TODO: display list of places 
 }
 
 function processForm() {
@@ -194,8 +143,6 @@ function displayResults() {
 function showPlaces(list, onlyFree, borough) {
 
 	if (onlyFree == "false" && borough == "Anywhere") { // showing discounted + free results in any borough
-		//console.log("all sorts of goodies");
-		
 		console.log("list length:" + list.length);
 		for (var i = 0; i < list.length; i++) {
 			console.log("Iteration Number: " + i);
@@ -246,15 +193,12 @@ function getPlaceDetails(placeId) {
 
 function appendPlaceToResults(place, status) {
 	if (status == google.maps.places.PlacesServiceStatus.OK) {
-		// console.log(next_page_token); 		
-		console.log("after status check");
 		numResults++;
-		console.log(numResults);
 		var results = document.getElementById("results");
 		var newDiv = document.createElement('div');
 		newDiv.setAttribute('class', 'col-md-4 col-sm-6 portfolio-item');
 		newDiv.setAttribute('id', 'result' + numResults);
-		var photoUrl = "http://cdn1-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-2.jpg"; // @TODO: change to a more appropriate no image available placeholder
+		var photoUrl = "http://rajkotinvestments.com/photos/1472796927.no-image-available.jpg"; // @TODO: change to a more appropriate no image available placeholder
 		if (place.photos !== undefined) {
 			if (place.photos[0] !== undefined) { // make sure a photo is available
 				photoUrl = place.photos[0].getUrl({
@@ -290,9 +234,10 @@ function appendPlaceToResults(place, status) {
 			ratingDiv = "<div class='col-lg-6' id ='rating'>No rating available for this location.</div>";
 		}
 		
+		
 		var discountDiv = "<div class='col-lg-6' id='discount'><span class='alert alert-success'>Discount: " + discountDictionary[place.place_id] + "</span></div>";
 		var photoDiv = "<div class='col-lg-6' id='photo'><img src='" + photoUrl + "'>   </div>";
-		var placeInfoDiv = "<div class='col-lg-6' id='placeInfo'> <span class='glyphicon glyphicon-map-marker'></span><span class='infoText'>" + place.vicinity + "</span><br><span class='glyphicon glyphicon-link'></span><span class='infoText'><a href=" + place.url + ">Google Page</a></span><br><span class='glyphicon glyphicon-earphone'></span><span class='infoText'>" + place.formatted_phone_number + "</span></div>";
+		var placeInfoDiv = "<div class='col-lg-6' id='placeInfo'> <span class='glyphicon glyphicon-map-marker'></span><span class='infoText'>" + place.vicinity + "</span><br><span class='glyphicon glyphicon-link'></span><span class='infoText'><a href=" + place.url + " target='_blank'>Google Page</a></span><br><span class='glyphicon glyphicon-earphone'></span><span class='infoText'>" + place.formatted_phone_number + "</span></div>";
 		var hoursDiv;
 		if (place.opening_hours !== undefined && place.opening_hours.weekday_text !== undefined) {
 			hoursDiv = "<div class='col-lg-6' id='hoursDiv'> <h6 id='hoursTitle'>Hours</h6>" + place.opening_hours.weekday_text[0] + "<br>" + place.opening_hours.weekday_text[1] + "<br>" + place.opening_hours.weekday_text[2] + "<br>" + place.opening_hours.weekday_text[3] + "<br>" + place.opening_hours.weekday_text[4] + "<br>" + place.opening_hours.weekday_text[5] + "<br>" + place.opening_hours.weekday_text[6] + "</div>";
@@ -384,8 +329,21 @@ function appendPlaceToSaved(place, status) {
 					, 'maxHeight': 500
 				});
 			}
+		}	
+		
+		var rating;
+		if (place.rating !== undefined) {
+			ratingTxt = place.rating;
 		}
-		newDiv.innerHTML = "<a href='#savedModal" + numSaved + "' class='portfolio-link' data-toggle='modal'> <div class='portfolio-hover'> <div class='portfolio-hover-content'> <i class='fa fa-plus fa-3x'></i> </div></div> <img src='" + photoUrl + "' class='img-responsive' alt=''> </a><div class='portfolio-caption'><h4>" + place.name + "</h4><p class='text-muted'>Rating: " + place.rating + "</p></div>";
+		else {
+			ratingTxt = "None available.";
+		}		
+		
+		
+		newDiv.innerHTML = "<a href='#savedModal" + numSaved + "' class='portfolio-link' data-toggle='modal'> <div class='portfolio-hover'> <div class='portfolio-hover-content'> <i class='fa fa-plus fa-3x'></i> </div></div> <img src='" + photoUrl + "' class='img-responsive' alt=''> </a><div class='portfolio-caption'><h4>" + place.name + "</h4><p class='text-muted'>Rating: " + ratingTxt + "</p></div>";
+		
+		
+		
 		var savedModals = document.getElementById("saved-modals");
 		var newModal = document.createElement('div');
 		var placeId = JSON.stringify(place.place_id);
@@ -404,11 +362,45 @@ function appendPlaceToSaved(place, status) {
 			buttonText = "Add to Saved";
 			buttonFunc = "addToSaved";
 		}
-		/****
-				@TODO: get discount val from hashmap, keyed by placeid
+
+		var ratingDiv;
+		if (place.rating !== undefined) {
+			ratingDiv = "<div class='col-lg-6' id ='rating'>Average rating: " + place.rating + " / 5.0</div>";
+		}
+		else {
+			ratingDiv = "<div class='col-lg-6' id ='rating'>No rating available for this location.</div>";
+		}
+		console.log(place.place_id);
+		var discountDiv = "<div class='col-lg-6' id='discount'><span class='alert alert-success'>Discount: " + discountDictionary[place.place_id] + "</span></div>";
+		var photoDiv = "<div class='col-lg-6' id='photo'><img src='" + photoUrl + "'>   </div>";
+		var placeInfoDiv = "<div class='col-lg-6' id='placeInfo'> <span class='glyphicon glyphicon-map-marker'></span><span class='infoText'>" + place.vicinity + "</span><br><span class='glyphicon glyphicon-link'></span><span class='infoText'><a href=" + place.url + " target='_blank'>Google Page</a></span><br><span class='glyphicon glyphicon-earphone'></span><span class='infoText'>" + place.formatted_phone_number + "</span></div>";
+		var hoursDiv;
+		if (place.opening_hours !== undefined && place.opening_hours.weekday_text !== undefined) {
+			hoursDiv = "<div class='col-lg-6' id='hoursDiv'> <h6 id='hoursTitle'>Hours</h6>" + place.opening_hours.weekday_text[0] + "<br>" + place.opening_hours.weekday_text[1] + "<br>" + place.opening_hours.weekday_text[2] + "<br>" + place.opening_hours.weekday_text[3] + "<br>" + place.opening_hours.weekday_text[4] + "<br>" + place.opening_hours.weekday_text[5] + "<br>" + place.opening_hours.weekday_text[6] + "</div>";
+		}
+		else {
+			hoursDiv = "<div class='col-lg-6' id='hoursDiv'> <h6 id='hoursTitle'>Hours</h6> Hours currently unavailable for this location.</div>";
+		}
+		var buttonText;
+		var buttonFunc;
+		if (isSaved(place.place_id)) {
+			buttonText = "Remove from Saved";
+			buttonFunc = "removeFromSaved";
+		}
+		else {
+			buttonText = "Add to Saved";
+			buttonFunc = "addToSaved";
+		}
+		var fromAddress = encodeURIComponent(myStorage.getItem('address'));
+		var toAddress = encodeURIComponent(place.formatted_address);
 		
-				*****/
-		newModal.innerHTML = "<div class='modal-dialog'> <div class='modal-content'> <div class='close-modal' data-dismiss='modal'> <div class='lr'> <div class='rl'> </div> </div> </div> <div class='container'> <div class='row'> <div class='col-lg-8 col-lg-offset-2'> <div class='modal-body'> <!-- Project Details Go Here --> <h2>" + place.name + "</h2> <p class='item-intro text-muted'>Lorem ipsum dolor sit amet consectetur.</p> <img class='img-responsive img-centered' src='' alt=''> <button type='button' id='saved-button' class='btn btn-primary' onclick='" + buttonFunc + "(" + placeId + ")'>" + buttonText + "</button> <br><br> <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p> <p> <strong>Want these icons in this portfolio item sample?</strong>You can download 60 of them for free, courtesy of <a href='https://getdpd.com/cart/hoplink/18076?referrer=bvbo4kax5k8ogc'>RoundIcons.com</a>, or you can purchase the 1500 icon set <a href='https://getdpd.com/cart/hoplink/18076?referrer=bvbo4kax5k8ogc'>here</a>.</p> <ul class='list-inline'> <li>Date: July 2014</li> <li>Client: Round Icons</li> <li>Category: Graphic Design</li> </ul> <iframe width='450' height='250' frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/directions?key=AIzaSyDwjNhrGi0G3W-aKvTJ6eAegH7mf4Y3SuE&origin=" + myStorage.getItem('address') + "&destination=" + place.formatted_address + "&avoid=tolls|highways' allowfullscreen> </iframe> <br> <button type='button' class='btn btn-primary' data-dismiss='modal'><i class='fa fa-times'></i> Close Project</button> </div> </div> </div> </div> </div> </div>";
+		var iframe = "<iframe width='700' height='400' frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/directions?key=AIzaSyDwjNhrGi0G3W-aKvTJ6eAegH7mf4Y3SuE&origin=" + fromAddress + "&destination=" + toAddress + "&avoid=tolls|highways' allowfullscreen> </iframe>";
+		/****
+			@TODO: get discount val from hashmap, keyed by placeid
+		
+			*****/
+		newModal.innerHTML = "<div class='modal-dialog'> <div class='modal-content'> <div class='close-modal' data-dismiss='modal'> <div class='lr'> <div class='rl'> </div> </div> </div> <div class='container'> <div class='row'> <div class='col-lg-8 col-lg-offset-2'> <div class='modal-body'> <!-- Project Details Go Here --> <h2>" + place.name + "</h2>" + ratingDiv + discountDiv + "<br> <button type='button' id='saved-button' class='btn btn-primary' onclick='" + buttonFunc + "(" + placeId + ")'>" + buttonText + "</button><br>" + photoDiv + placeInfoDiv + hoursDiv + "<br>" + iframe + "<br><br> <button type='button' class='btn btn-primary center-block' data-dismiss='modal'><i class='fa fa-times'></i> Close Window</button> </div> </div> </div> </div> </div> </div>";
+		
 		saved.appendChild(newDiv);
 		savedModals.appendChild(newModal);
 	}
@@ -898,142 +890,3 @@ var allplacesJSON = {
  }
 ]
 };
-
-/*var arts = [{
-	id: 'ChIJUZ0c7MpYwokRh8SiMzCXL98'
-	, free: 'true'
-	, borough: 'Queens'
-}, {
-	id: 'ChIJmzolTYtZwokRHq_kx0LfXvo'
-	, free: 'true'
-	, borough: 'Manhattan'
-}, {
-	id: 'ChIJDbNgaTH0wokRRQPTw1E93GY'
-	, free: 'true'
-	, borough: 'Bronx'
-}, {
-	id: 'ChIJ7WI5fvtYwokRPDUT1aUOA_Q'
-	, free: 'true'
-	, borough: 'Manhattan'
-}, {
-	id: 'ChIJnxlg1U5YwokR8T90UrZiIwI'
-	, free: 'true'
-	, borough: 'Manhattan'
-}, {
-	id: 'ChIJxY5cO6JYwokRPeVk85UNj2g'
-	, free: 'true'
-	, borough: 'Manhattan'
-}, {
-	id: 'ChIJb8Jg9pZYwokR-qHGtvSkLzs'
-	, free: 'true'
-	, borough: 'Manhattan'
-}, {
-	id: 'ChIJ3453OAdZwokRja92OOKCugM'
-	, free: 'true'
-	, borough: 'Manhattan'
-}, {
-	id: 'ChIJKxDbe_lYwokRVf__s8CPn-o'
-	, free: 'true'
-	, borough: 'Manhattan'
-}, {
-	id: 'ChIJISGWiaJYwokRuOumpQv1i88'
-	, free: 'true'
-	, borough: 'Manhattan'
-}, {
-	id: 'ChIJdThqNVVawokRFk58UQOvtuM'
-	, free: 'true'
-	, borough: 'Brooklyn'
-}, {
-	id: 'ChIJmWMJBtBfwokR5qK7waLcgAM'
-	, free: 'true'
-	, borough: 'Queens'
-}, {
-	id: 'ChIJvcjmWLVYwokRFz2FMdi00cA'
-	, free: 'true'
-	, borough: 'Queens'
-}, {
-	id: 'ChIJEeD6FPVYwokRgs0ZbWMrrzk'
-	, free: 'true'
-	, borough: 'Manhattan'
-}, {
-	id: 'ChIJeXQWdutYwokRuHX2h1so5K4'
-	, free: 'true'
-	, borough: 'Manhattan'
-}, {
-	id: 'ChIJLYgHV0hawokR2-ZdvxaMGxE'
-	, free: 'true'
-	, borough: 'Brooklyn'
-}, {
-	id: 'ChIJK6bycAH0wokRrSnflfrnkZE'
-	, free: 'true'
-	, borough: 'Manhattan'
-}, {
-	id: 'ChIJWT0gUBz2wokRNcAxVUphAAs'
-	, free: 'true'
-	, borough: 'Manhattan'
-}, {
-	id: 'ChIJ5YRc6oVZwokRcRC4WKbR6_s'
-	, free: 'true'
-	, borough: 'Manhattan'
-}, {
-	id: 'ChIJT9QreB1ZwokRHZEDNBAX--0'
-	, free: 'true'
-	, borough: 'Manhattan'
-}, {
-	id: 'ChIJl-WU6pRYwokRA91OgdYWfa4'
-	, free: 'true'
-	, borough: 'Manhattan'
-}, {
-	id: 'ChIJwfbFiiNZwokRN8hnF940DbY'
-	, free: 'true'
-	, borough: 'Queens'
-}, {
-	id: 'ChIJYTeZ_BFawokRe_SRVX_pKIs'
-	, free: 'true'
-	, borough: 'Manhattan'
-}, {
-	id: 'ChIJi4hYtB32wokR1Npx_Tv7phk'
-	, free: 'true'
-	, borough: 'Manhattan'
-}, {
-	id: 'ChIJCYAz0Dr2wokRe49DUpkvIL4'
-	, free: 'true'
-	, borough: 'Manhattan'
-}, {
-	id: 'ChIJF5e1QvlYwokRcVF6x1CEcQk'
-	, free: 'true'
-	, borough: 'Manhattan'
-}, {
-	id: 'ChIJ7etix3b2wokRKN_Pd9RLRHQ'
-	, free: 'true'
-	, borough: 'Manhattan'
-}, {
-	id: 'ChIJ_ShwXw32wokRQJpaKAIcCOo'
-	, free: 'true'
-	, borough: 'Manhattan'
-}];*/
-
-// var shopping = [{id:'ChIJ9cyRU6JZwokR6BE7qIX8VQc', free: 'false', borough: 'Manhattan'},{id:'ChIJL6ZX4gFZwokRlhNUcAXdOeM', free: 'false', borough: 'Manhattan'},{id:'ChIJHRful6NZwokRxosgqshaDMk', free: 'false', borough: 'Manhattan'},{id:'ChIJv5p_b_pYwokRPKwidmPgV3k', free: 'false', borough: 'Manhattan'},{id:'ChIJj8DVbolZwokRi5US6vDx14U', free: 'false', borough: 'Manhattan'},{id:'ChIJo8-Dlv5YwokRFJb77gbBNhk', free: 'false', borough: 'Manhattan'},{id:'ChIJ92YC35dYwokR6Lh4p1NhDBw', free: 'false', borough: 'Manhattan'},{id:'ChIJA-0YU6JZwokR4qv4OBgNnRE', free: 'false', borough: 'Manhattan'},{id:'ChIJ951VnqJZwokRs5Xya4oAnWA', free: 'false', borough: 'Manhattan'},{id:'ChIJW4ed-0tewokRrSKUvDUQ7ZQ', free: 'false', borough: 'Queens'},{id:'ChIJ-VHbm4hYwokRtL5UgbY6-7g', free: 'false', borough: 'Manhattan'},{id:'ChIJKRnp3kxawokR1qNG46dKHPY', free: 'false', borough: 'Brooklyn'}];
-
-// var food = [{id:'ChIJtRnkH2j2wokRjnh6QuLd2CM', free: 'false', borough: 'Manhattan'},{id:'ChIJ7QUAcmv2wokRjDlrpRJm_Js', free: 'false', borough: 'Manhattan'},{id:'ChIJmRtEriX2wokRfPFTtXE33cE', free: 'false', borough: 'Manhattan'},{id:'ChIJ_Ud8NTz2wokRb-AeY92wfNI', free: 'false', borough: 'Manhattan'},{id:'ChIJA2zUTyP2wokRPcf2exHThYs', free: 'false', borough: 'Manhattan'},{id:'ChIJj0VoQhX2wokRWzkC5ufS9-U', free: 'false', borough: 'Manhattan'},{id:'ChIJQTcbgyT2wokR4azjcOwPkRA', free: 'false', borough: 'Manhattan'},{id:'ChIJQTcbgyT2wokR4azjcOwPkRA', free: 'false', borough: 'Manhattan'}];
-
-
-// var discounts = {'ChIJUZ0c7MpYwokRh8SiMzCXL98': { discount: 'Free'},'ChIJmzolTYtZwokRHq_kx0LfXvo': { discount: 'Free'},'ChIJDbNgaTH0wokRRQPTw1E93GY': { discount: 'Free'},'ChIJ7WI5fvtYwokRPDUT1aUOA_Q': { discount: 'Free'},'ChIJnxlg1U5YwokR8T90UrZiIwI': { discount: 'Free'},'ChIJxY5cO6JYwokRPeVk85UNj2g': { discount: 'Free'},'ChIJb8Jg9pZYwokR-qHGtvSkLzs': { discount: 'Free'},'ChIJ3453OAdZwokRja92OOKCugM': { discount: 'Free'},'ChIJKxDbe_lYwokRVf__s8CPn-o': { discount: 'Free'},'ChIJISGWiaJYwokRuOumpQv1i88': { discount: 'Free'},'ChIJdThqNVVawokRFk58UQOvtuM': { discount: 'Free'},'ChIJmWMJBtBfwokR5qK7waLcgAM': { discount: 'Free'},'ChIJvcjmWLVYwokRFz2FMdi00cA': { discount: 'Free'},'ChIJEeD6FPVYwokRgs0ZbWMrrzk': { discount: 'Free'},'ChIJeXQWdutYwokRuHX2h1so5K4': { discount: 'Free'},'ChIJLYgHV0hawokR2-ZdvxaMGxE': { discount: 'Free'},'ChIJK6bycAH0wokRrSnflfrnkZE': { discount: 'Free'},'ChIJWT0gUBz2wokRNcAxVUphAAs': { discount: 'Free'},'ChIJ5YRc6oVZwokRcRC4WKbR6_s': { discount: 'Free'},'ChIJT9QreB1ZwokRHZEDNBAX--0': { discount: 'Free'},'ChIJl-WU6pRYwokRA91OgdYWfa4': { discount: 'Free'},'ChIJwfbFiiNZwokRN8hnF940DbY': { discount: 'Free'},'ChIJYTeZ_BFawokRe_SRVX_pKIs': { discount: 'Free'},'ChIJ9cyRU6JZwokR6BE7qIX8VQc': { discount: '15%'},'ChIJL6ZX4gFZwokRlhNUcAXdOeM': { discount: '15%'},'ChIJHRful6NZwokRxosgqshaDMk': { discount: '20%'},'ChIJv5p_b_pYwokRPKwidmPgV3k': { discount: '20%'},'ChIJj8DVbolZwokRi5US6vDx14U': { discount: '10%'},'ChIJo8-Dlv5YwokRFJb77gbBNhk': { discount: '10%'},'ChIJ92YC35dYwokR6Lh4p1NhDBw': { discount: '15%'},'ChIJA-0YU6JZwokR4qv4OBgNnRE': { discount: '15%'},'ChIJ951VnqJZwokRs5Xya4oAnWA': { discount: '15%'},'ChIJW4ed-0tewokRrSKUvDUQ7ZQ': { discount: '10%'},'ChIJ-VHbm4hYwokRtL5UgbY6-7g': { discount: '10%'},'ChIJKRnp3kxawokR1qNG46dKHPY': { discount: '10%'},'ChIJi4hYtB32wokR1Npx_Tv7phk': { discount: 'Free'},'ChIJCYAz0Dr2wokRe49DUpkvIL4': { discount: 'Free'},'ChIJF5e1QvlYwokRcVF6x1CEcQk': { discount: 'Free'},'ChIJ7etix3b2wokRKN_Pd9RLRHQ': { discount: 'Free'},'ChIJ_ShwXw32wokRQJpaKAIcCOo': { discount: 'Free'},'ChIJtRnkH2j2wokRjnh6QuLd2CM': { discount: '5%'},'ChIJ7QUAcmv2wokRjDlrpRJm_Js': { discount: '5%'},'ChIJmRtEriX2wokRfPFTtXE33cE': { discount: '10%'},'ChIJ_Ud8NTz2wokRb-AeY92wfNI': { discount: '15%'},'ChIJA2zUTyP2wokRPcf2exHThYs': { discount: '10%'},'ChIJj0VoQhX2wokRWzkC5ufS9-U': { discount: '10%'},'ChIJQTcbgyT2wokR4azjcOwPkRA': { discount: '15%'},'ChIJQTcbgyT2wokR4azjcOwPkRA': { discount: '15%'}}
-
-	/*
-	var arts = []; // create test list
-	arts.push({
-		id: 'ChIJKxDbe_lYwokRVf__s8CPn-o'
-		, free: "true"
-		, borough: "Manhattan"
-	});
-	arts.push({
-		id: 'ChIJUZ0c7MpYwokRh8SiMzCXL98'
-		, free: "true"
-		, borough: "Queens"
-	});
-	arts.push({
-		id: 'ChIJsXqcyjy5woARNz6sOh0ZmwA'
-		, free: "false"
-		, borough: "Queens"
-	});*/
