@@ -175,20 +175,6 @@ function getPlaceDetails(placeId) {
 }
 
 function appendPlaceToResults(place, status) {
-	if (status == google.maps.places.PlacesServiceStatus.OK) {
-		numResults++;
-		var results = document.getElementById("results");
-		var newDiv = document.createElement('div');
-		newDiv.setAttribute('class', 'col-md-4 col-sm-6 portfolio-item');
-		newDiv.setAttribute('id', 'result' + numResults);
-		var photoUrl = "http://rajkotinvestments.com/photos/1472796927.no-image-available.jpg"; // @TODO: change to a more appropriate no image available placeholder
-		if (place.photos !== undefined) {
-			if (place.photos[0] !== undefined) { // make sure a photo is available
-				photoUrl = place.photos[0].getUrl({
-					'maxWidth': 1000
-					, 'maxHeight': 1000
-				});
-
 	var attempts = 0;
 	var success = false;
 	while (success != true && attempts < 3) {
@@ -264,19 +250,18 @@ function appendPlaceToResults(place, status) {
 			attempts++;
 			console.log("Woah! I got a bad result.");
 			console.log(status);
-/*			setTimeout(function() {
-				console.log("I'm trying my best");
-			}, 2000);*/
+			/*			setTimeout(function() {
+							console.log("I'm trying my best");
+						}, 2000);*/
 			delay(2000);
 		}
 	}
 }
 
 function delay(ms) {
-   ms += new Date().getTime();
-   while (new Date() < ms){}
+	ms += new Date().getTime();
+	while (new Date() < ms) {}
 }
-
 
 function isSaved(placeId) {
 	var parsed = JSON.parse(myStorage.getItem('saved-places'));
@@ -395,9 +380,9 @@ function appendPlaceToSaved(place, status) {
 		var toAddress = encodeURIComponent(place.formatted_address);
 		var iframe = "<iframe width='700' height='400' frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/directions?key=AIzaSyDwjNhrGi0G3W-aKvTJ6eAegH7mf4Y3SuE&origin=" + fromAddress + "&destination=" + toAddress + "&avoid=tolls|highways&mode=transit' allowfullscreen> </iframe>";
 		/****
-			@TODO: get discount val from hashmap, keyed by placeid
+						@TODO: get discount val from hashmap, keyed by placeid
 		
-			*****/
+						*****/
 		newModal.innerHTML = "<div class='modal-dialog'> <div class='modal-content'> <div class='close-modal' data-dismiss='modal'> <div class='lr'> <div class='rl'> </div> </div> </div> <div class='container'> <div class='row'> <div class='col-lg-8 col-lg-offset-2'> <div class='modal-body'> <!-- Project Details Go Here --> <h2>" + place.name + "</h2>" + ratingDiv + discountDiv + "<br> <button type='button' id='saved-button' class='btn btn-primary' onclick='" + buttonFunc + "(" + placeId + ")'>" + buttonText + "</button><br>" + photoDiv + placeInfoDiv + hoursDiv + "<br>" + iframe + "<br><br> <button type='button' class='btn btn-primary center-block' data-dismiss='modal'><i class='fa fa-times'></i> Close Window</button> </div> </div> </div> </div> </div> </div>";
 		saved.appendChild(newDiv);
 		savedModals.appendChild(newModal);
@@ -410,487 +395,486 @@ function helpModal() {
 	div.style.display = "block";
 }
 var allplacesJSON = {
-<<<<<<< HEAD
-	"masterlist" : [
- {
-   "category": "Arts & Entertainment",
-   "name": "The Noguchi Museum",
-   "discount": "Free",
-   "boolFree": true,
-   "borough": "Queens",
-   "address": "9-01 33rd Rd, Queens, NY 11106",
-   "Rating": 4.5,
-   "googleID": "ChIJUZ0c7MpYwokRh8SiMzCXL98"
- },
- {
-   "category": "Arts & Entertainment",
-   "name": "American Numismatic Society",
-   "discount": "Free",
-   "boolFree": true,
-   "borough": "Manhattan",
-   "address": "75 Varick St, New York, NY 10013",
-   "Rating": null,
-   "googleID": "ChIJmzolTYtZwokRHq_kx0LfXvo"
- },
- {
-   "category": "Arts & Entertainment",
-   "name": "The Bronx Museum of the Arts",
-   "discount": "Free",
-   "boolFree": true,
-   "borough": "Bronx",
-   "address": "1040 Grand Concourse Bronx, New York 10456",
-   "Rating": null,
-   "googleID": "ChIJDbNgaTH0wokRRQPTw1E93GY"
- },
- {
-   "category": "Arts & Entertainment",
-   "name": "Dahesh Museum of Art",
-   "discount": "Free",
-   "boolFree": true,
-   "borough": "Manhattan",
-   "address": "145 6th Ave, New York, NY 10013",
-   "Rating": null,
-   "googleID": "ChIJ7WI5fvtYwokRPDUT1aUOA_Q"
- },
- {
-   "category": "Arts & Entertainment",
-   "name": "Intrepid Sea, Air & Space Museum",
-   "discount": "Free",
-   "boolFree": true,
-   "borough": "Manhattan",
-   "address": "Pier 86, W 46th St & 12th Ave, New York, NY 10036",
-   "Rating": null,
-   "googleID": "ChIJnxlg1U5YwokR8T90UrZiIwI"
- },
- {
-   "category": "Arts & Entertainment",
-   "name": "The Jewish Museum",
-   "discount": "Free",
-   "boolFree": true,
-   "borough": "Manhattan",
-   "address": "1109 5th Ave & 92nd St, New York, NY 10128",
-   "Rating": null,
-   "googleID": "ChIJxY5cO6JYwokRPeVk85UNj2g"
- },
- {
-   "category": "Arts & Entertainment",
-   "name": "The Metropolitan Museum of Art",
-   "discount": "Free",
-   "boolFree": true,
-   "borough": "Manhattan",
-   "address": "1000 5th Ave, New York, NY 10028",
-   "Rating": 4.7,
-   "googleID": "ChIJb8Jg9pZYwokR-qHGtvSkLzs"
- },
- {
-   "category": "Arts & Entertainment",
-   "name": "The Morgan Library & Museum",
-   "discount": "Free",
-   "boolFree": true,
-   "borough": "Manhattan",
-   "address": "225 Madison Ave, New York, NY 10016",
-   "Rating": null,
-   "googleID": "ChIJ3453OAdZwokRja92OOKCugM"
- },
- {
-   "category": "Arts & Entertainment",
-   "name": "The Museum of Modern Art",
-   "discount": "Free",
-   "boolFree": true,
-   "borough": "Manhattan",
-   "address": "11 W 53rd St, New York, NY 10019",
-   "Rating": null,
-   "googleID": "ChIJKxDbe_lYwokRVf__s8CPn-o"
- },
- {
-   "category": "Arts & Entertainment",
-   "name": "National Academy Museum",
-   "discount": "Free",
-   "boolFree": true,
-   "borough": "Manhattan",
-   "address": "1083 5th Ave, New York, NY 10128",
-   "Rating": null,
-   "googleID": "ChIJISGWiaJYwokRuOumpQv1i88"
- },
- {
-   "category": "Arts & Entertainment",
-   "name": "New York Transit Museum",
-   "discount": "Free",
-   "boolFree": true,
-   "borough": "Brooklyn",
-   "address": "99 Schermerhorn St, Brooklyn, NY 11201",
-   "Rating": null,
-   "googleID": "ChIJdThqNVVawokRFk58UQOvtuM"
- },
- {
-   "category": "Arts & Entertainment",
-   "name": "Queens Museum",
-   "discount": "Free",
-   "boolFree": true,
-   "borough": "Queens",
-   "address": "Flushing Meadows Corona Park, New York City Building, Queens, NY 11368",
-   "Rating": null,
-   "googleID": "ChIJmWMJBtBfwokR5qK7waLcgAM"
- },
- {
-   "category": "Arts & Entertainment",
-   "name": "Socrates Sculpture Park",
-   "discount": "Free",
-   "boolFree": true,
-   "borough": "Queens",
-   "address": "32-01 Vernon Blvd, Long Island City, NY 11106",
-   "Rating": null,
-   "googleID": "ChIJvcjmWLVYwokRFz2FMdi00cA"
- },
- {
-   "category": "Arts & Entertainment",
-   "name": "American Folk Art Museum",
-   "discount": "Free",
-   "boolFree": true,
-   "borough": "Manhattan",
-   "address": "2 Lincoln Square, New York, NY 10023",
-   "Rating": null,
-   "googleID": "ChIJEeD6FPVYwokRgs0ZbWMrrzk"
- },
- {
-   "category": "Arts & Entertainment",
-   "name": "Asia Society and Museum",
-   "discount": "Free",
-   "boolFree": true,
-   "borough": "Manhattan",
-   "address": "725 Park Ave, New York, NY 10021",
-   "Rating": null,
-   "googleID": "ChIJeXQWdutYwokRuHX2h1so5K4"
- },
- {
-   "category": "Arts & Entertainment",
-   "name": "Brooklyn Historical Society",
-   "discount": "Free",
-   "boolFree": true,
-   "borough": "Brooklyn",
-   "address": "128 Pierrepont St, Brooklyn, NY 11201",
-   "Rating": null,
-   "googleID": "ChIJLYgHV0hawokR2-ZdvxaMGxE"
- },
- {
-   "category": "Arts & Entertainment",
-   "name": "The Cloisters",
-   "discount": "Free",
-   "boolFree": true,
-   "borough": "Manhattan",
-   "address": "99 Margaret Corbin Dr, New York, NY 10040",
-   "Rating": null,
-   "googleID": "ChIJK6bycAH0wokRrSnflfrnkZE"
- },
- {
-   "category": "Arts & Entertainment",
-   "name": "El Museo Del Barrio",
-   "discount": "Free",
-   "boolFree": true,
-   "borough": "Manhattan",
-   "address": "1230 5th Ave, New York, NY 10029",
-   "Rating": null,
-   "googleID": "ChIJWT0gUBz2wokRNcAxVUphAAs"
- },
- {
-   "category": "Arts & Entertainment",
-   "name": "International Center of Photography Museum",
-   "discount": "Free",
-   "boolFree": true,
-   "borough": "Manhattan",
-   "address": "250 Bowery, New York, NY 10012",
-   "Rating": null,
-   "googleID": "ChIJ5YRc6oVZwokRcRC4WKbR6_s"
- },
- {
-   "category": "Arts & Entertainment",
-   "name": "Japan Society",
-   "discount": "Free",
-   "boolFree": true,
-   "borough": "Manhattan",
-   "address": "333 E 47th St, New York, NY 10017",
-   "Rating": null,
-   "googleID": "ChIJT9QreB1ZwokRHZEDNBAX--0"
- },
- {
-   "category": "Arts & Entertainment",
-   "name": "The Met Breuer",
-   "discount": "Free",
-   "boolFree": true,
-   "borough": "Manhattan",
-   "address": "945 Madison Ave, New York, NY 10021",
-   "Rating": null,
-   "googleID": "ChIJl-WU6pRYwokRA91OgdYWfa4"
- },
- {
-   "category": "Arts & Entertainment",
-   "name": "MoMA PS1",
-   "discount": "Free",
-   "boolFree": true,
-   "borough": "Queens",
-   "address": "22-25 Jackson Ave, Long Island City, NY 11101",
-   "Rating": null,
-   "googleID": "ChIJwfbFiiNZwokRN8hnF940DbY"
- },
- {
-   "category": "Arts & Entertainment",
-   "name": "Museum of Jewish Heritage",
-   "discount": "Free",
-   "boolFree": true,
-   "borough": "Manhattan",
-   "address": "36 Battery Pl, New York, NY 10280",
-   "Rating": null,
-   "googleID": "ChIJYTeZ_BFawokRe_SRVX_pKIs"
- },
- {
-   "category": "Shopping",
-   "name": "J.Crew",
-   "discount": "15%",
-   "boolFree": false,
-   "borough": "Manhattan",
-   "address": "91 5th Ave, New York, NY 10003, USA",
-   "Rating": null,
-   "googleID": "ChIJ9cyRU6JZwokR6BE7qIX8VQc"
- },
- {
-   "category": "Shopping",
-   "name": "Barnes & Noble",
-   "discount": "15%",
-   "boolFree": false,
-   "borough": "Bronx",
-   "address": "347 Madison Ave, New York, NY 10017",
-   "Rating": null,
-   "googleID": "ChIJ59HKrrCMwokRq8r8zYyBwIA"
- },
- {
-   "category": "Shopping",
-   "name": "Club Monaco",
-   "discount": "20%",
-   "boolFree": false,
-   "borough": "Manhattan",
-   "address": "160 5th Ave, New York, NY 10010, USA",
-   "Rating": null,
-   "googleID": "ChIJwZ8gmKNZwokR_BOa_gKb9Zs"
- },
- {
-   "category": "Shopping",
-   "name": "Old Navy",
-   "discount": "15%",
-   "boolFree": false,
-   "borough": "Bronx",
-   "address": "6 W 57th St, New York, NY 10019",
-   "Rating": null,
-   "googleID": "ChIJ2369hdv0wokRnJevGmbNYNE"
- },
- {
-   "category": "Shopping",
-   "name": "Topshop",
-   "discount": "10%",
-   "boolFree": false,
-   "borough": "Manhattan",
-   "address": "478 Broadway, New York, NY 10013",
-   "Rating": null,
-   "googleID": "ChIJUXjcQolZwokRv35S1qJ-U9k"
- },
- {
-   "category": "Shopping",
-   "name": "Topshop",
-   "discount": "10%",
-   "boolFree": false,
-   "borough": "Manhattan",
-   "address": "608 5th Ave, New York, NY 10020",
-   "Rating": null,
-   "googleID": "ChIJF44fl_5YwokRXmMXI5wZiVc"
- },
- {
-   "category": "Shopping",
-   "name": "Banana Republic",
-   "discount": "15%",
-   "boolFree": false,
-   "borough": "Brooklyn",
-   "address": "485 Fulton St, Brooklyn, NY 11201",
-   "Rating": null,
-   "googleID": "ChIJv3o9gExawokR0EU5BOaM_ks"
- },
- {
-   "category": "Shopping",
-   "name": "Banana Republic",
-   "discount": "15%",
-   "boolFree": false,
-   "borough": "Manhattan",
-   "address": "550 Broadway, New York, NY 10012",
-   "Rating": null,
-   "googleID": "ChIJAXBk245ZwokREqY-EjLJeuo"
- },
- {
-   "category": "Shopping",
-   "name": "Juicy Couture",
-   "discount": "15%",
-   "boolFree": false,
-   "borough": "Manhattan",
-   "address": "860 Madison Ave, New York, NY 10021",
-   "Rating": null,
-   "googleID": "ChIJw98d5ftYwokRJJSYI71fm9I"
- },
- {
-   "category": "Shopping",
-   "name": "Charlotte Russe",
-   "discount": "10%",
-   "boolFree": false,
-   "borough": "Queens",
-   "address": "Queens Center, 9015 Queens Blvd, Elmhurst, NY 11373",
-   "Rating": null,
-   "googleID": "ChIJW4ed-0tewokRrSKUvDUQ7ZQ"
- },
- {
-   "category": "Shopping",
-   "name": "Kate Spade",
-   "discount": "15%",
-   "boolFree": false,
-   "borough": "Manhattan",
-   "address": "789 Madison Ave, New York, NY 10065",
-   "Rating": null,
-   "googleID": "ChIJHawvMOxYwokRLnBPzRCABbY"
- },
- {
-   "category": "Shopping",
-   "name": "The Limited",
-   "discount": "15%",
-   "boolFree": false,
-   "borough": "Queens",
-   "address": "630 Old Country Rd, Garden City, NY 11530",
-   "Rating": null,
-   "googleID": "ChIJ-z2zxn19wokR6CO49eEwU4M"
- },
- {
-   "category": "Arts & Entertainment",
-   "name": "Museum of the City of New York",
-   "discount": "Free",
-   "boolFree": true,
-   "borough": "Manhattan",
-   "address": "1220 5th Ave & 103rd St, New York, NY 10029",
-   "Rating": null,
-   "googleID": "ChIJi4hYtB32wokR1Npx_Tv7phk"
- },
- {
-   "category": "Arts & Entertainment",
-   "name": "Nicholas Roerich Museum",
-   "discount": "Free",
-   "boolFree": true,
-   "borough": "Manhattan",
-   "address": "319 W 107th St, New York, NY 10025",
-   "Rating": null,
-   "googleID": "ChIJCYAz0Dr2wokRe49DUpkvIL4"
- },
- {
-   "category": "Arts & Entertainment",
-   "name": "The Paley Center for Media",
-   "discount": "Free",
-   "boolFree": true,
-   "borough": "Manhattan",
-   "address": "25 W 52nd St, New York, NY 10019",
-   "Rating": null,
-   "googleID": "ChIJF5e1QvlYwokRcVF6x1CEcQk"
- },
- {
-   "category": "Arts & Entertainment",
-   "name": "Schomburg Center for Research in Black Culture",
-   "discount": "Free",
-   "boolFree": true,
-   "borough": "Manhattan",
-   "address": "515 Malcolm X Blvd, New York, NY 10037",
-   "Rating": null,
-   "googleID": "ChIJ7etix3b2wokRKN_Pd9RLRHQ"
- },
- {
-   "category": "Arts & Entertainment",
-   "name": "The Studio Museum in Harlem",
-   "discount": "Free",
-   "boolFree": true,
-   "borough": "Manhattan",
-   "address": "144 W 125th St, New York, NY 10027",
-   "Rating": null,
-   "googleID": "ChIJ_ShwXw32wokRQJpaKAIcCOo"
- },
- {
-   "category": "Food",
-   "name": "Fairway Market",
-   "discount": "5%",
-   "boolFree": false,
-   "borough": "Manhattan",
-   "address": "2328 12th Ave, New York, NY 10027",
-   "Rating": null,
-   "googleID": "ChIJtRnkH2j2wokR3bnS8Xx_xTY"
- },
- {
-   "category": "Food",
-   "name": "Key Food",
-   "discount": "5%",
-   "boolFree": false,
-   "borough": "Manhattan",
-   "address": "421 W. 125th, New York, NY",
-   "Rating": null,
-   "googleID": "ChIJ7QUAcmv2wokRyL8ic6V6B6w"
- },
- {
-   "category": "Food",
-   "name": "Aangan",
-   "discount": "10%",
-   "boolFree": false,
-   "borough": "Manhattan",
-   "address": "2701 Broadway, New York, NY 10025",
-   "Rating": null,
-   "googleID": "ChIJKy-DsSX2wokRBcHOLpDvWlY"
- },
- {
-   "category": "Food",
-   "name": "Strokos",
-   "discount": "15%",
-   "boolFree": false,
-   "borough": "Manhattan",
-   "address": "1090 Amsterdam Ave, New York, NY 10025",
-   "Rating": null,
-   "googleID": "ChIJw6ajyj32wokR0NKOvGb2tXk"
- },
- {
-   "category": "Food",
-   "name": "Subway",
-   "discount": "10%",
-   "boolFree": false,
-   "borough": "Brooklyn",
-   "address": "391 Jay St, Brooklyn, NY 11201",
-   "Rating": null,
-   "googleID": "ChIJORasjUtawokRlLRkKlOOnd8"
- },
- {
-   "category": "Food",
-   "name": "Ajanta Indian Restaurant ",
-   "discount": "10%",
-   "boolFree": false,
-   "borough": "Manhattan",
-   "address": "1237 Amsterdam Avenue New York, NY 10027",
-   "Rating": null,
-   "googleID": "ChIJ6efYQhX2wokRW7w_zEbHv9k"
- },
- {
-   "category": "Food",
-   "name": "Burger King",
-   "discount": "15%",
-   "boolFree": false,
-   "borough": "Queens",
-   "address": "39-20 Main St, Flushing, NY 11354",
-   "Rating": null,
-   "googleID": "ChIJP6aiJw5gwokRH7Nh2RruqlU"
- },
- {
-   "category": "Food",
-   "name": "V&T Pizzeria",
-   "discount": "15%",
-   "boolFree": false,
-   "borough": "Manhattan",
-   "address": "1024 Amsterdam Avenue New York, NY 10025",
-   "Rating": null,
-   "googleID": "ChIJtUqk7Dz2wokRsi_5j6j1DHM"
+	"masterlist": [
+		{
+			"category": "Arts & Entertainment"
+			, "name": "The Noguchi Museum"
+			, "discount": "Free"
+			, "boolFree": true
+			, "borough": "Queens"
+			, "address": "9-01 33rd Rd, Queens, NY 11106"
+			, "Rating": 4.5
+			, "googleID": "ChIJUZ0c7MpYwokRh8SiMzCXL98"
+ }
+					, {
+			"category": "Arts & Entertainment"
+			, "name": "American Numismatic Society"
+			, "discount": "Free"
+			, "boolFree": true
+			, "borough": "Manhattan"
+			, "address": "75 Varick St, New York, NY 10013"
+			, "Rating": null
+			, "googleID": "ChIJmzolTYtZwokRHq_kx0LfXvo"
+ }
+					, {
+			"category": "Arts & Entertainment"
+			, "name": "The Bronx Museum of the Arts"
+			, "discount": "Free"
+			, "boolFree": true
+			, "borough": "Bronx"
+			, "address": "1040 Grand Concourse Bronx, New York 10456"
+			, "Rating": null
+			, "googleID": "ChIJDbNgaTH0wokRRQPTw1E93GY"
+ }
+					, {
+			"category": "Arts & Entertainment"
+			, "name": "Dahesh Museum of Art"
+			, "discount": "Free"
+			, "boolFree": true
+			, "borough": "Manhattan"
+			, "address": "145 6th Ave, New York, NY 10013"
+			, "Rating": null
+			, "googleID": "ChIJ7WI5fvtYwokRPDUT1aUOA_Q"
+ }
+					, {
+			"category": "Arts & Entertainment"
+			, "name": "Intrepid Sea, Air & Space Museum"
+			, "discount": "Free"
+			, "boolFree": true
+			, "borough": "Manhattan"
+			, "address": "Pier 86, W 46th St & 12th Ave, New York, NY 10036"
+			, "Rating": null
+			, "googleID": "ChIJnxlg1U5YwokR8T90UrZiIwI"
+ }
+					, {
+			"category": "Arts & Entertainment"
+			, "name": "The Jewish Museum"
+			, "discount": "Free"
+			, "boolFree": true
+			, "borough": "Manhattan"
+			, "address": "1109 5th Ave & 92nd St, New York, NY 10128"
+			, "Rating": null
+			, "googleID": "ChIJxY5cO6JYwokRPeVk85UNj2g"
+ }
+					, {
+			"category": "Arts & Entertainment"
+			, "name": "The Metropolitan Museum of Art"
+			, "discount": "Free"
+			, "boolFree": true
+			, "borough": "Manhattan"
+			, "address": "1000 5th Ave, New York, NY 10028"
+			, "Rating": 4.7
+			, "googleID": "ChIJb8Jg9pZYwokR-qHGtvSkLzs"
+ }
+					, {
+			"category": "Arts & Entertainment"
+			, "name": "The Morgan Library & Museum"
+			, "discount": "Free"
+			, "boolFree": true
+			, "borough": "Manhattan"
+			, "address": "225 Madison Ave, New York, NY 10016"
+			, "Rating": null
+			, "googleID": "ChIJ3453OAdZwokRja92OOKCugM"
+ }
+					, {
+			"category": "Arts & Entertainment"
+			, "name": "The Museum of Modern Art"
+			, "discount": "Free"
+			, "boolFree": true
+			, "borough": "Manhattan"
+			, "address": "11 W 53rd St, New York, NY 10019"
+			, "Rating": null
+			, "googleID": "ChIJKxDbe_lYwokRVf__s8CPn-o"
+ }
+					, {
+			"category": "Arts & Entertainment"
+			, "name": "National Academy Museum"
+			, "discount": "Free"
+			, "boolFree": true
+			, "borough": "Manhattan"
+			, "address": "1083 5th Ave, New York, NY 10128"
+			, "Rating": null
+			, "googleID": "ChIJISGWiaJYwokRuOumpQv1i88"
+ }
+					, {
+			"category": "Arts & Entertainment"
+			, "name": "New York Transit Museum"
+			, "discount": "Free"
+			, "boolFree": true
+			, "borough": "Brooklyn"
+			, "address": "99 Schermerhorn St, Brooklyn, NY 11201"
+			, "Rating": null
+			, "googleID": "ChIJdThqNVVawokRFk58UQOvtuM"
+ }
+					, {
+			"category": "Arts & Entertainment"
+			, "name": "Queens Museum"
+			, "discount": "Free"
+			, "boolFree": true
+			, "borough": "Queens"
+			, "address": "Flushing Meadows Corona Park, New York City Building, Queens, NY 11368"
+			, "Rating": null
+			, "googleID": "ChIJmWMJBtBfwokR5qK7waLcgAM"
+ }
+					, {
+			"category": "Arts & Entertainment"
+			, "name": "Socrates Sculpture Park"
+			, "discount": "Free"
+			, "boolFree": true
+			, "borough": "Queens"
+			, "address": "32-01 Vernon Blvd, Long Island City, NY 11106"
+			, "Rating": null
+			, "googleID": "ChIJvcjmWLVYwokRFz2FMdi00cA"
+ }
+					, {
+			"category": "Arts & Entertainment"
+			, "name": "American Folk Art Museum"
+			, "discount": "Free"
+			, "boolFree": true
+			, "borough": "Manhattan"
+			, "address": "2 Lincoln Square, New York, NY 10023"
+			, "Rating": null
+			, "googleID": "ChIJEeD6FPVYwokRgs0ZbWMrrzk"
+ }
+					, {
+			"category": "Arts & Entertainment"
+			, "name": "Asia Society and Museum"
+			, "discount": "Free"
+			, "boolFree": true
+			, "borough": "Manhattan"
+			, "address": "725 Park Ave, New York, NY 10021"
+			, "Rating": null
+			, "googleID": "ChIJeXQWdutYwokRuHX2h1so5K4"
+ }
+					, {
+			"category": "Arts & Entertainment"
+			, "name": "Brooklyn Historical Society"
+			, "discount": "Free"
+			, "boolFree": true
+			, "borough": "Brooklyn"
+			, "address": "128 Pierrepont St, Brooklyn, NY 11201"
+			, "Rating": null
+			, "googleID": "ChIJLYgHV0hawokR2-ZdvxaMGxE"
+ }
+					, {
+			"category": "Arts & Entertainment"
+			, "name": "The Cloisters"
+			, "discount": "Free"
+			, "boolFree": true
+			, "borough": "Manhattan"
+			, "address": "99 Margaret Corbin Dr, New York, NY 10040"
+			, "Rating": null
+			, "googleID": "ChIJK6bycAH0wokRrSnflfrnkZE"
+ }
+					, {
+			"category": "Arts & Entertainment"
+			, "name": "El Museo Del Barrio"
+			, "discount": "Free"
+			, "boolFree": true
+			, "borough": "Manhattan"
+			, "address": "1230 5th Ave, New York, NY 10029"
+			, "Rating": null
+			, "googleID": "ChIJWT0gUBz2wokRNcAxVUphAAs"
+ }
+					, {
+			"category": "Arts & Entertainment"
+			, "name": "International Center of Photography Museum"
+			, "discount": "Free"
+			, "boolFree": true
+			, "borough": "Manhattan"
+			, "address": "250 Bowery, New York, NY 10012"
+			, "Rating": null
+			, "googleID": "ChIJ5YRc6oVZwokRcRC4WKbR6_s"
+ }
+					, {
+			"category": "Arts & Entertainment"
+			, "name": "Japan Society"
+			, "discount": "Free"
+			, "boolFree": true
+			, "borough": "Manhattan"
+			, "address": "333 E 47th St, New York, NY 10017"
+			, "Rating": null
+			, "googleID": "ChIJT9QreB1ZwokRHZEDNBAX--0"
+ }
+					, {
+			"category": "Arts & Entertainment"
+			, "name": "The Met Breuer"
+			, "discount": "Free"
+			, "boolFree": true
+			, "borough": "Manhattan"
+			, "address": "945 Madison Ave, New York, NY 10021"
+			, "Rating": null
+			, "googleID": "ChIJl-WU6pRYwokRA91OgdYWfa4"
+ }
+					, {
+			"category": "Arts & Entertainment"
+			, "name": "MoMA PS1"
+			, "discount": "Free"
+			, "boolFree": true
+			, "borough": "Queens"
+			, "address": "22-25 Jackson Ave, Long Island City, NY 11101"
+			, "Rating": null
+			, "googleID": "ChIJwfbFiiNZwokRN8hnF940DbY"
+ }
+					, {
+			"category": "Arts & Entertainment"
+			, "name": "Museum of Jewish Heritage"
+			, "discount": "Free"
+			, "boolFree": true
+			, "borough": "Manhattan"
+			, "address": "36 Battery Pl, New York, NY 10280"
+			, "Rating": null
+			, "googleID": "ChIJYTeZ_BFawokRe_SRVX_pKIs"
+ }
+					, {
+			"category": "Shopping"
+			, "name": "J.Crew"
+			, "discount": "15%"
+			, "boolFree": false
+			, "borough": "Manhattan"
+			, "address": "91 5th Ave, New York, NY 10003, USA"
+			, "Rating": null
+			, "googleID": "ChIJ9cyRU6JZwokR6BE7qIX8VQc"
+ }
+					, {
+			"category": "Shopping"
+			, "name": "Barnes & Noble"
+			, "discount": "15%"
+			, "boolFree": false
+			, "borough": "Bronx"
+			, "address": "347 Madison Ave, New York, NY 10017"
+			, "Rating": null
+			, "googleID": "ChIJ59HKrrCMwokRq8r8zYyBwIA"
+ }
+					, {
+			"category": "Shopping"
+			, "name": "Club Monaco"
+			, "discount": "20%"
+			, "boolFree": false
+			, "borough": "Manhattan"
+			, "address": "160 5th Ave, New York, NY 10010, USA"
+			, "Rating": null
+			, "googleID": "ChIJwZ8gmKNZwokR_BOa_gKb9Zs"
+ }
+					, {
+			"category": "Shopping"
+			, "name": "Old Navy"
+			, "discount": "15%"
+			, "boolFree": false
+			, "borough": "Bronx"
+			, "address": "6 W 57th St, New York, NY 10019"
+			, "Rating": null
+			, "googleID": "ChIJ2369hdv0wokRnJevGmbNYNE"
+ }
+					, {
+			"category": "Shopping"
+			, "name": "Topshop"
+			, "discount": "10%"
+			, "boolFree": false
+			, "borough": "Manhattan"
+			, "address": "478 Broadway, New York, NY 10013"
+			, "Rating": null
+			, "googleID": "ChIJUXjcQolZwokRv35S1qJ-U9k"
+ }
+					, {
+			"category": "Shopping"
+			, "name": "Topshop"
+			, "discount": "10%"
+			, "boolFree": false
+			, "borough": "Manhattan"
+			, "address": "608 5th Ave, New York, NY 10020"
+			, "Rating": null
+			, "googleID": "ChIJF44fl_5YwokRXmMXI5wZiVc"
+ }
+					, {
+			"category": "Shopping"
+			, "name": "Banana Republic"
+			, "discount": "15%"
+			, "boolFree": false
+			, "borough": "Brooklyn"
+			, "address": "485 Fulton St, Brooklyn, NY 11201"
+			, "Rating": null
+			, "googleID": "ChIJv3o9gExawokR0EU5BOaM_ks"
+ }
+					, {
+			"category": "Shopping"
+			, "name": "Banana Republic"
+			, "discount": "15%"
+			, "boolFree": false
+			, "borough": "Manhattan"
+			, "address": "550 Broadway, New York, NY 10012"
+			, "Rating": null
+			, "googleID": "ChIJAXBk245ZwokREqY-EjLJeuo"
+ }
+					, {
+			"category": "Shopping"
+			, "name": "Juicy Couture"
+			, "discount": "15%"
+			, "boolFree": false
+			, "borough": "Manhattan"
+			, "address": "860 Madison Ave, New York, NY 10021"
+			, "Rating": null
+			, "googleID": "ChIJw98d5ftYwokRJJSYI71fm9I"
+ }
+					, {
+			"category": "Shopping"
+			, "name": "Charlotte Russe"
+			, "discount": "10%"
+			, "boolFree": false
+			, "borough": "Queens"
+			, "address": "Queens Center, 9015 Queens Blvd, Elmhurst, NY 11373"
+			, "Rating": null
+			, "googleID": "ChIJW4ed-0tewokRrSKUvDUQ7ZQ"
+ }
+					, {
+			"category": "Shopping"
+			, "name": "Kate Spade"
+			, "discount": "15%"
+			, "boolFree": false
+			, "borough": "Manhattan"
+			, "address": "789 Madison Ave, New York, NY 10065"
+			, "Rating": null
+			, "googleID": "ChIJHawvMOxYwokRLnBPzRCABbY"
+ }
+					, {
+			"category": "Shopping"
+			, "name": "The Limited"
+			, "discount": "15%"
+			, "boolFree": false
+			, "borough": "Queens"
+			, "address": "630 Old Country Rd, Garden City, NY 11530"
+			, "Rating": null
+			, "googleID": "ChIJ-z2zxn19wokR6CO49eEwU4M"
+ }
+					, {
+			"category": "Arts & Entertainment"
+			, "name": "Museum of the City of New York"
+			, "discount": "Free"
+			, "boolFree": true
+			, "borough": "Manhattan"
+			, "address": "1220 5th Ave & 103rd St, New York, NY 10029"
+			, "Rating": null
+			, "googleID": "ChIJi4hYtB32wokR1Npx_Tv7phk"
+ }
+					, {
+			"category": "Arts & Entertainment"
+			, "name": "Nicholas Roerich Museum"
+			, "discount": "Free"
+			, "boolFree": true
+			, "borough": "Manhattan"
+			, "address": "319 W 107th St, New York, NY 10025"
+			, "Rating": null
+			, "googleID": "ChIJCYAz0Dr2wokRe49DUpkvIL4"
+ }
+					, {
+			"category": "Arts & Entertainment"
+			, "name": "The Paley Center for Media"
+			, "discount": "Free"
+			, "boolFree": true
+			, "borough": "Manhattan"
+			, "address": "25 W 52nd St, New York, NY 10019"
+			, "Rating": null
+			, "googleID": "ChIJF5e1QvlYwokRcVF6x1CEcQk"
+ }
+					, {
+			"category": "Arts & Entertainment"
+			, "name": "Schomburg Center for Research in Black Culture"
+			, "discount": "Free"
+			, "boolFree": true
+			, "borough": "Manhattan"
+			, "address": "515 Malcolm X Blvd, New York, NY 10037"
+			, "Rating": null
+			, "googleID": "ChIJ7etix3b2wokRKN_Pd9RLRHQ"
+ }
+					, {
+			"category": "Arts & Entertainment"
+			, "name": "The Studio Museum in Harlem"
+			, "discount": "Free"
+			, "boolFree": true
+			, "borough": "Manhattan"
+			, "address": "144 W 125th St, New York, NY 10027"
+			, "Rating": null
+			, "googleID": "ChIJ_ShwXw32wokRQJpaKAIcCOo"
+ }
+					, {
+			"category": "Food"
+			, "name": "Fairway Market"
+			, "discount": "5%"
+			, "boolFree": false
+			, "borough": "Manhattan"
+			, "address": "2328 12th Ave, New York, NY 10027"
+			, "Rating": null
+			, "googleID": "ChIJtRnkH2j2wokR3bnS8Xx_xTY"
+ }
+					, {
+			"category": "Food"
+			, "name": "Key Food"
+			, "discount": "5%"
+			, "boolFree": false
+			, "borough": "Manhattan"
+			, "address": "421 W. 125th, New York, NY"
+			, "Rating": null
+			, "googleID": "ChIJ7QUAcmv2wokRyL8ic6V6B6w"
+ }
+					, {
+			"category": "Food"
+			, "name": "Aangan"
+			, "discount": "10%"
+			, "boolFree": false
+			, "borough": "Manhattan"
+			, "address": "2701 Broadway, New York, NY 10025"
+			, "Rating": null
+			, "googleID": "ChIJKy-DsSX2wokRBcHOLpDvWlY"
+ }
+					, {
+			"category": "Food"
+			, "name": "Strokos"
+			, "discount": "15%"
+			, "boolFree": false
+			, "borough": "Manhattan"
+			, "address": "1090 Amsterdam Ave, New York, NY 10025"
+			, "Rating": null
+			, "googleID": "ChIJw6ajyj32wokR0NKOvGb2tXk"
+ }
+					, {
+			"category": "Food"
+			, "name": "Subway"
+			, "discount": "10%"
+			, "boolFree": false
+			, "borough": "Brooklyn"
+			, "address": "391 Jay St, Brooklyn, NY 11201"
+			, "Rating": null
+			, "googleID": "ChIJORasjUtawokRlLRkKlOOnd8"
+ }
+					, {
+			"category": "Food"
+			, "name": "Ajanta Indian Restaurant "
+			, "discount": "10%"
+			, "boolFree": false
+			, "borough": "Manhattan"
+			, "address": "1237 Amsterdam Avenue New York, NY 10027"
+			, "Rating": null
+			, "googleID": "ChIJ6efYQhX2wokRW7w_zEbHv9k"
+ }
+					, {
+			"category": "Food"
+			, "name": "Burger King"
+			, "discount": "15%"
+			, "boolFree": false
+			, "borough": "Queens"
+			, "address": "39-20 Main St, Flushing, NY 11354"
+			, "Rating": null
+			, "googleID": "ChIJP6aiJw5gwokRH7Nh2RruqlU"
+ }
+					, {
+			"category": "Food"
+			, "name": "V&T Pizzeria"
+			, "discount": "15%"
+			, "boolFree": false
+			, "borough": "Manhattan"
+			, "address": "1024 Amsterdam Avenue New York, NY 10025"
+			, "Rating": null
+			, "googleID": "ChIJtUqk7Dz2wokRsi_5j6j1DHM"
 }
 ]
 };
