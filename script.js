@@ -1,67 +1,56 @@
 myStorage = localStorage;
-var arts = [] ;
+var arts = [];
 var foods = [];
 var shoppings = [];
 var allplaces = [];
 var discountDictionary = {};
 
-function splitCategory (){
+function splitCategory() {
 	var masterlist = allplacesJSON['masterlist'];
 	var discountArray = [];
-
-	for(var i = 0; i < allplacesJSON['masterlist'].length; i++){
-		
+	for (var i = 0; i < allplacesJSON['masterlist'].length; i++) {
 		var id = masterlist[i];
-
 		if (id['category'] == "Arts & Entertainment") {
-          arts.push({
-            id: id['googleID']
-            , free: id['boolFree']
-            , borough: id['borough']
-          });
-        }
-
-        if (id['category'] == "Shopping") {
-          shoppings.push({
-             id: id['googleID']
-            , free: id['boolFree']
-            , borough: id['borough']
-          });
-        }
-
-        if (id['category'] == "Food") {
-          foods.push({
-             id: id['googleID']
-            , free: id['boolFree']
-            , borough: id['borough']
-          });
-        }
-
-        allplaces.push({
-            id: id['googleID']
-            , free: id['boolFree']
-            , borough: id['borough']
-          });
-
-        discountArray.push({
-        	id: id['googleID'],
-        	discount: id['discount']
-        });
-
+			arts.push({
+				id: id['googleID']
+				, free: id['boolFree']
+				, borough: id['borough']
+			});
+		}
+		if (id['category'] == "Shopping") {
+			shoppings.push({
+				id: id['googleID']
+				, free: id['boolFree']
+				, borough: id['borough']
+			});
+		}
+		if (id['category'] == "Food") {
+			foods.push({
+				id: id['googleID']
+				, free: id['boolFree']
+				, borough: id['borough']
+			});
+		}
+		allplaces.push({
+			id: id['googleID']
+			, free: id['boolFree']
+			, borough: id['borough']
+		});
+		discountArray.push({
+			id: id['googleID']
+			, discount: id['discount']
+		});
 	}
-    
-    discountDictionaryFunction(discountArray);	//parse the array to dictionary
+	discountDictionaryFunction(discountArray); //parse the array to dictionary
 }
 
-function discountDictionaryFunction(discountArray){
+function discountDictionaryFunction(discountArray) {
 	for (var i = 0; i < discountArray.length; i++) {
 		var id = discountArray[i].id;
 		var discountAmount = discountArray[i].discount;
-
-		discountDictionary[id]= discountAmount;
+		discountDictionary[id] = discountAmount;
 	}
 }
-
 /**************************************************************************/
 /**
  * Get results from form. Ping Ashley for clarification! 
@@ -69,26 +58,32 @@ function discountDictionaryFunction(discountArray){
 var numResults = 0; // keep track of how many results on page
 var numSaved = 0; // keep track of how many saved things we've displayed 
 var savedPlaces = JSON.parse(myStorage.getItem('saved-places')); // saved places array
-//var savedPlaces = [];
 function initSavedPlaces() {
 	if (JSON.parse(myStorage.getItem('saved-places')) == "") {
 		savedPlaces = [];
 		myStorage.setItem('saved-places', JSON.stringify(savedPlaces));
 		noSavedPlaces(); // @TODO: show some message saying to get started 
+		document.getElementById('has-saved-places').style.display = "none";
+		document.getElementById('no-saved-places').style.display = "block";
 	}
 	else {
 		savedPlaces = JSON.parse(myStorage.getItem('saved-places'));
 		splitCategory();
-		displaySavedPlaces(); // @TODO: display list of places 
+		document.getElementById('no-saved-places').style.display = "none";
+		document.getElementById('has-saved-places').style.display = "block";
+		displaySavedPlaces();
 	}
 }
 
-function processForm() {
+function initResults() {
+	//@TODO
+}
 
+function processForm() {
 	numResults = 0;
 	var form = document.getElementById("search-form");
 	var address = form.address.value;
-	if (address == "") {
+	if (address == "" || address == undefined) {
 		address = "Columbia University";
 	}
 	var cost = document.getElementById("cost");
@@ -106,7 +101,6 @@ function processForm() {
 };
 
 function displayResults() {
-
 	var address = myStorage.getItem('address');
 	var onlyFree = myStorage.getItem('only-free');
 	var atype = myStorage.getItem('activity-type');
@@ -118,10 +112,8 @@ function displayResults() {
 	else {
 		criteriaCost = "Discounted & Free Activities"
 	}
-	document.getElementById("form-criteria").innerHTML = "Get directions from: " + address + "<br>" + atype + ", " + borough + ", " + criteriaCost;
-	
+	document.getElementById("form-criteria").innerHTML = "Getting directions from: " + address + "<br>" + atype + ", " + borough + ", " + criteriaCost;
 	splitCategory();
-
 	if (atype == 'Arts & Entertainment') {
 		showPlaces(arts, onlyFree, borough);
 	}
@@ -130,29 +122,21 @@ function displayResults() {
 	}
 	else if (atype == 'Shopping') {
 		showPlaces(shoppings, onlyFree, borough);
-
 	}
 	else { // else we want it all
 		showPlaces(allplaces, onlyFree, borough);
-	
 	}
 	return false; // prevent reload
 }
 
 function showPlaces(list, onlyFree, borough) {
-
 	if (onlyFree != "free" && borough == "Anywhere") { // showing all + free results in any borough
-
-		console.log("showing all + free results in any borough");
 		for (var i = 0; i < list.length; i++) {
-			console.log("Iteration Number: " + i);
 			var cur = list[i];
 			getPlaceDetails(cur["id"]);
 		}
 	}
 	else if (onlyFree == "free" && borough == "Anywhere") { // showing only free results in any borough
-		console.log("free stuff anywhere");
-
 		for (var i = 0; i < list.length; i++) {
 			var cur = list[i];
 			if (cur["free"] == onlyFree) {
@@ -161,8 +145,6 @@ function showPlaces(list, onlyFree, borough) {
 		}
 	}
 	else if (onlyFree == "free" && borough != "Anywhere") { // showing only free + free results in a single borough
-		console.log("free stuff in somewhere");
-
 		for (var i = 0; i < list.length; i++) {
 			var cur = list[i];
 			if (cur["borough"] == borough) {
@@ -170,12 +152,11 @@ function showPlaces(list, onlyFree, borough) {
 			}
 		}
 	}
-	else if (onlyFree != "free" && borough != "Anywhere"){ // showing all + in a single borough
+	else if (onlyFree != "free" && borough != "Anywhere") { // showing all + in a single borough
 		for (var i = 0; i < list.length; i++) {
-			console.log("showing all + in a single borough");
 			var cur = list[i];
 			if (cur["borough"] == borough) {
-				 getPlaceDetails(cur["id"]);
+				getPlaceDetails(cur["id"]);
 			}
 		}
 	}
@@ -183,12 +164,14 @@ function showPlaces(list, onlyFree, borough) {
 }
 
 function getPlaceDetails(placeId) {
-	console.log("inside place details");
 	var request = {
 		placeId: placeId
 	};
-	service = new google.maps.places.PlacesService(document.createElement('div'));
-	service.getDetails(request, appendPlaceToResults);
+	let map = new google.maps.Map(document.createElement('div'));
+	service = new google.maps.places.PlacesService(map)
+	setTimeout(function () {
+		service.getDetails(request, appendPlaceToResults);
+	}, 4000);
 }
 
 function appendPlaceToResults(place, status) {
@@ -205,70 +188,95 @@ function appendPlaceToResults(place, status) {
 					'maxWidth': 1000
 					, 'maxHeight': 1000
 				});
+
+	var attempts = 0;
+	var success = false;
+	while (success != true && attempts < 3) {
+		if (status == google.maps.places.PlacesServiceStatus.OK) {
+			success = true;
+			console.log("...i'm in");
+			numResults++;
+			console.log("result numbah: " + numResults);
+			var results = document.getElementById("results");
+			var newDiv = document.createElement('div');
+			newDiv.setAttribute('class', 'col-md-4 col-sm-6 portfolio-item');
+			newDiv.setAttribute('id', 'result' + numResults);
+			var photoUrl = "https://www.masterworksfineart.com/wp-content/uploads/2015/09/not_available.png"; // @TODO: change to a more appropriate no image available placeholder
+			if (place.photos !== undefined) {
+				if (place.photos[0] !== undefined) { // make sure a photo is available
+					photoUrl = place.photos[0].getUrl({
+						'maxWidth': 1000
+						, 'maxHeight': 1000
+					});
+				}
 			}
-		}
-		
-		var rating;
-		if (place.rating !== undefined) {
-			ratingTxt = place.rating;
+			var rating;
+			if (place.rating !== undefined) {
+				ratingTxt = place.rating;
+			}
+			else {
+				ratingTxt = "None available.";
+			}
+			newDiv.innerHTML = "<a href='#resultModal" + numResults + "' class='portfolio-link' data-toggle='modal'> <div class='portfolio-hover'> <div class='portfolio-hover-content'> <i class='fa fa-plus fa-3x'></i> </div></div> <img src='" + photoUrl + "' class='img-responsive' alt=''> </a><div class='portfolio-caption'><h4>" + place.name + "</h4><p class='text-muted'>Rating: " + ratingTxt + "</p></div>";
+			var resultModals = document.getElementById("resultModals");
+			var newModal = document.createElement('div');
+			var placeId = JSON.stringify(place.place_id);
+			newModal.setAttribute('class', 'portfolio-modal modal fade');
+			newModal.setAttribute('id', 'resultModal' + numResults);
+			newModal.setAttribute('tabindex', '-1');
+			newModal.setAttribute('role', 'portfolio-modal modal fade');
+			newModal.setAttribute('aria-hidden', 'true');
+			var ratingDiv;
+			if (place.rating !== undefined) {
+				ratingDiv = "<div class='col-lg-6' id ='rating'>Average rating: " + place.rating + " / 5.0</div>";
+			}
+			else {
+				ratingDiv = "<div class='col-lg-6' id ='rating'>No rating available for this location.</div>";
+			}
+			var discountDiv = "<div class='col-lg-6' id='discount'><span class='alert alert-success'>Discount: " + discountDictionary[place.place_id] + "</span></div>";
+			var photoDiv = "<div class='col-lg-6' id='photo'><img src='" + photoUrl + "'>   </div>";
+			var placeInfoDiv = "<div class='col-lg-6' id='placeInfo'> <span class='glyphicon glyphicon-map-marker'></span><span class='infoText'>" + place.vicinity + "</span><br><span class='glyphicon glyphicon-link'></span><span class='infoText'><a href=" + place.url + " target='_blank'>Google Page</a></span><br><span class='glyphicon glyphicon-earphone'></span><span class='infoText'>" + place.formatted_phone_number + "</span></div>";
+			var hoursDiv;
+			if (place.opening_hours !== undefined && place.opening_hours.weekday_text !== undefined) {
+				hoursDiv = "<div class='col-lg-6' id='hoursDiv'> <h6 id='hoursTitle'>Hours</h6>" + place.opening_hours.weekday_text[0] + "<br>" + place.opening_hours.weekday_text[1] + "<br>" + place.opening_hours.weekday_text[2] + "<br>" + place.opening_hours.weekday_text[3] + "<br>" + place.opening_hours.weekday_text[4] + "<br>" + place.opening_hours.weekday_text[5] + "<br>" + place.opening_hours.weekday_text[6] + "</div>";
+			}
+			else {
+				hoursDiv = "<div class='col-lg-6' id='hoursDiv'> <h6 id='hoursTitle'>Hours</h6> Hours currently unavailable for this location.</div>";
+			}
+			var buttonText;
+			var buttonFunc;
+			if (isSaved(place.place_id)) {
+				buttonText = "Remove from Saved";
+				buttonFunc = "removeFromSaved";
+			}
+			else {
+				buttonText = "Add to Saved";
+				buttonFunc = "addToSaved";
+			}
+			var fromAddress = encodeURIComponent(myStorage.getItem('address'));
+			var toAddress = encodeURIComponent(place.formatted_address);
+			var iframe = "<iframe width='700' height='400' frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/directions?key=AIzaSyDwjNhrGi0G3W-aKvTJ6eAegH7mf4Y3SuE&origin=" + fromAddress + "&destination=" + toAddress + "&avoid=tolls|highways&mode=transit' allowfullscreen> </iframe>";
+			newModal.innerHTML = "<div class='modal-dialog'> <div class='modal-content'> <div class='close-modal' data-dismiss='modal'> <div class='lr'> <div class='rl'> </div> </div> </div> <div class='container'> <div class='row'> <div class='col-lg-8 col-lg-offset-2'> <div class='modal-body'> <!-- Project Details Go Here --> <h2>" + place.name + "</h2>" + ratingDiv + discountDiv + "<br> <button type='button' id='saved-button' class='btn btn-primary' onclick='" + buttonFunc + "(" + placeId + ")'>" + buttonText + "</button><br>" + photoDiv + placeInfoDiv + hoursDiv + "<br>" + iframe + "<br><br> <button type='button' class='btn btn-primary center-block' data-dismiss='modal'><i class='fa fa-times'></i> Close Window</button> </div> </div> </div> </div> </div> </div>";
+			results.appendChild(newDiv);
+			resultModals.appendChild(newModal);
 		}
 		else {
-			ratingTxt = "None available.";
+			attempts++;
+			console.log("Woah! I got a bad result.");
+			console.log(status);
+/*			setTimeout(function() {
+				console.log("I'm trying my best");
+			}, 2000);*/
+			delay(2000);
 		}
-		
-		newDiv.innerHTML = "<a href='#resultModal" + numResults + "' class='portfolio-link' data-toggle='modal'> <div class='portfolio-hover'> <div class='portfolio-hover-content'> <i class='fa fa-plus fa-3x'></i> </div></div> <img src='" + photoUrl + "' class='img-responsive' alt=''> </a><div class='portfolio-caption'><h4>" + place.name + "</h4><p class='text-muted'>Rating: " + ratingTxt + "</p></div>";
-		var resultModals = document.getElementById("resultModals");
-		var newModal = document.createElement('div');
-		var placeId = JSON.stringify(place.place_id);
-		newModal.setAttribute('class', 'portfolio-modal modal fade');
-		newModal.setAttribute('id', 'resultModal' + numResults);
-		newModal.setAttribute('tabindex', '-1');
-		newModal.setAttribute('role', 'portfolio-modal modal fade');
-		newModal.setAttribute('aria-hidden', 'true');
-		
-		var ratingDiv;
-		if (place.rating !== undefined) {
-			ratingDiv = "<div class='col-lg-6' id ='rating'>Average rating: " + place.rating + " / 5.0</div>";
-		}
-		else {
-			ratingDiv = "<div class='col-lg-6' id ='rating'>No rating available for this location.</div>";
-		}
-		
-		
-		var discountDiv = "<div class='col-lg-6' id='discount'><span class='alert alert-success'>Discount: " + discountDictionary[place.place_id] + "</span></div>";
-		var photoDiv = "<div class='col-lg-6' id='photo'><img src='" + photoUrl + "'>   </div>";
-		var placeInfoDiv = "<div class='col-lg-6' id='placeInfo'> <span class='glyphicon glyphicon-map-marker'></span><span class='infoText'>" + place.vicinity + "</span><br><span class='glyphicon glyphicon-link'></span><span class='infoText'><a href=" + place.url + " target='_blank'>Google Page</a></span><br><span class='glyphicon glyphicon-earphone'></span><span class='infoText'>" + place.formatted_phone_number + "</span></div>";
-		var hoursDiv;
-		if (place.opening_hours !== undefined && place.opening_hours.weekday_text !== undefined) {
-			hoursDiv = "<div class='col-lg-6' id='hoursDiv'> <h6 id='hoursTitle'>Hours</h6>" + place.opening_hours.weekday_text[0] + "<br>" + place.opening_hours.weekday_text[1] + "<br>" + place.opening_hours.weekday_text[2] + "<br>" + place.opening_hours.weekday_text[3] + "<br>" + place.opening_hours.weekday_text[4] + "<br>" + place.opening_hours.weekday_text[5] + "<br>" + place.opening_hours.weekday_text[6] + "</div>";
-		}
-		else {
-			hoursDiv = "<div class='col-lg-6' id='hoursDiv'> <h6 id='hoursTitle'>Hours</h6> Hours currently unavailable for this location.</div>";
-		}
-		var buttonText;
-		var buttonFunc;
-		if (isSaved(place.place_id)) {
-			buttonText = "Remove from Saved";
-			buttonFunc = "removeFromSaved";
-		}
-		else {
-			buttonText = "Add to Saved";
-			buttonFunc = "addToSaved";
-		}
-		var fromAddress = encodeURIComponent(myStorage.getItem('address'));
-		var toAddress = encodeURIComponent(place.formatted_address);
-		
-		var iframe = "<iframe width='700' height='400' frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/directions?key=AIzaSyDwjNhrGi0G3W-aKvTJ6eAegH7mf4Y3SuE&origin=" + fromAddress + "&destination=" + toAddress + "&avoid=tolls|highways' allowfullscreen> </iframe>";
-		/****
-			@TODO: get discount val from hashmap, keyed by placeid
-		
-			*****/
-		newModal.innerHTML = "<div class='modal-dialog'> <div class='modal-content'> <div class='close-modal' data-dismiss='modal'> <div class='lr'> <div class='rl'> </div> </div> </div> <div class='container'> <div class='row'> <div class='col-lg-8 col-lg-offset-2'> <div class='modal-body'> <!-- Project Details Go Here --> <h2>" + place.name + "</h2>" + ratingDiv + discountDiv + "<br> <button type='button' id='saved-button' class='btn btn-primary' onclick='" + buttonFunc + "(" + placeId + ")'>" + buttonText + "</button><br>" + photoDiv + placeInfoDiv + hoursDiv + "<br>" + iframe + "<br><br> <button type='button' class='btn btn-primary center-block' data-dismiss='modal'><i class='fa fa-times'></i> Close Window</button> </div> </div> </div> </div> </div> </div>";
-		//UrlExists(myStorage.getItem, place.formatted_address, getMapDir);
-		results.appendChild(newDiv);
-		resultModals.appendChild(newModal);
 	}
 }
+
+function delay(ms) {
+   ms += new Date().getTime();
+   while (new Date() < ms){}
+}
+
 
 function isSaved(placeId) {
 	var parsed = JSON.parse(myStorage.getItem('saved-places'));
@@ -329,21 +337,15 @@ function appendPlaceToSaved(place, status) {
 					, 'maxHeight': 500
 				});
 			}
-		}	
-		
+		}
 		var rating;
 		if (place.rating !== undefined) {
 			ratingTxt = place.rating;
 		}
 		else {
 			ratingTxt = "None available.";
-		}		
-		
-		
+		}
 		newDiv.innerHTML = "<a href='#savedModal" + numSaved + "' class='portfolio-link' data-toggle='modal'> <div class='portfolio-hover'> <div class='portfolio-hover-content'> <i class='fa fa-plus fa-3x'></i> </div></div> <img src='" + photoUrl + "' class='img-responsive' alt=''> </a><div class='portfolio-caption'><h4>" + place.name + "</h4><p class='text-muted'>Rating: " + ratingTxt + "</p></div>";
-		
-		
-		
 		var savedModals = document.getElementById("saved-modals");
 		var newModal = document.createElement('div');
 		var placeId = JSON.stringify(place.place_id);
@@ -362,7 +364,6 @@ function appendPlaceToSaved(place, status) {
 			buttonText = "Add to Saved";
 			buttonFunc = "addToSaved";
 		}
-
 		var ratingDiv;
 		if (place.rating !== undefined) {
 			ratingDiv = "<div class='col-lg-6' id ='rating'>Average rating: " + place.rating + " / 5.0</div>";
@@ -392,29 +393,24 @@ function appendPlaceToSaved(place, status) {
 		}
 		var fromAddress = encodeURIComponent(myStorage.getItem('address'));
 		var toAddress = encodeURIComponent(place.formatted_address);
-		
-		var iframe = "<iframe width='700' height='400' frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/directions?key=AIzaSyDwjNhrGi0G3W-aKvTJ6eAegH7mf4Y3SuE&origin=" + fromAddress + "&destination=" + toAddress + "&avoid=tolls|highways' allowfullscreen> </iframe>";
+		var iframe = "<iframe width='700' height='400' frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/directions?key=AIzaSyDwjNhrGi0G3W-aKvTJ6eAegH7mf4Y3SuE&origin=" + fromAddress + "&destination=" + toAddress + "&avoid=tolls|highways&mode=transit' allowfullscreen> </iframe>";
 		/****
 			@TODO: get discount val from hashmap, keyed by placeid
 		
 			*****/
 		newModal.innerHTML = "<div class='modal-dialog'> <div class='modal-content'> <div class='close-modal' data-dismiss='modal'> <div class='lr'> <div class='rl'> </div> </div> </div> <div class='container'> <div class='row'> <div class='col-lg-8 col-lg-offset-2'> <div class='modal-body'> <!-- Project Details Go Here --> <h2>" + place.name + "</h2>" + ratingDiv + discountDiv + "<br> <button type='button' id='saved-button' class='btn btn-primary' onclick='" + buttonFunc + "(" + placeId + ")'>" + buttonText + "</button><br>" + photoDiv + placeInfoDiv + hoursDiv + "<br>" + iframe + "<br><br> <button type='button' class='btn btn-primary center-block' data-dismiss='modal'><i class='fa fa-times'></i> Close Window</button> </div> </div> </div> </div> </div> </div>";
-		
 		saved.appendChild(newDiv);
 		savedModals.appendChild(newModal);
 	}
 }
 
-
- function helpModal() {
- 	console.log("help appear");
-    var div = document.getElementById('help');
-    div.style.display = "block";
-  }
-
-
-
+function helpModal() {
+	console.log("help appear");
+	var div = document.getElementById('help');
+	div.style.display = "block";
+}
 var allplacesJSON = {
+<<<<<<< HEAD
 	"masterlist" : [
  {
    "category": "Arts & Entertainment",
@@ -895,6 +891,6 @@ var allplacesJSON = {
    "address": "1024 Amsterdam Avenue New York, NY 10025",
    "Rating": null,
    "googleID": "ChIJtUqk7Dz2wokRsi_5j6j1DHM"
- }
+}
 ]
 };
