@@ -114,6 +114,7 @@ function displayResults() {
 	}
 	document.getElementById("form-criteria").innerHTML = "Getting directions from: " + address + "<br>" + atype + ", " + borough + ", " + criteriaCost;
 	splitCategory();
+	hideLoadMessage();
 	if (atype == 'Arts & Entertainment') {
 		showPlaces(arts, onlyFree, borough);
 	}
@@ -130,13 +131,14 @@ function displayResults() {
 }
 
 function showPlaces(list, onlyFree, borough) {
-	if (onlyFree != "free" && borough == "Anywhere") { // showing all + free results in any borough
+	//alert(onlyFree);
+	if (onlyFree != "true" && borough == "Anywhere") { // showing all + free results in any borough
 		for (var i = 0; i < list.length; i++) {
 			var cur = list[i];
 			getPlaceDetails(cur["id"]);
 		}
 	}
-	else if (onlyFree == "free" && borough == "Anywhere") { // showing only free results in any borough
+	else if (onlyFree == "true" && borough == "Anywhere") { // showing only free results in any borough
 		for (var i = 0; i < list.length; i++) {
 			var cur = list[i];
 			if (cur["free"] == onlyFree) {
@@ -144,15 +146,28 @@ function showPlaces(list, onlyFree, borough) {
 			}
 		}
 	}
-	else if (onlyFree == "free" && borough != "Anywhere") { // showing only free + free results in a single borough
+	else if (onlyFree == "true" && borough != "Anywhere") { // showing only free results in a single borough
 		for (var i = 0; i < list.length; i++) {
 			var cur = list[i];
-			if (cur["borough"] == borough) {
+			console.log(onlyFree);
+			console.log(cur["borough"]);
+			console.log("param borough" + borough);
+			console.log(cur["free"]);
+			var help;
+			if(borough == cur["borough"]) {
+				help = "yep";
+				
+			}
+			else {
+				help = "nopeeee";
+			}
+			console.log(help);
+			if (cur["borough"] == borough && cur["free"] == onlyFree) {
 				getPlaceDetails(cur["id"]);
 			}
 		}
 	}
-	else if (onlyFree != "free" && borough != "Anywhere") { // showing all + in a single borough
+	else if (onlyFree != "true" && borough != "Anywhere") { // showing all + in a single borough
 		for (var i = 0; i < list.length; i++) {
 			var cur = list[i];
 			if (cur["borough"] == borough) {
@@ -162,6 +177,11 @@ function showPlaces(list, onlyFree, borough) {
 	}
 	return false; // prevent reload
 }
+		function hideLoadMessage() {
+			setTimeout(function () {
+				document.getElementById("loading").style.display = "none";
+			}, 15000);
+		}
 
 function getPlaceDetails(placeId) {
 	var request = {
