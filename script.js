@@ -198,7 +198,7 @@ function appendPlaceToResults(place, status) {
 		var newDiv = document.createElement('div');
 		newDiv.setAttribute('class', 'col-md-4 col-sm-6 portfolio-item');
 		newDiv.setAttribute('id', 'result' + numResults);
-		var photoUrl = "https://www.masterworksfineart.com/wp-content/uploads/2015/09/not_available.png"; // @TODO: change to a more appropriate no image available placeholder
+		var photoUrl = "http://rajkotinvestments.com/photos/1472796927.no-image-available.jpg"; // @TODO: change to a more appropriate no image available placeholder
 		if (place.photos !== undefined) {
 			if (place.photos[0] !== undefined) { // make sure a photo is available
 				photoUrl = place.photos[0].getUrl({
@@ -658,13 +658,13 @@ var allplacesJSON = {
  },
  {
    "category": "Shopping",
-   "name": "J.Crew",
+   "name": "Barnes & Noble",
    "discount": "15%",
    "boolFree": false,
-   "borough": "Manhattan",
+   "borough": "Bronx",
    "address": "347 Madison Ave, New York, NY 10017",
    "Rating": null,
-   "googleID": "ChIJL6ZX4gFZwokRlhNUcAXdOeM"
+   "googleID": "ChIJ59HKrrCMwokRq8r8zYyBwIA"
  },
  {
    "category": "Shopping",
@@ -674,17 +674,17 @@ var allplacesJSON = {
    "borough": "Manhattan",
    "address": "160 5th Ave, New York, NY 10010, USA",
    "Rating": null,
-   "googleID": "ChIJHRful6NZwokRxosgqshaDMk"
+   "googleID": "ChIJwZ8gmKNZwokR_BOa_gKb9Zs"
  },
  {
    "category": "Shopping",
-   "name": "Club Monaco",
-   "discount": "20%",
+   "name": "Old Navy",
+   "discount": "15%",
    "boolFree": false,
-   "borough": "Manhattan",
+   "borough": "Bronx",
    "address": "6 W 57th St, New York, NY 10019",
    "Rating": null,
-   "googleID": "ChIJv5p_b_pYwokRPKwidmPgV3k"
+   "googleID": "ChIJ2369hdv0wokRnJevGmbNYNE"
  },
  {
    "category": "Shopping",
@@ -694,7 +694,7 @@ var allplacesJSON = {
    "borough": "Manhattan",
    "address": "478 Broadway, New York, NY 10013",
    "Rating": null,
-   "googleID": "ChIJj8DVbolZwokRi5US6vDx14U"
+   "googleID": "ChIJUXjcQolZwokRv35S1qJ-U9k"
  },
  {
    "category": "Shopping",
@@ -704,37 +704,37 @@ var allplacesJSON = {
    "borough": "Manhattan",
    "address": "608 5th Ave, New York, NY 10020",
    "Rating": null,
-   "googleID": "ChIJo8-Dlv5YwokRFJb77gbBNhk"
+   "googleID": "ChIJF44fl_5YwokRXmMXI5wZiVc"
  },
  {
    "category": "Shopping",
-   "name": "Madewell",
+   "name": "Banana Republic",
    "discount": "15%",
    "boolFree": false,
-   "borough": "Manhattan",
-   "address": "1144 Madison Avenue, New York, NY 10028",
+   "borough": "Brooklyn",
+   "address": "485 Fulton St, Brooklyn, NY 11201",
    "Rating": null,
-   "googleID": "ChIJ92YC35dYwokR6Lh4p1NhDBw"
+   "googleID": "ChIJv3o9gExawokR0EU5BOaM_ks"
  },
  {
    "category": "Shopping",
-   "name": "Madewell",
+   "name": "Banana Republic",
    "discount": "15%",
    "boolFree": false,
    "borough": "Manhattan",
-   "address": "115 5th Ave, New York, NY 10003",
+   "address": "550 Broadway, New York, NY 10012",
    "Rating": null,
-   "googleID": "ChIJA-0YU6JZwokR4qv4OBgNnRE"
+   "googleID": "ChIJAXBk245ZwokREqY-EjLJeuo"
  },
  {
    "category": "Shopping",
-   "name": "Eddie Bauer",
+   "name": "Juicy Couture",
    "discount": "15%",
    "boolFree": false,
    "borough": "Manhattan",
-   "address": "100 5th Ave, New York, NY 10011",
+   "address": "860 Madison Ave, New York, NY 10021",
    "Rating": null,
-   "googleID": "ChIJ951VnqJZwokRs5Xya4oAnWA"
+   "googleID": "ChIJw98d5ftYwokRJJSYI71fm9I"
  },
  {
    "category": "Shopping",
@@ -748,23 +748,23 @@ var allplacesJSON = {
  },
  {
    "category": "Shopping",
-   "name": "Goodwill",
-   "discount": "10%",
+   "name": "Kate Spade",
+   "discount": "15%",
    "boolFree": false,
    "borough": "Manhattan",
-   "address": "217 W 79th St, New York, NY 10024",
+   "address": "789 Madison Ave, New York, NY 10065",
    "Rating": null,
-   "googleID": "ChIJ-VHbm4hYwokRtL5UgbY6-7g"
+   "googleID": "ChIJHawvMOxYwokRLnBPzRCABbY"
  },
  {
    "category": "Shopping",
-   "name": "Goodwill",
-   "discount": "10%",
+   "name": "The Limited",
+   "discount": "15%",
    "boolFree": false,
-   "borough": "Brooklyn",
-   "address": "258 Livingston St, Brooklyn, NY 11201",
+   "borough": "Queens",
+   "address": "630 Old Country Rd, Garden City, NY 11530",
    "Rating": null,
-   "googleID": "ChIJKRnp3kxawokR1qNG46dKHPY"
+   "googleID": "ChIJ-z2zxn19wokR6CO49eEwU4M"
  },
  {
    "category": "Arts & Entertainment",
@@ -861,10 +861,10 @@ var allplacesJSON = {
    "name": "Subway",
    "discount": "10%",
    "boolFree": false,
-   "borough": "Manhattan",
-   "address": "971 Amsterdam Ave #1, New York, NY 10025",
+   "borough": "Brooklyn",
+   "address": "391 Jay St, Brooklyn, NY 11201",
    "Rating": null,
-   "googleID": "ChIJVa8uC4NYwokR8Fuu0w7D0bc"
+   "googleID": "ChIJORasjUtawokRlLRkKlOOnd8"
  },
  {
    "category": "Food",
@@ -878,13 +878,13 @@ var allplacesJSON = {
  },
  {
    "category": "Food",
-   "name": "Royal Curry and Kabab",
+   "name": "Burger King",
    "discount": "15%",
    "boolFree": false,
-   "borough": "Manhattan",
-   "address": "931 Amsterdam Ave New York, NY 10025",
+   "borough": "Queens",
+   "address": "39-20 Main St, Flushing, NY 11354",
    "Rating": null,
-   "googleID": "ChIJyaNYDhr2wokROSnH0e0O-Ps"
+   "googleID": "ChIJP6aiJw5gwokRH7Nh2RruqlU"
  },
  {
    "category": "Food",
