@@ -259,7 +259,7 @@ function appendPlaceToResults(place, status) {
 		var fromAddress = encodeURIComponent(myStorage.getItem('address'));
 		var toAddress = encodeURIComponent(place.formatted_address);
 		
-		var iframe = "<iframe width='700' height='400' frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/directions?key=AIzaSyDwjNhrGi0G3W-aKvTJ6eAegH7mf4Y3SuE&origin=" + fromAddress + "&destination=" + toAddress + "&avoid=tolls|highways' allowfullscreen> </iframe>";
+		var iframe = "<iframe width='700' height='400' frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/directions?key=AIzaSyDwjNhrGi0G3W-aKvTJ6eAegH7mf4Y3SuE&origin=" + fromAddress + "&destination=" + toAddress + "&avoid=tolls|highways&mode=transit' allowfullscreen> </iframe>";
 		/****
 			@TODO: get discount val from hashmap, keyed by placeid
 		
@@ -394,7 +394,7 @@ function appendPlaceToSaved(place, status) {
 		var fromAddress = encodeURIComponent(myStorage.getItem('address'));
 		var toAddress = encodeURIComponent(place.formatted_address);
 		
-		var iframe = "<iframe width='700' height='400' frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/directions?key=AIzaSyDwjNhrGi0G3W-aKvTJ6eAegH7mf4Y3SuE&origin=" + fromAddress + "&destination=" + toAddress + "&avoid=tolls|highways' allowfullscreen> </iframe>";
+		var iframe = "<iframe width='700' height='400' frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/directions?key=AIzaSyDwjNhrGi0G3W-aKvTJ6eAegH7mf4Y3SuE&origin=" + fromAddress + "&destination=" + toAddress + "&avoid=tolls|highways&mode=transit' allowfullscreen> </iframe>";
 		/****
 			@TODO: get discount val from hashmap, keyed by placeid
 		
