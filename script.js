@@ -85,6 +85,7 @@ function initSavedPlaces() {
 }
 
 function processForm() {
+
 	numResults = 0;
 	var form = document.getElementById("search-form");
 	var address = form.address.value;
@@ -106,6 +107,7 @@ function processForm() {
 };
 
 function displayResults() {
+
 	var address = myStorage.getItem('address');
 	var onlyFree = myStorage.getItem('only-free');
 	var atype = myStorage.getItem('activity-type');
