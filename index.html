@@ -60,10 +60,10 @@
 		<div class="index-hero-bg">
 			<div class="index-hero-show-md">
 				<form id="search-form" class="form-inline">
-					<input type="text" name="address" class="form-control" id="addressInput" placeholder="Enter your current address here, Columbia University assumed if no address is entered.">
+					<input type="text" name="address" class="form-control" id="addressInput" placeholder="Enter your current address here, Columbia University assumed if no address is entered." onkeydown = "if (event.keyCode == 13){return processForm();}"  >
 					<br>
 					<h5 style="display: inline;">I'm looking for </h5>
-					<select id="cost" class="form-control">
+					<select id="cost" class="form-control" >
 						<option selected="selected" value="false">Discounted or Free</option>
 						<option value="true">Only Free</option>
 					</select>
@@ -74,7 +74,7 @@
 						<option>Shopping</option>
 					</select>
 					<h5 style="display: inline;">in  </h5>
-					<select id="borough" class="form-control">
+					<select id="borough" class="form-control" onkeydown = "if (event.keyCode == 13){return processForm();}">
 						<option selected="selected">Anywhere</option>
 						<option>Manhattan</option>
 						<option>Brooklyn</option>
