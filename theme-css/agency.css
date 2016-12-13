@@ -327,7 +327,7 @@ header .intro-text .intro-heading {
 		font-size: 50px;
 		line-height: 50px;
 		margin-bottom: 50px;
-		margin-top:25px;
+		margin-top: 25px;
 	}
 }
 
@@ -364,7 +364,7 @@ section h3.section-subheading {
 #portfolio .portfolio-item {
 	margin: 0 0 15px;
 	right: 0;
-	min-height:360px;
+	min-height: 360px;
 }
 
 #portfolio .portfolio-item .portfolio-link {
@@ -531,7 +531,7 @@ section#contact .text-danger {
 }
 
 footer {
-	padding: 25px 0;
+	padding: 10px 0;
 	text-align: center;
 }
 
@@ -612,7 +612,7 @@ ul.social-buttons li a:active {
 	margin: 20px 0 30px;
 	font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-style: italic;
-	font-weight:bold;
+	font-weight: bold;
 	font-size: 16px;
 }
 
@@ -753,7 +753,6 @@ body {
 	}
 }
 
-
 @media (min-width: 850px) {
 	.modern-investing-teaser-ski-lift {
 		display: inherit;
@@ -770,20 +769,19 @@ body {
 }
 
 #addressInput {
-  margin: 25px 0px 15px 0px;
+	margin: 25px 0px 15px 0px;
 	width: 100%;
 }
 
 .search-btn {
-  padding: 6px 40px;
-  margin-top: -10px;
-  margin-left: 15px;
+	padding: 6px 40px;
+	margin-top: -10px;
+	margin-left: 15px;
 }
 
-
-#map{
-    width: 100%;
-    height: 400px;
+#map {
+	width: 100%;
+	height: 400px;
 }
 
 #rating {
@@ -791,32 +789,32 @@ body {
 	//margin: 20px 0 30px;
 	font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-style: italic;
-	font-weight:bold;
+	font-weight: bold;
 	font-size: 20px;
 }
 
 #discount .alert {
 	//display:inline;
-	font-weight:bold;
-	font-size:20px;
+	font-weight: bold;
+	font-size: 20px;
 	//margin: 0px 0px 50px 30px;
 	font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	padding: 10px 50px;
 }
 
 #discount {
-	margin-top:5px;
+	margin-top: 5px;
 }
 
 [id^=saved-button] {
-	clear:both;
+	clear: both;
 	margin: 20px 15px;
 }
 
 #placeInfo {
 	font-size: 16px;
-	margin-top:10px;
-	clear:both;
+	margin-top: 10px;
+	clear: both;
 }
 
 .infoText {
@@ -826,21 +824,21 @@ body {
 
 #hoursDiv {
 	font-size: 12px;
-	padding-bottom: 15px ;
+	padding-bottom: 15px;
 }
 
 #photo {
-	clear:both;
+	clear: both;
 }
-#photo img{
-	max-width:700px;
+
+#photo img {
+	max-width: 700px;
 }
 
 .portfolio-link img {
-	max-height:240px;
+	max-height: 240px;
 	margin: 0 auto;
 }
-
 
 #help {
 	display: none;
@@ -853,13 +851,12 @@ body {
 #form-criteria {
 	//font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-
 	font-size: 14px;
 }
 
 .results-navbar {
 	background-color: #222222;
-	padding:10px 0px;
+	padding: 10px 0px;
 }
 
 .results-heading {
@@ -867,10 +864,17 @@ body {
 }
 
 .results-brand {
-	font-size:1.5em !important;
+	font-size: 1.5em !important;
 }
 
 .glyphicon.glyphicon-star {
-    font-size: 15px;
+	font-size: 15px;
 }
 
+.back-to-top {
+    cursor: pointer;
+    position: fixed;
+    bottom: 6px;
+    right: 15px;
+    display:none;
+}
