@@ -1,1 +1,0 @@
-var allplaces = 989;
