@@ -453,11 +453,11 @@ function appendPlaceToSaved(place, status) {
 		var buttonText;
 		var buttonFunc;
 		if (isSaved(place.place_id)) {
-			buttonText = "Remove from Saved";
+			buttonText = "<i class='fa fa-heart' aria-hidden='true'></i> Remove from Saved?";
 			buttonFunc = "removeFromSaved";
 		}
 		else {
-			buttonText = "Add to Saved";
+			buttonText = "<i class='fa fa-heart-o' aria-hidden='true'></i> Add to Saved";
 			buttonFunc = "addToSaved";
 		}
 		var pageLoc = JSON.stringify("homePage");
