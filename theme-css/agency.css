@@ -844,3 +844,10 @@ body {
 #help{
 	display: none;
 }
+
+#form-criteria {
+	//font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+	font-size: 16px;
+}
