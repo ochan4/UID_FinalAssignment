@@ -213,7 +213,7 @@ function appendPlaceToResults(place, status) {
 			}
 			var rating;
 			if (place.rating !== undefined) {
-				ratingTxt = place.rating;
+				ratingTxt = place.rating + " <span class='glyphicon glyphicon-star' aria-hidden='true'></span>";
 			}
 			else {
 				ratingTxt = "None available.";
@@ -354,7 +354,7 @@ function appendPlaceToSaved(place, status) {
 		}
 		var rating;
 		if (place.rating !== undefined) {
-			ratingTxt = place.rating;
+			ratingTxt = place.rating + " <span class='glyphicon glyphicon-star' aria-hidden='true'></span>";
 		}
 		else {
 			ratingTxt = "None available.";
