@@ -229,7 +229,7 @@ function appendPlaceToResults(place, status) {
 			newModal.setAttribute('aria-hidden', 'true');
 			var ratingDiv;
 			if (place.rating !== undefined) {
-				ratingDiv = "<div class='col-lg-6' id ='rating'>Average rating: " + place.rating + " / 5.0</div>";
+				ratingDiv = "<div class='col-lg-6' id ='rating'>Average rating: " + place.rating + " / 5.0 <span class='glyphicon glyphicon-star' aria-hidden='true'></span></div>";
 			}
 			else {
 				ratingDiv = "<div class='col-lg-6' id ='rating'>No rating available for this location.</div>";
@@ -380,7 +380,7 @@ function appendPlaceToSaved(place, status) {
 		}
 		var ratingDiv;
 		if (place.rating !== undefined) {
-			ratingDiv = "<div class='col-lg-6' id ='rating'>Average rating: " + place.rating + " / 5.0</div>";
+			ratingDiv = "<div class='col-lg-6' id ='rating'>Average rating: " + place.rating + " / 5.0 <span class='glyphicon glyphicon-star' aria-hidden='true'></span></div>";
 		}
 		else {
 			ratingDiv = "<div class='col-lg-6' id ='rating'>No rating available for this location.</div>";

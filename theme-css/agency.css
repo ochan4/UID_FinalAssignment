@@ -869,3 +869,8 @@ body {
 .results-brand {
 	font-size:1.5em !important;
 }
+
+.glyphicon.glyphicon-star {
+    font-size: 15px;
+}
+
