@@ -320,7 +320,7 @@ function addToSavedNoModal(placeId, resultNum, loc) {
 	console.log(loc);
 	if (loc == "results") {
 		var myButton = document.getElementById('saved-button' + resultNum);
-		myButton.innerHTML = "<i class='fa fa-heart' aria-hidden='true'></i> Add to Saved";
+		myButton.innerHTML = "<i class='fa fa-heart' aria-hidden='true'></i> Remove from Saved?";
 		myButton.onclick = function () {
 			removeFromSaved(placeId, resultNum, loc);
 		}
@@ -408,11 +408,11 @@ function displaySavedPlaces() {
 }
 
 function getSavedDetails(placeId) {
-	// var request = {
-	// 	placeId: placeId
-	// };
+	 var request = {
+	 	placeId: placeId
+	 };
 	service = new google.maps.places.PlacesService(document.createElement('div'));
-	// service.getDetails(request, appendPlaceToSaved);
+	service.getDetails(request, appendPlaceToSaved);
 	
 }
 
@@ -505,12 +505,14 @@ function appendPlaceToSaved(place, status) {
 		saved.appendChild(newDiv);
 		savedModals.appendChild(newModal);
 	}
+}
 
 function helpModal() {
 	console.log("help appear");
 	var div = document.getElementById('help');
 	div.style.display = "block";
 }
+	
 var allplacesJSON = {
 	"masterlist": [
 		{
