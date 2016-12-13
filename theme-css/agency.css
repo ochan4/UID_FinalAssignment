@@ -364,8 +364,8 @@ section h3.section-subheading {
 #portfolio .portfolio-item {
 	margin: 0 0 15px;
 	right: 0;
-	min-height: 360px;
-	/*min-height: 378px; /* changed because of saved button addition */
+	/*min-height: 360px;*/
+	min-height: 378px; /* changed because of saved button addition */
 }
 
 #portfolio .portfolio-item .portfolio-link {

@@ -58,6 +58,8 @@ function discountDictionaryFunction(discountArray) {
 var numResults = 0; // keep track of how many results on page
 var numSaved = 0; // keep track of how many saved things we've displayed 
 var savedPlaces = JSON.parse(myStorage.getItem('saved-places')); // saved places array
+var hasResult = false;
+
 function initSavedPlaces() {
 	if (JSON.parse(myStorage.getItem('saved-places')) == "") {
 		savedPlaces = [];
@@ -175,6 +177,9 @@ function showPlaces(list, onlyFree, borough) {
 function hideLoadMessage() {
 	setTimeout(function () {
 		document.getElementById("loading").style.display = "none";
+		if (!hasResult) {
+			document.getElementById("noResults").style.display = "block";
+		}
 	}, 15000);
 }
 
@@ -191,6 +196,7 @@ function appendPlaceToResults(place, status) {
 	var attempts = 0;
 	var success = false;
 	while (success != true && attempts < 3) {
+		hasResult = true;
 		document.getElementById("loading").style.display = "block";
 		if (status == google.maps.places.PlacesServiceStatus.OK) {
 			success = true;
@@ -277,7 +283,7 @@ function appendPlaceToResults(place, status) {
 			attempts++;
 			console.log("Woah! I got a bad result.");
 			console.log(status);
-			delay(2000);
+			delay(500);
 		}
 	}
 	document.getElementById("loading").style.display = "none";
@@ -396,11 +402,9 @@ function appendPlaceToSaved(place, status) {
 		else {
 			ratingTxt = "None available.";
 		}
-		
 		var divButtonTxt;
 		var pageLoc = JSON.stringify("homePage");
 		var placeId = JSON.stringify(place.place_id);
-		
 		if (isSaved(place.place_id)) { // is saved
 			divButtonTxt = "<i class='fa fa-heart' aria-hidden='true'></i>";
 			divButtonClass = "btn";
@@ -411,13 +415,9 @@ function appendPlaceToSaved(place, status) {
 			divButtonClass = "btn";
 			divButtonOnClick = "addToSavedNoModal(" + placeId + "," + numSaved + "," + pageLoc + ")";
 		}
-		
 		newDiv.innerHTML = "<a href='#savedModal" + numSaved + "' class='portfolio-link' data-toggle='modal'> <div class='portfolio-hover'> <div class='portfolio-hover-content'> <i class='fa fa-search-plus fa-3x'></i> </div></div> <img src='" + photoUrl + "' class='img-responsive' alt=''> </a><div class='portfolio-caption'><h4>" + place.name + "</h4><p id='ratingTxt' class='text-muted'>Rating: " + ratingTxt + "</p>" + "<button type='button' class=" + divButtonClass + " id='divButton" + numSaved + "' + onclick = '" + divButtonOnClick + "'>" + divButtonTxt + "</button>" + "</div>";
-		
-		
 		var savedModals = document.getElementById("saved-modals");
 		var newModal = document.createElement('div');
-
 		newModal.setAttribute('class', 'portfolio-modal modal fade');
 		newModal.setAttribute('id', 'savedModal' + numSaved);
 		newModal.setAttribute('tabindex', '-1');
