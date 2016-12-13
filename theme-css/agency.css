@@ -856,3 +856,16 @@ body {
 
 	font-size: 14px;
 }
+
+.results-navbar {
+	background-color: #222222;
+	padding:10px 0px;
+}
+
+.results-heading {
+	padding-top: 40px;
+}
+
+.results-brand {
+	font-size:1.5em !important;
+}
