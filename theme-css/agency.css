@@ -365,6 +365,7 @@ section h3.section-subheading {
 	margin: 0 0 15px;
 	right: 0;
 	min-height: 360px;
+	/*min-height: 378px; /* changed because of saved button addition */
 }
 
 #portfolio .portfolio-item .portfolio-link {
@@ -872,9 +873,19 @@ body {
 }
 
 .back-to-top {
-    cursor: pointer;
-    position: fixed;
-    bottom: 6px;
-    right: 15px;
-    display:none;
+	cursor: pointer;
+	position: fixed;
+	bottom: 6px;
+	right: 15px;
+	display: none;
+}
+
+[id^=divButton] {
+	background: #fed136;
+	padding: 1px 10px;
+	border: none;
+	color: white;
+	font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: bold;
+	font-size: 14px;
 }
