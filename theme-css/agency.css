@@ -851,3 +851,11 @@ body {
 
 	font-size: 16px;
 }
+
+.results-navbar {
+	background-color: #222222;
+}
+
+.results-heading {
+	padding-top: 70px;
+}
