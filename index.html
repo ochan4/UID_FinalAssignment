@@ -48,60 +48,60 @@
 		<!-- /.container-fluid -->
 	</nav>
 	<!-- Header -->
-	<header>
-		<div class="container">
-			<div class="intro-text">
-				<div class="intro-heading">Broke student? Live your best life</div>
-				<div class="intro-lead-in">Find places where you can use your Columbia ID to save money</div>
-			</div>
-		</div>
-	</header>
-	<div class="index-hero-prompt js-index-hero-prompt">
-		<div class="index-hero-bg">
-			<div class="index-hero-show-md">
-				<form id="search-form" class="form-inline">
-					<input type="text" name="address" class="form-control" id="addressInput" placeholder="Enter your current address here, Columbia University assumed if no address is entered." onkeydown = "if (event.keyCode == 13){return processForm();}"  >
-					<br>
-					<h5 style="display: inline;">I'm looking for </h5>
-					<select id="cost" class="form-control" >
-						<option selected="selected" value="false">Discounted or Free</option>
-						<option value="true">Only Free</option>
-					</select>
-					<select id="activity-type" class="form-control">
-						<option selected="selected">Anything</option>
-						<option>Arts & Entertainment</option>
-						<option>Food</option>
-						<option>Shopping</option>
-					</select>
-					<h5 style="display: inline;">in  </h5>
-					<select id="borough" class="form-control" onkeydown = "if (event.keyCode == 13){return processForm();}">
-						<option selected="selected">Anywhere</option>
-						<option>Manhattan</option>
-						<option>Brooklyn</option>
-						<option>Bronx</option>
-						<option>Queens</option>
-					</select> <a href="" id="submit-button" onclick="return processForm();" class="page-scroll btn btn-xl search-btn">See results</a> </form>
-			</div>
-			<br>
-			<br> </div>
-	</div>
-	<!-- Portfolio Grid Section -->
-	<section id="portfolio" class="bg-light-gray">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12 text-center">
-					<h2 class="section-heading">Saved</h2>
-					<div id="no-saved-places" style="display:none">
-						<h3 class="section-subheading text-muted">No saved locations as of yet! Get searching to fill this section up.</h3> 
-					</div>
-					<div id="has-saved-places" style="display:none">
-						<h3 class="section-subheading text-muted">Here are all of the locations you've saved thus far.</h3> 
-					</div>
+	<div id="start-stuff">
+		<header>
+			<div class="container">
+				<div class="intro-text">
+					<div class="intro-heading">Broke student? Live your best life</div>
+					<div class="intro-lead-in">Find places where you can use your Columbia ID to save money</div>
 				</div>
 			</div>
-			<div id="saved-places" class="row"> </div>
+		</header>
+		<div class="index-hero-prompt js-index-hero-prompt">
+			<div class="index-hero-bg">
+				<div class="index-hero-show-md">
+					<form id="search-form" class="form-inline">
+						<input type="text" name="address" class="form-control" id="addressInput" placeholder="Enter your current address here, Columbia University assumed if no address is entered." onkeydown="if (event.keyCode == 13){return processForm();}">
+						<br>
+						<h5 style="display: inline;">I'm looking for </h5>
+						<select id="cost" class="form-control">
+							<option selected="selected" value="false">Discounted or Free</option>
+							<option value="true">Only Free</option>
+						</select>
+						<select id="activity-type" class="form-control">
+							<option selected="selected">Anything</option>
+							<option>Arts & Entertainment</option>
+							<option>Food</option>
+							<option>Shopping</option>
+						</select>
+						<h5 style="display: inline;">in  </h5>
+						<select id="borough" class="form-control" onkeydown="if (event.keyCode == 13){return processForm();}">
+							<option selected="selected">Anywhere</option>
+							<option>Manhattan</option>
+							<option>Brooklyn</option>
+							<option>Bronx</option>
+							<option>Queens</option>
+						</select> <a href="" id="submit-button" onclick="return processForm();" class="page-scroll btn btn-xl search-btn">See results</a> </form>
+				</div>
+				<br>
+				<br> </div>
 		</div>
-	</section>
+	</div>
+	<!-- Portfolio Grid Section -->
+		<section id="portfolio" class="bg-light-gray">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 text-center">
+						<h2 class="section-heading">Saved</h2>
+						<div id="no-saved-places" style="display:none">
+							<h3 class="section-subheading text-muted">No saved locations as of yet! Get searching to fill this section up.</h3> </div>
+						<div id="has-saved-places" style="display:none">
+							<h3 class="section-subheading text-muted">Here are all of the locations you've saved thus far.</h3> </div>
+					</div>
+				</div>
+				<div id="saved-places" class="row"> </div>
+			</div>
+		</section>
 	<!-- Contact Section -->
 	<section id="contact">
 		<div class="container">
@@ -147,44 +147,36 @@
 	</footer>
 	<div id="saved-modals"> </div>
 	<div class="portfolio-modal modal fade" id="help-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="close-modal" data-dismiss="modal">
-                    <div class="lr">
-                        <div class="rl">
-                        </div>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-8 col-lg-offset-2">
-                            <div class="modal-body">
-                                <h2>Help and Support</h2>
-                                <br>
-                                <h4>What is this application?</h4>
-                                <p class="item-intro text-muted">
-                                New York City provides all kinds of discounted deals for Columbia students. However, Columbia students still stubled through finding activities and places to visit. Having limited amount of money to spend and time to do area search, Columpon developed a clean and easy to use platform for students to search for great deals.</p>
-
-                                <h4>How I get the deals to these places?</h4>
-                                <p class="item-intro text-muted">Click on the awesome places you want to go, follow the direction on the map and remember to bring your Columbia Student ID. When you arrived at the place, simply show your student ID and you will be all set.</p>
-
-                                <h4>Can I save places I want to visit?</h4>
-                                <p class="item-intro text-muted">Once you find places, follow the direction. </p>
-
-                                <h4>How do I add a deal?</h4>
-                                <p class="item-intro text-muted">We encourage students continue sharing good deals with us. You will find a section in the homepage to sumbit us a deal you find in New York. </p>
-
-                                <h4>How can I contact Colupon?</h4>
-                                <p class="item-intro text-muted">You are welcome to email us anytime: ask@colupon.com</p>
-
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="close-modal" data-dismiss="modal">
+					<div class="lr">
+						<div class="rl"> </div>
+					</div>
+				</div>
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-8 col-lg-offset-2">
+							<div class="modal-body">
+								<h2>Help and Support</h2>
+								<br>
+								<h4>What is this application?</h4>
+								<p class="item-intro text-muted"> New York City provides all kinds of discounted deals for Columbia students. However, Columbia students still stubled through finding activities and places to visit. Having limited amount of money to spend and time to do area search, Columpon developed a clean and easy to use platform for students to search for great deals.</p>
+								<h4>How I get the deals to these places?</h4>
+								<p class="item-intro text-muted">Click on the awesome places you want to go, follow the direction on the map and remember to bring your Columbia Student ID. When you arrived at the place, simply show your student ID and you will be all set.</p>
+								<h4>Can I save places I want to visit?</h4>
+								<p class="item-intro text-muted">Once you find places, follow the direction. </p>
+								<h4>How do I add a deal?</h4>
+								<p class="item-intro text-muted">We encourage students continue sharing good deals with us. You will find a section in the homepage to sumbit us a deal you find in New York. </p>
+								<h4>How can I contact Colupon?</h4>
+								<p class="item-intro text-muted">You are welcome to email us anytime: ask@colupon.com</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<!-- jQuery -->
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<!-- Bootstrap Core JavaScript -->
