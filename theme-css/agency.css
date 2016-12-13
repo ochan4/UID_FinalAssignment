@@ -883,6 +883,7 @@ body {
 	bottom: 6px;
 	right: 15px;
 	display: none;
+	z-index:100;
 }
 
 [id^=divButton] {
