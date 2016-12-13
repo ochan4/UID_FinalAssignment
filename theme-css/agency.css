@@ -283,6 +283,7 @@ header {
 	-o-background-size: cover;
 	text-align: center;
 	color: white;
+	height: 75vh;
 }
 
 header .intro-text {
@@ -694,7 +695,7 @@ body {
 	width: 100%;
 	color: white;
 	text-align: center;
-	padding: 8px 0
+	padding: 6px 0
 }
 
 .index-hero-prompt .see-results-text a {
@@ -717,14 +718,14 @@ body {
 }
 
 .index-hero-bg {
-	/*background-color: rgb(30,96,153);*/
 	background-color: #08435c;
-	padding: 20px
+	padding: 20px;
+	height: 30vh;
 }
 
 @media (min-width: 850px) {
 	.index-hero-bg {
-		padding: 0
+		padding: 0;
 	}
 }
 
@@ -743,7 +744,7 @@ body {
 }
 
 .index-hero-show-md {
-	display: none
+	display: none;
 }
 
 @media (min-width: 850px) {
@@ -841,8 +842,12 @@ body {
 }
 
 
-#help{
+#help {
 	display: none;
+}
+
+#start-stuff {
+	height: 100vh;
 }
 
 #form-criteria {
