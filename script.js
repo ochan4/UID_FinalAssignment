@@ -138,7 +138,7 @@ function showPlaces(list, onlyFree, borough) {
 	else if (onlyFree == "true" && borough == "Anywhere") { // showing only free results in any borough
 		for (var i = 0; i < list.length; i++) {
 			var cur = list[i];
-			if (cur["free"] == onlyFree) {
+			if (cur["free"] == true) {
 				getPlaceDetails(cur["id"]);
 			}
 		}
@@ -146,19 +146,7 @@ function showPlaces(list, onlyFree, borough) {
 	else if (onlyFree == "true" && borough != "Anywhere") { // showing only free results in a single borough
 		for (var i = 0; i < list.length; i++) {
 			var cur = list[i];
-			console.log(onlyFree);
-			console.log(cur["borough"]);
-			console.log("param borough" + borough);
-			console.log(cur["free"]);
-			var help;
-			if (borough == cur["borough"]) {
-				help = "yep";
-			}
-			else {
-				help = "nopeeee";
-			}
-			console.log(help);
-			if (cur["borough"] == borough && cur["free"] == onlyFree) {
+			if (cur["borough"] == borough && cur["free"] == true) {
 				getPlaceDetails(cur["id"]);
 			}
 		}
