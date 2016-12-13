@@ -897,3 +897,11 @@ body {
 #search-title {
 	margin-bottom: -8px;
 }
+
+.fa.fa-heart {
+	color: red;
+}
+
+.fa.fa-heart-o {
+	color: red;
+}
