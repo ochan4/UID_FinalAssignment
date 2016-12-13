@@ -490,6 +490,10 @@ section#contact .form-group input.form-control {
 
 section#contact .form-group textarea.form-control {
 	height: 150px;
+	width: 600px;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 section#contact .form-control:focus {

@@ -408,11 +408,12 @@ function displaySavedPlaces() {
 }
 
 function getSavedDetails(placeId) {
-	var request = {
-		placeId: placeId
-	};
+	// var request = {
+	// 	placeId: placeId
+	// };
 	service = new google.maps.places.PlacesService(document.createElement('div'));
-	service.getDetails(request, appendPlaceToSaved);
+	// service.getDetails(request, appendPlaceToSaved);
+	
 }
 
 function appendPlaceToSaved(place, status) {
@@ -504,7 +505,6 @@ function appendPlaceToSaved(place, status) {
 		saved.appendChild(newDiv);
 		savedModals.appendChild(newModal);
 	}
-}
 
 function helpModal() {
 	console.log("help appear");
