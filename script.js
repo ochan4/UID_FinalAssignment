@@ -62,7 +62,7 @@ function initSavedPlaces() {
 	if (JSON.parse(myStorage.getItem('saved-places')) == "") {
 		savedPlaces = [];
 		myStorage.setItem('saved-places', JSON.stringify(savedPlaces));
-		noSavedPlaces(); // @TODO: show some message saying to get started 
+		noSavedPlaces();
 		document.getElementById('has-saved-places').style.display = "none";
 		document.getElementById('no-saved-places').style.display = "block";
 	}
@@ -75,9 +75,6 @@ function initSavedPlaces() {
 	}
 }
 
-function initResults() {
-	//@TODO
-}
 
 function processForm() {
 	numResults = 0;
@@ -131,7 +128,6 @@ function displayResults() {
 }
 
 function showPlaces(list, onlyFree, borough) {
-	//alert(onlyFree);
 	if (onlyFree != "true" && borough == "Anywhere") { // showing all + free results in any borough
 		for (var i = 0; i < list.length; i++) {
 			var cur = list[i];
@@ -154,9 +150,8 @@ function showPlaces(list, onlyFree, borough) {
 			console.log("param borough" + borough);
 			console.log(cur["free"]);
 			var help;
-			if(borough == cur["borough"]) {
+			if (borough == cur["borough"]) {
 				help = "yep";
-				
 			}
 			else {
 				help = "nopeeee";
@@ -177,11 +172,12 @@ function showPlaces(list, onlyFree, borough) {
 	}
 	return false; // prevent reload
 }
-		function hideLoadMessage() {
-			setTimeout(function () {
-				document.getElementById("loading").style.display = "none";
-			}, 15000);
-		}
+
+function hideLoadMessage() {
+	setTimeout(function () {
+		document.getElementById("loading").style.display = "none";
+	}, 15000);
+}
 
 function getPlaceDetails(placeId) {
 	var request = {
@@ -190,8 +186,6 @@ function getPlaceDetails(placeId) {
 	let map = new google.maps.Map(document.createElement('div'));
 	service = new google.maps.places.PlacesService(map)
 	service.getDetails(request, appendPlaceToResults);
-	//setTimeout(function () {
-	//}, 4000);
 }
 
 function appendPlaceToResults(place, status) {
@@ -260,10 +254,13 @@ function appendPlaceToResults(place, status) {
 				buttonText = "Add to Saved";
 				buttonFunc = "addToSaved";
 			}
+			
+			var pageLoc = JSON.stringify("resultsPage");
+			
 			var fromAddress = encodeURIComponent(myStorage.getItem('address'));
 			var toAddress = encodeURIComponent(place.formatted_address);
 			var iframe = "<iframe width='700' height='400' frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/directions?key=AIzaSyDwjNhrGi0G3W-aKvTJ6eAegH7mf4Y3SuE&origin=" + fromAddress + "&destination=" + toAddress + "&avoid=tolls|highways&mode=transit' allowfullscreen> </iframe>";
-			newModal.innerHTML = "<div class='modal-dialog'> <div class='modal-content'> <div class='close-modal' data-dismiss='modal'> <div class='lr'> <div class='rl'> </div> </div> </div> <div class='container'> <div class='row'> <div class='col-lg-8 col-lg-offset-2'> <div class='modal-body'> <!-- Project Details Go Here --> <h2>" + place.name + "</h2>" + ratingDiv + discountDiv + "<br> <button type='button' id='saved-button' class='btn btn-primary' onclick='" + buttonFunc + "(" + placeId + ")'>" + buttonText + "</button><br>" + photoDiv + placeInfoDiv + hoursDiv + "<br>" + iframe + "<br><br> <button type='button' class='btn btn-primary center-block' data-dismiss='modal'><i class='fa fa-times'></i> Close Window</button> </div> </div> </div> </div> </div> </div>";
+			newModal.innerHTML = "<div class='modal-dialog'> <div class='modal-content'> <div class='close-modal' data-dismiss='modal'> <div class='lr'> <div class='rl'> </div> </div> </div> <div class='container'> <div class='row'> <div class='col-lg-8 col-lg-offset-2'> <div class='modal-body'> <!-- Project Details Go Here --> <h2>" + place.name + "</h2>" + ratingDiv + discountDiv + "<br> <button type='button' id='saved-button" + numResults + "' class='btn btn-primary' onclick='" + buttonFunc + "(" + placeId + "," + numResults + "," + pageLoc +  ")'>" + buttonText + "</button><br>" + photoDiv + placeInfoDiv + hoursDiv + "<br>" + iframe + "<br><br> <button type='button' class='btn btn-primary center-block' data-dismiss='modal'><i class='fa fa-times'></i> Close Window</button> </div> </div> </div> </div> </div> </div>";
 			results.appendChild(newDiv);
 			resultModals.appendChild(newModal);
 		}
@@ -271,14 +268,10 @@ function appendPlaceToResults(place, status) {
 			attempts++;
 			console.log("Woah! I got a bad result.");
 			console.log(status);
-			/*			setTimeout(function() {
-							console.log("I'm trying my best");
-						}, 2000);*/
 			delay(2000);
 		}
 	}
-		document.getElementById("loading").style.display = "none";
-
+	document.getElementById("loading").style.display = "none";
 }
 
 function delay(ms) {
@@ -294,22 +287,34 @@ function isSaved(placeId) {
 	return false;
 }
 
-function addToSaved(placeId) {
+function addToSaved(placeId, resultNum, loc) {
 	savedPlaces.push(placeId);
 	myStorage.setItem('saved-places', JSON.stringify(savedPlaces));
-	var parsed = JSON.parse(myStorage.getItem('saved-places'));
+	
+	var myButton = document.getElementById('saved-button' + resultNum);
+	myButton.innerHTML = "Remove from Saved";
+	myButton.onclick = function () { removeFromSaved(placeId, resultNum, loc); };
+
 	alert("Succesfully added this location to your saved list!");
-	//alert(_.without(parsed, 1));  use underscore.js so that we can remove items from the saved list, not built into plain javascript
 	return false;
 }
 
-function removeFromSaved(placeId) {
+function removeFromSaved(placeId, resultNum, loc) {
 	var origSaved = JSON.parse(myStorage.getItem('saved-places'));
 	var updatedSaved = _.without(origSaved, placeId);
 	savedPlaces = updatedSaved;
 	myStorage.setItem('saved-places', JSON.stringify(updatedSaved));
+	var myButton = document.getElementById('saved-button' + resultNum);
+	myButton.innerHTML = "Add to Saved";
+	myButton.onclick = function() { addToSaved(placeId, resultNum, loc); }
 	alert("Succesfully removed this location to your saved list!");
-	return false; // @TODO: implement me!
+	
+	if(loc == "homePage"){
+		document.getElementById("savedPlace" + resultNum).style.display = "none";
+	}
+	
+	return false;
+
 }
 
 function noSavedPlaces() {
@@ -336,6 +341,7 @@ function appendPlaceToSaved(place, status) {
 		numSaved++;
 		var saved = document.getElementById("saved-places");
 		var newDiv = document.createElement('div');
+		newDiv.setAttribute('id', 'savedPlace' + numSaved);
 		newDiv.setAttribute('class', 'col-md-4 col-sm-6 portfolio-item')
 		var photoUrl = "http://ahandup.net/wp-content/uploads/2015/08/no-propertyfound1-830x460.png"; // @TODO: change to a more appropriate no image available placeholder
 		if (place.photos !== undefined) {
@@ -399,14 +405,15 @@ function appendPlaceToSaved(place, status) {
 			buttonText = "Add to Saved";
 			buttonFunc = "addToSaved";
 		}
+		
+		var pageLoc = JSON.stringify("homePage");
+
+		
 		var fromAddress = encodeURIComponent(myStorage.getItem('address'));
 		var toAddress = encodeURIComponent(place.formatted_address);
 		var iframe = "<iframe width='700' height='400' frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/directions?key=AIzaSyDwjNhrGi0G3W-aKvTJ6eAegH7mf4Y3SuE&origin=" + fromAddress + "&destination=" + toAddress + "&avoid=tolls|highways&mode=transit' allowfullscreen> </iframe>";
-		/****
-						@TODO: get discount val from hashmap, keyed by placeid
-		
-						*****/
-		newModal.innerHTML = "<div class='modal-dialog'> <div class='modal-content'> <div class='close-modal' data-dismiss='modal'> <div class='lr'> <div class='rl'> </div> </div> </div> <div class='container'> <div class='row'> <div class='col-lg-8 col-lg-offset-2'> <div class='modal-body'> <!-- Project Details Go Here --> <h2>" + place.name + "</h2>" + ratingDiv + discountDiv + "<br> <button type='button' id='saved-button' class='btn btn-primary' onclick='" + buttonFunc + "(" + placeId + ")'>" + buttonText + "</button><br>" + photoDiv + placeInfoDiv + hoursDiv + "<br>" + iframe + "<br><br> <button type='button' class='btn btn-primary center-block' data-dismiss='modal'><i class='fa fa-times'></i> Close Window</button> </div> </div> </div> </div> </div> </div>";
+
+		newModal.innerHTML = "<div class='modal-dialog'> <div class='modal-content'> <div class='close-modal' data-dismiss='modal'> <div class='lr'> <div class='rl'> </div> </div> </div> <div class='container'> <div class='row'> <div class='col-lg-8 col-lg-offset-2'> <div class='modal-body'> <!-- Project Details Go Here --> <h2>" + place.name + "</h2>" + ratingDiv + discountDiv + "<br> <button type='button' id='saved-button" + numSaved +  "' class='btn btn-primary' onclick='" + buttonFunc + "(" + placeId + "," + numSaved + "," + pageLoc + ")'>" + buttonText + "</button><br>" + photoDiv + placeInfoDiv + hoursDiv + "<br>" + iframe + "<br><br> <button type='button' class='btn btn-primary center-block' data-dismiss='modal'><i class='fa fa-times'></i> Close Window</button> </div> </div> </div> </div> </div> </div>";
 		saved.appendChild(newDiv);
 		savedModals.appendChild(newModal);
 	}

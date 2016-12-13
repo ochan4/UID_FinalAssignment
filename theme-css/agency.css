@@ -807,7 +807,7 @@ body {
 	margin-top:5px;
 }
 
-#saved-button{
+[id^=saved-button] {
 	clear:both;
 	margin: 20px 15px;
 }
