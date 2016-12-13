@@ -107,9 +107,9 @@ function displayResults() {
 		criteriaCost = "Free Activities Only";
 	}
 	else {
-		criteriaCost = "Discounted & Free Activities"
+		criteriaCost = "Both Discounted & Free Activities"
 	}
-	document.getElementById("form-criteria").innerHTML = "Getting directions from: " + address + "<br>" + atype + ", " + borough + ", " + criteriaCost;
+	document.getElementById("form-criteria").innerHTML = "You're starting from: " + address + "<br>Showing places for <b>" + atype + "</b> in <b>" + borough + "</b> (" + criteriaCost + ")";
 	splitCategory();
 	hideLoadMessage();
 	if (atype == 'Arts & Entertainment') {
