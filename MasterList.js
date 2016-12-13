@@ -335,16 +335,6 @@ var allplacesJSON = {
 			, "name": "Banana Republic"
 			, "discount": "15%"
 			, "boolFree": false
-			, "borough": "Brooklyn"
-			, "address": "485 Fulton St, Brooklyn, NY 11201"
-			, "Rating": null
-			, "googleID": "ChIJv3o9gExawokR0EU5BOaM_ks"
- }
-					, {
-			"category": "Shopping"
-			, "name": "Banana Republic"
-			, "discount": "15%"
-			, "boolFree": false
 			, "borough": "Manhattan"
 			, "address": "550 Broadway, New York, NY 10012"
 			, "Rating": null
