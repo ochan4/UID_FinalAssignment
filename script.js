@@ -298,7 +298,14 @@ function addToSaved(placeId, resultNum, loc) {
 	myButton.onclick = function () {
 		removeFromSaved(placeId, resultNum, loc);
 	};
-	alert("Succesfully added this location to your saved list!");
+	if (loc == "results") {
+		console.log("inside loc thing");
+		document.getElementById("divButton" + resultNum).innerHTML = "<i class='fa fa-heart' aria-hidden='true'></i>";
+		document.getElementById("divButton" + resultNum).onclick = function () {
+			removeFromSavedNoModal(placeId, resultNum, loc);
+		}
+	}
+	swal("Success!", "This location has been added to your Saved list.", "success");
 	return false;
 }
 
@@ -310,41 +317,82 @@ function addToSavedNoModal(placeId, resultNum, loc) {
 	myButton.onclick = function () {
 		removeFromSavedNoModal(placeId, resultNum, loc);
 	};
-	alert("Succesfully added this location to your saved list!");
+	console.log(loc);
+	if (loc == "results") {
+		var myButton = document.getElementById('saved-button' + resultNum);
+		myButton.innerHTML = "<i class='fa fa-heart' aria-hidden='true'></i> Add to Saved";
+		myButton.onclick = function () {
+			removeFromSaved(placeId, resultNum, loc);
+		}
+	}
+	swal("Success!", "This location has been added to your Saved list.", "success");
 	return false;
 }
 
 function removeFromSaved(placeId, resultNum, loc) {
-	var origSaved = JSON.parse(myStorage.getItem('saved-places'));
-	var updatedSaved = _.without(origSaved, placeId);
-	savedPlaces = updatedSaved;
-	myStorage.setItem('saved-places', JSON.stringify(updatedSaved));
-	var myButton = document.getElementById('saved-button' + resultNum);
-	myButton.innerHTML = "<i class='fa fa-heart-o' aria-hidden='true'></i> Add to Saved";
-	myButton.onclick = function () {
-		addToSaved(placeId, resultNum, loc);
-	}
-	alert("Succesfully removed this location from your saved list!");
-	if (loc == "homePage") {
-		document.getElementById("savedPlace" + resultNum).style.display = "none";
-	}
+	swal({
+		title: ""
+		, text: "Are you sure you want to remove this location?"
+		, type: "warning"
+		, showCancelButton: true
+		, confirmButtonColor: "#DD6B55"
+		, confirmButtonText: "Yes, remove it!"
+		, closeOnConfirm: false
+	}, function () {
+		var origSaved = JSON.parse(myStorage.getItem('saved-places'));
+		var updatedSaved = _.without(origSaved, placeId);
+		savedPlaces = updatedSaved;
+		myStorage.setItem('saved-places', JSON.stringify(updatedSaved));
+		var myButton = document.getElementById('saved-button' + resultNum);
+		myButton.innerHTML = "<i class='fa fa-heart-o' aria-hidden='true'></i> Add to Saved";
+		myButton.onclick = function () {
+			addToSaved(placeId, resultNum, loc);
+		}
+		if (loc == "homePage") {
+			document.getElementById("savedPlace" + resultNum).style.display = "none";
+		}
+		else {
+			document.getElementById("divButton" + resultNum).innerHTML = "<i class='fa fa-heart-o' aria-hidden='true'></i>";
+			document.getElementById("divButton" + resultNum).onclick = function () {
+				addToSavedNoModal(placeId, resultNum, loc);
+			}
+		}
+		swal("Removed!", "This location has been removed from your saved list.", "success");
+	});
 	return false;
 }
 
 function removeFromSavedNoModal(placeId, resultNum, loc) {
-	var origSaved = JSON.parse(myStorage.getItem('saved-places'));
-	var updatedSaved = _.without(origSaved, placeId);
-	savedPlaces = updatedSaved;
-	myStorage.setItem('saved-places', JSON.stringify(updatedSaved));
-	var myButton = document.getElementById('divButton' + resultNum);
-	myButton.innerHTML = "<i class='fa fa-heart-o' aria-hidden='true'></i>";
-	myButton.onclick = function () {
-		addToSavedNoModal(placeId, resultNum, loc);
-	}
-	alert("Succesfully removed this location from your saved list!");
-	if (loc == "homePage") {
-		document.getElementById("savedPlace" + resultNum).style.display = "none";
-	}
+	swal({
+		title: ""
+		, text: "Are you sure you want to remove this location?"
+		, type: "warning"
+		, showCancelButton: true
+		, confirmButtonColor: "#DD6B55"
+		, confirmButtonText: "Yes, remove it!"
+		, closeOnConfirm: false
+	}, function () {
+		var origSaved = JSON.parse(myStorage.getItem('saved-places'));
+		var updatedSaved = _.without(origSaved, placeId);
+		savedPlaces = updatedSaved;
+		myStorage.setItem('saved-places', JSON.stringify(updatedSaved));
+		var myButton = document.getElementById('divButton' + resultNum);
+		myButton.innerHTML = "<i class='fa fa-heart-o' aria-hidden='true'></i>";
+		myButton.onclick = function () {
+			addToSavedNoModal(placeId, resultNum, loc);
+		}
+		if (loc == "homePage") {
+			document.getElementById("savedPlace" + resultNum).style.display = "none";
+		}
+		else {
+			var myButton = document.getElementById('saved-button' + resultNum);
+			myButton.innerHTML = "<i class='fa fa-heart-o' aria-hidden='true'></i> Add to Saved";
+			myButton.onclick = function () {
+				addToSaved(placeId, resultNum, loc);
+			}
+		}
+		swal("Removed!", "This location has been removed from your saved list.", "success");
+	});
 	return false;
 }
 
