@@ -305,6 +305,9 @@ function addToSaved(placeId, resultNum, loc) {
 			removeFromSavedNoModal(placeId, resultNum, loc);
 		}
 	}
+	else {
+		document.getElementById("savedPlace" + resultNum).style.display = "block";		
+	}
 	swal("Success!", "This location has been added to your Saved list.", "success");
 	return false;
 }
