@@ -988,5 +988,391 @@ var allplacesJSON = {
 			, "Rating": null
 			, "googleID": "ChIJtUqk7Dz2wokRsi_5j6j1DHM"
 }
+					, {
+			"category": "Food"
+			, "name": "V&T Pizzeria"
+			, "discount": "7%"
+			, "boolFree": false
+			, "borough": "Bronx"
+			, "address": "1024 Amsterdam Avenue New York, NY 10025"
+			, "Rating": null
+			, "googleID": "ChIJhYIy85bzwokRUEF_jzxDeEY"
+}
+
+					, {
+			"category": "Food"
+			, "name": "V&T Pizzeria"
+			, "discount": "5%"
+			, "boolFree": false
+			, "borough": "Bronx"
+			, "address": "1024 Amsterdam Avenue New York, NY 10025"
+			, "Rating": null
+			, "googleID": "ChIJ8bJOumj0wokRw8J9OW4INkY"
+}
+
+					, {
+			"category": "Food"
+			, "name": "V&T Pizzeria"
+			, "discount": "5%"
+			, "boolFree": false
+			, "borough": "Bronx"
+			, "address": "1024 Amsterdam Avenue New York, NY 10025"
+			, "Rating": null
+			, "googleID": "ChIJ3z63iX_0wokRFL6B4aME5K8"
+}
+
+					, {
+			"category": "Food"
+			, "name": "V&T Pizzeria"
+			, "discount": "5%"
+			, "boolFree": false
+			, "borough": "Bronx"
+			, "address": "1024 Amsterdam Avenue New York, NY 10025"
+			, "Rating": null
+			, "googleID": "ChIJ7e5b84DzwokR9M4gmDsRzY4"
+}
+
+					, {
+			"category": "Food"
+			, "name": "V&T Pizzeria"
+			, "discount": "15%"
+			, "boolFree": false
+			, "borough": "Bronx"
+			, "address": "1024 Amsterdam Avenue New York, NY 10025"
+			, "Rating": null
+			, "googleID": "ChIJG8FMiIDzwokRvIsEBOiba2Q"
+}
+
+					, {
+			"category": "Food"
+			, "name": "V&T Pizzeria"
+			, "discount": "10%"
+			, "boolFree": false
+			, "borough": "Bronx"
+			, "address": "1024 Amsterdam Avenue New York, NY 10025"
+			, "Rating": null
+			, "googleID": "ChIJlY3lXoDzwokR256yNqa2x6c"
+}
+
+					, {
+			"category": "Food"
+			, "name": "V&T Pizzeria"
+			, "discount": "5%"
+			, "boolFree": false
+			, "borough": "Bronx"
+			, "address": "1024 Amsterdam Avenue New York, NY 10025"
+			, "Rating": null
+			, "googleID": "ChIJAxPv93n0wokRvBpU7hq_FK8"
+}
+
+
+
+
+
+					, {
+			"category": "Shopping"
+			, "name": "V&T Pizzeria"
+			, "discount": "15%"
+			, "boolFree": false
+			, "borough": "Bronx"
+			, "address": "1024 Amsterdam Avenue New York, NY 10025"
+			, "Rating": null
+			, "googleID": "ChIJCYlBaofzwokRt48uXK62jJs"
+}
+
+					, {
+			"category": "Shopping"
+			, "name": "V&T Pizzeria"
+			, "discount": "7%"
+			, "boolFree": false
+			, "borough": "Bronx"
+			, "address": "1024 Amsterdam Avenue New York, NY 10025"
+			, "Rating": null
+			, "googleID": "ChIJ3eq7TpHzwokR2CQNixvs_3Q"
+}
+
+					, {
+			"category": "Shopping"
+			, "name": "V&T Pizzeria"
+			, "discount": "5%"
+			, "boolFree": false
+			, "borough": "Bronx"
+			, "address": "1024 Amsterdam Avenue New York, NY 10025"
+			, "Rating": null
+			, "googleID": "ChIJ0ek1DMj1wokRZzJmikNolrg"
+}
+
+					, {
+			"category": "Shopping"
+			, "name": "V&T Pizzeria"
+			, "discount": "10%"
+			, "boolFree": false
+			, "borough": "Bronx"
+			, "address": "1024 Amsterdam Avenue New York, NY 10025"
+			, "Rating": null
+			, "googleID": "ChIJbSt5goDzwokR0S4jrI7EpN0"
+}
+
+					, {
+			"category": "Shopping"
+			, "name": "V&T Pizzeria"
+			, "discount": "15%"
+			, "boolFree": false
+			, "borough": "Queens"
+			, "address": "1024 Amsterdam Avenue New York, NY 10025"
+			, "Rating": null
+			, "googleID": "ChIJbQgv0iBewokRqFvT_ceY79o"
+}
+
+					, {
+			"category": "Shopping"
+			, "name": "V&T Pizzeria"
+			, "discount": "15%"
+			, "boolFree": false
+			, "borough": "Queens"
+			, "address": "1024 Amsterdam Avenue New York, NY 10025"
+			, "Rating": null
+			, "googleID": "ChIJF2KR4XfP34kRlJKhieJy2CQ"
+}
+
+					, {
+			"category": "Shopping"
+			, "name": "V&T Pizzeria"
+			, "discount": "10%"
+			, "boolFree": false
+			, "borough": "Queens"
+			, "address": "1024 Amsterdam Avenue New York, NY 10025"
+			, "Rating": null
+			, "googleID": "ChIJBY0CqU5ewokRPsShhVO51S0"
+}
+
+					, {
+			"category": "Shopping"
+			, "name": "V&T Pizzeria"
+			, "discount": "15%"
+			, "boolFree": false
+			, "borough": "Queens"
+			, "address": "1024 Amsterdam Avenue New York, NY 10025"
+			, "Rating": null
+			, "googleID": "ChIJKTGu2iBewokRCJvNwMgJ-MY"
+}
+
+					, {
+			"category": "Shopping"
+			, "name": "V&T Pizzeria"
+			, "discount": "10%"
+			, "boolFree": false
+			, "borough": "Queens"
+			, "address": "1024 Amsterdam Avenue New York, NY 10025"
+			, "Rating": null
+			, "googleID": "ChIJAVg40SBewokRoj_2q_fxi0M"
+}
+
+					, {
+			"category": "Shopping"
+			, "name": "V&T Pizzeria"
+			, "discount": "10%"
+			, "boolFree": false
+			, "borough": "Queens"
+			, "address": "1024 Amsterdam Avenue New York, NY 10025"
+			, "Rating": null
+			, "googleID": "ChIJz4q6MppZwokREiCFiMGf4yI"
+}
+
+					, {
+			"category": "Food"
+			, "name": "V&T Pizzeria"
+			, "discount": "10%"
+			, "boolFree": false
+			, "borough": "Brooklyn"
+			, "address": "1024 Amsterdam Avenue New York, NY 10025"
+			, "Rating": null
+			, "googleID": "ChIJl1TzlVxZwokRHoGdgoKdn8s"
+}
+
+					, {
+			"category": "Food"
+			, "name": "V&T Pizzeria"
+			, "discount": "10%"
+			, "boolFree": false
+			, "borough": "Brooklyn"
+			, "address": "1024 Amsterdam Avenue New York, NY 10025"
+			, "Rating": null
+			, "googleID": "ChIJG0f45K1bwokR75NI9FXdpYI"
+}
+
+					, {
+			"category": "Food"
+			, "name": "V&T Pizzeria"
+			, "discount": "10%"
+			, "boolFree": false
+			, "borough": "Brooklyn"
+			, "address": "1024 Amsterdam Avenue New York, NY 10025"
+			, "Rating": null
+			, "googleID": "ChIJi9nl4EtawokRWCMwCzEDTj4"
+}
+
+					, {
+			"category": "Food"
+			, "name": "V&T Pizzeria"
+			, "discount": "10%"
+			, "boolFree": false
+			, "borough": "Brooklyn"
+			, "address": "1024 Amsterdam Avenue New York, NY 10025"
+			, "Rating": null
+			, "googleID": "ChIJuSUZkrlbwokRkJGqJX2sy8s"
+}
+
+					, {
+			"category": "Food"
+			, "name": "V&T Pizzeria"
+			, "discount": "10%"
+			, "boolFree": false
+			, "borough": "Brooklyn"
+			, "address": "1024 Amsterdam Avenue New York, NY 10025"
+			, "Rating": null
+			, "googleID": "ChIJeTM2M7tbwokRVKaGlAgK7QE"
+}
+
+					, {
+			"category": "Food"
+			, "name": "V&T Pizzeria"
+			, "discount": "10%"
+			, "boolFree": false
+			, "borough": "Brooklyn"
+			, "address": "1024 Amsterdam Avenue New York, NY 10025"
+			, "Rating": null
+			, "googleID": "ChIJr0EwabhbwokR-0FVsMLLPiw"
+}
+
+					, {
+			"category": "Food"
+			, "name": "V&T Pizzeria"
+			, "discount": "15%"
+			, "boolFree": false
+			, "borough": "Brooklyn"
+			, "address": "1024 Amsterdam Avenue New York, NY 10025"
+			, "Rating": null
+			, "googleID": "ChIJGQfym7hbwokRCPtkeUPDllk"
+}
+
+					, {
+			"category": "Food"
+			, "name": "V&T Pizzeria"
+			, "discount": "10%"
+			, "boolFree": false
+			, "borough": "Brooklyn"
+			, "address": "1024 Amsterdam Avenue New York, NY 10025"
+			, "Rating": null
+			, "googleID": "ChIJoSEl_MZbwokRcXkFdIEANF0"
+}
+
+					, {
+			"category": "Shopping"
+			, "name": "V&T Pizzeria"
+			, "discount": "10%"
+			, "boolFree": false
+			, "borough": "Brooklyn"
+			, "address": "1024 Amsterdam Avenue New York, NY 10025"
+			, "Rating": null
+			, "googleID": "ChIJ_cZS361bwokRzssSnsr96LU"
+}
+
+					, {
+			"category": "Shopping"
+			, "name": "V&T Pizzeria"
+			, "discount": "10%"
+			, "boolFree": false
+			, "borough": "Brooklyn"
+			, "address": "1024 Amsterdam Avenue New York, NY 10025"
+			, "Rating": null
+			, "googleID": "ChIJ5VuisgNbwokRdmV4nsdnrvU"
+}
+
+					, {
+			"category": "Shopping"
+			, "name": "V&T Pizzeria"
+			, "discount": "10%"
+			, "boolFree": false
+			, "borough": "Brooklyn"
+			, "address": "1024 Amsterdam Avenue New York, NY 10025"
+			, "Rating": null
+			, "googleID": "ChIJ30o8q0NDwokRTCydxSJmKNg"
+}
+
+					, {
+			"category": "Shopping"
+			, "name": "V&T Pizzeria"
+			, "discount": "15%"
+			, "boolFree": false
+			, "borough": "Brooklyn"
+			, "address": "1024 Amsterdam Avenue New York, NY 10025"
+			, "Rating": null
+			, "googleID": "ChIJI3fri0tawokRPuNlbuvoGCg"
+}
+
+					, {
+			"category": "Shopping"
+			, "name": "V&T Pizzeria"
+			, "discount": "15%"
+			, "boolFree": false
+			, "borough": "Brooklyn"
+			, "address": "1024 Amsterdam Avenue New York, NY 10025"
+			, "Rating": null
+			, "googleID": "ChIJSSh502ZZwokReyrB-pfQd3M"
+}
+
+					, {
+			"category": "Shopping"
+			, "name": "V&T Pizzeria"
+			, "discount": "15%"
+			, "boolFree": false
+			, "borough": "Brooklyn"
+			, "address": "1024 Amsterdam Avenue New York, NY 10025"
+			, "Rating": null
+			, "googleID": "ChIJTdAZ911ZwokRHNvn1gkWj0Q"
+}
+
+					, {
+			"category": "Shopping"
+			, "name": "V&T Pizzeria"
+			, "discount": "10%"
+			, "boolFree": false
+			, "borough": "Brooklyn"
+			, "address": "1024 Amsterdam Avenue New York, NY 10025"
+			, "Rating": null
+			, "googleID": "ChIJyew2hbhbwokRmYa3Sq6RUWc"
+}
+
+					, {
+			"category": "Shopping"
+			, "name": "V&T Pizzeria"
+			, "discount": "15%"
+			, "boolFree": false
+			, "borough": "Brooklyn"
+			, "address": "1024 Amsterdam Avenue New York, NY 10025"
+			, "Rating": null
+			, "googleID": "ChIJv3o9gExawokR0EU5BOaM_ks"
+}
+
+
+
 ]
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
