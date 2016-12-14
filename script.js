@@ -62,7 +62,8 @@ var savedPlaces = JSON.parse(myStorage.getItem('saved-places')); // saved places
 var hasResult = false;
 
 function initSavedPlaces() {
-	if (JSON.parse(myStorage.getItem('saved-places')) == "") {
+	//alert(JSON.parse((myStorage.getItem('saved-places'))));
+	if (JSON.parse((myStorage.getItem('saved-places')) == "") || (JSON.parse(myStorage.getItem('saved-places')) == null)) {
 		savedPlaces = [];
 		myStorage.setItem('saved-places', JSON.stringify(savedPlaces));
 		noSavedPlaces();
